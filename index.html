@@ -186,6 +186,7 @@
       letter-spacing:.03em;
       transition:.25s;
       border:1px solid rgba(255,255,255,.18);
+      cursor:pointer;
     }
     .btn.primary{
       color:white;
@@ -195,7 +196,7 @@
     .btn.secondary{color:#ffe1f7;background:rgba(255,255,255,.08);backdrop-filter:blur(18px)}
     .btn:hover{transform:translateY(-3px) scale(1.015);box-shadow:0 0 50px rgba(255,0,140,.8)}
 
-    main{padding:20px clamp(18px,4vw,64px) 70px}
+    main{padding:20px clamp(18px,4vw,64px) 120px}
     section{max-width:1220px;margin:0 auto 92px}
     .section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:26px}
     .section-kicker{color:var(--pink-3);font-weight:900;letter-spacing:.22em;text-transform:uppercase;font-size:13px}
@@ -222,6 +223,7 @@
       gap:28px;
       align-items:end;
     }
+    .track-card.is-playing{border-color:rgba(255,45,194,.95);box-shadow:0 35px 120px rgba(0,0,0,.65),0 0 100px rgba(255,0,140,.5), inset 0 1px rgba(255,255,255,.25)}
     .track-card:hover{transform:translateY(-8px);border-color:rgba(255,45,194,.72);box-shadow:0 35px 110px rgba(0,0,0,.65),0 0 80px rgba(255,0,140,.35), inset 0 1px rgba(255,255,255,.25)}
     .track-card::before{
       content:"";position:absolute;inset:-1px;border-radius:34px;padding:1px;
@@ -234,7 +236,7 @@
       background:radial-gradient(circle,rgba(255,0,140,.7),rgba(255,0,140,.1) 44%,transparent 70%);
       filter:blur(12px);opacity:.55;transition:.35s;
     }
-    .track-card:hover::after{transform:scale(1.13)}
+    .track-card:hover::after,.track-card.is-playing::after{transform:scale(1.13)}
     .track-main{position:relative;z-index:2}
     .number{font-family:"Space Grotesk";font-size:14px;letter-spacing:.18em;color:var(--pink-3);font-weight:900;margin-bottom:20px}
     .track-title{font-family:"Space Grotesk";font-size:clamp(46px,8vw,116px);line-height:.82;margin:0 0 16px;text-transform:uppercase;letter-spacing:-.06em;text-shadow:0 0 30px rgba(255,0,140,.55)}
@@ -246,6 +248,7 @@
     .listen{
       color:white;text-decoration:none;text-transform:uppercase;letter-spacing:.15em;font-weight:950;font-size:13px;border-radius:999px;
       background:#ff008c;padding:17px 24px;box-shadow:0 0 42px rgba(255,0,140,.72);border:1px solid rgba(255,255,255,.25);transition:.25s;
+      cursor:pointer;
     }
     .listen:hover{transform:translateY(-3px);background:#ff35bd}
     .mini-line{width:190px;height:42px;border-radius:999px;background:linear-gradient(90deg,rgba(255,255,255,.05),rgba(255,0,140,.35),rgba(255,255,255,.05));border:1px solid rgba(255,255,255,.15);position:relative;overflow:hidden}
@@ -254,11 +257,95 @@
 
     .catalog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .small-card{min-height:210px;border-radius:26px;padding:26px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);box-shadow:0 20px 60px rgba(0,0,0,.35), inset 0 1px rgba(255,255,255,.12);backdrop-filter:blur(18px);position:relative;overflow:hidden;transition:.28s}
+    .small-card.is-playing{border-color:rgba(255,0,140,.8);box-shadow:0 0 65px rgba(255,0,140,.33)}
     .small-card:hover{transform:translateY(-6px);border-color:rgba(255,0,140,.55);box-shadow:0 0 55px rgba(255,0,140,.25)}
     .small-card::before{content:"";position:absolute;inset:auto -60px -80px auto;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,0,140,.42),transparent 70%)}
     .small-card h3{font-family:"Space Grotesk";font-size:32px;text-transform:uppercase;letter-spacing:-.04em;margin:0 0 8px}
     .small-card p{color:#e7c3de;font-weight:650;line-height:1.5;min-height:48px}
-    .small-card a{color:white;font-weight:950;text-transform:uppercase;letter-spacing:.13em;text-decoration:none;font-size:12px}
+    .small-card button{color:white;font-weight:950;text-transform:uppercase;letter-spacing:.13em;text-decoration:none;font-size:12px;background:none;border:0;padding:0;cursor:pointer}
+
+    .player-shell{
+      position:sticky;
+      bottom:18px;
+      z-index:60;
+      max-width:1220px;
+      margin:0 auto;
+      padding:0 clamp(18px,4vw,64px);
+      pointer-events:none;
+    }
+    .player{
+      pointer-events:auto;
+      border-radius:28px;
+      border:1px solid rgba(255,255,255,.2);
+      background:linear-gradient(135deg,rgba(20,2,24,.88),rgba(3,1,5,.86));
+      box-shadow:0 24px 90px rgba(0,0,0,.62),0 0 70px rgba(255,0,140,.30),inset 0 1px rgba(255,255,255,.15);
+      backdrop-filter:blur(22px);
+      padding:18px;
+      display:grid;
+      grid-template-columns:minmax(160px,1fr) 2fr auto;
+      gap:18px;
+      align-items:center;
+    }
+    .now-kicker{font-size:11px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--pink-3);margin-bottom:4px}
+    .now-title{font-family:"Space Grotesk";font-weight:900;font-size:22px;letter-spacing:-.03em;text-transform:uppercase}
+    .now-meta{font-size:13px;color:#e2bfd9;font-weight:700;margin-top:3px}
+    .player-center{display:grid;gap:10px}
+    .controls{display:flex;align-items:center;gap:10px;justify-content:center}
+    .icon-btn{
+      width:42px;height:42px;border-radius:999px;border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.08);color:white;font-weight:950;cursor:pointer;
+      box-shadow:inset 0 1px rgba(255,255,255,.13);transition:.2s;
+    }
+    .icon-btn:hover{transform:translateY(-2px);box-shadow:0 0 25px rgba(255,0,140,.55)}
+    .play-main{width:54px;height:54px;background:linear-gradient(135deg,var(--pink),#ff77db);box-shadow:0 0 32px rgba(255,0,140,.65)}
+    .seek-row{display:grid;grid-template-columns:46px 1fr 46px;gap:12px;align-items:center;color:#e7c3de;font-size:12px;font-weight:800}
+    input[type="range"]{width:100%;accent-color:var(--pink);cursor:pointer}
+    .progress{appearance:none;height:9px;border-radius:999px;background:linear-gradient(90deg,var(--pink) var(--progress,0%),rgba(255,255,255,.16) var(--progress,0%));outline:none}
+    .progress::-webkit-slider-thumb{appearance:none;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 0 20px #fff,0 0 32px var(--pink)}
+    .progress::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#fff;border:0;box-shadow:0 0 20px #fff,0 0 32px var(--pink)}
+    .volume-wrap{display:flex;align-items:center;gap:10px;min-width:150px}
+    .volume-wrap span{font-size:13px;color:#e7c3de;font-weight:900}
+    .playlist{
+      margin-top:22px;
+      display:grid;
+      gap:10px;
+    }
+    .playlist-row{
+      width:100%;
+      display:grid;
+      grid-template-columns:50px 1fr auto;
+      gap:16px;
+      align-items:center;
+      padding:16px 18px;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.055);
+      color:white;
+      text-align:left;
+      cursor:pointer;
+      transition:.2s;
+    }
+    .playlist-row:hover,.playlist-row.active{
+      border-color:rgba(255,0,140,.68);
+      background:rgba(255,0,140,.13);
+      box-shadow:0 0 36px rgba(255,0,140,.22);
+    }
+    .pl-num{font-weight:950;color:var(--pink-3);letter-spacing:.08em}
+    .pl-title{font-family:"Space Grotesk";font-size:20px;font-weight:900;text-transform:uppercase;letter-spacing:-.03em}
+    .pl-meta{color:#dec0d7;font-size:13px;font-weight:700;margin-top:2px}
+    .pl-tag{font-size:11px;font-weight:950;text-transform:uppercase;letter-spacing:.12em;padding:8px 10px;border-radius:999px;background:rgba(255,0,140,.18);border:1px solid rgba(255,120,220,.28)}
+    .vis{
+      height:26px;
+      display:flex;
+      align-items:end;
+      gap:4px;
+      justify-content:center;
+      opacity:.65;
+    }
+    .vis i{display:block;width:4px;border-radius:99px;background:linear-gradient(var(--pink-3),var(--pink));height:8px;animation:bar 1s infinite ease-in-out paused}
+    body.playing .vis i{animation-play-state:running}
+    .vis i:nth-child(2){animation-delay:.1s}.vis i:nth-child(3){animation-delay:.2s}.vis i:nth-child(4){animation-delay:.3s}.vis i:nth-child(5){animation-delay:.4s}
+    @keyframes bar{0%,100%{height:8px}50%{height:26px}}
 
     .about-panel{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
     .about-box{border-radius:30px;padding:34px;background:linear-gradient(135deg,rgba(255,255,255,.11),rgba(255,255,255,.035));border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(20px);box-shadow:0 20px 70px rgba(0,0,0,.35)}
@@ -269,13 +356,16 @@
 
     .contact-card{text-align:center;border-radius:34px;padding:46px 24px;background:radial-gradient(circle at 50% 0,rgba(255,0,140,.42),transparent 40%),rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);box-shadow:0 0 90px rgba(255,0,140,.18);backdrop-filter:blur(22px)}
     .contact-card h2{margin-bottom:18px}.contact-card p{color:#f1cde7;font-weight:700;font-size:18px;margin-bottom:28px}
-    footer{text-align:center;color:#c69ab9;font-size:13px;padding:22px}
+    footer{text-align:center;color:#c69ab9;font-size:13px;padding:22px 22px 110px}
 
     @media (max-width:850px){
       .navlinks{display:none}
       .track-card{grid-template-columns:1fr;min-height:auto}.track-action{justify-self:start;align-items:start}.mini-line{width:160px}
       .catalog-grid{grid-template-columns:1fr}.about-panel{grid-template-columns:1fr}.section-head{display:block}.section-note{margin-top:15px}
       h1{font-size:28vw}.subline{letter-spacing:.18em}
+      .player{grid-template-columns:1fr;gap:14px}.volume-wrap{justify-content:center}.player-shell{bottom:10px;padding:0 10px}
+      footer{padding-bottom:250px}
+      .playlist-row{grid-template-columns:36px 1fr}.pl-tag{display:none}
     }
   </style>
 </head>
@@ -303,28 +393,28 @@
     <section id="tracks">
       <div class="section-head">
         <div><div class="section-kicker">Selected Works</div><h2>Featured</h2></div>
-        <p class="section-note">A curated set of pitch-ready concepts for K-pop, pop, hip-hop, and game-inspired placements.</p>
+        <p class="section-note">A curated set of pitch-ready concepts for K-pop, pop, hip-hop, and game-inspired placements. Press play and scrub through the tracks without leaving the site.</p>
       </div>
 
       <div class="featured">
-        <article class="track-card">
+        <article class="track-card" data-track-card="game-over">
           <div class="track-main"><div class="number">01 / Featured Demo</div><h3 class="track-title">Game Over</h3><div class="track-type">K-pop Girl Group Demo</div><p class="track-desc">A confident, high-energy commercial concept with a memorable hook and performance-focused attitude.</p><div class="tags"><span class="tag">K-pop</span><span class="tag">Demo</span><span class="tag">Girl Group</span><span class="tag">Artist Placement</span></div></div>
-          <div class="track-action"><div class="mini-line"></div><a class="listen" target="_blank" href="https://www.dropbox.com/scl/fi/8hz416ay2qou6oy1rns84/Nya-Game-Over-Demo.MP4?rlkey=i96dwzy1iaai78iug6s00l1hg&st=3qqpz4bu&dl=0">Listen</a></div>
+          <div class="track-action"><div class="mini-line"></div><button class="listen" data-track="game-over">Play Demo</button></div>
         </article>
 
-        <article class="track-card">
+        <article class="track-card" data-track-card="top-player">
           <div class="track-main"><div class="number">02 / Featured Instrumental</div><h3 class="track-title">Top Player</h3><div class="track-type">Gaming / K-pop Anthem</div><p class="track-desc">A bold, competitive instrumental designed for esports, game campaigns, and high-impact K-pop concepts.</p><div class="tags"><span class="tag">Instrumental</span><span class="tag">Lyrics Available</span><span class="tag">Gaming</span><span class="tag">K-pop</span></div></div>
-          <div class="track-action"><div class="mini-line"></div><a class="listen" target="_blank" href="https://www.dropbox.com/scl/fi/fdgqqyq1fa1av49mgsd3k/Top-Player-beat.wav?rlkey=el8p14m2g8ua8nq85ekcn99vb&st=i2c86it8&dl=0">Listen</a></div>
+          <div class="track-action"><div class="mini-line"></div><button class="listen" data-track="top-player">Play Demo</button></div>
         </article>
 
-        <article class="track-card">
+        <article class="track-card" data-track-card="baddest">
           <div class="track-main"><div class="number">03 / Featured Instrumental</div><h3 class="track-title">Baddest</h3><div class="track-type">K-pop / Hip-Hop Instrumental</div><p class="track-desc">Confident, stylish, and performance-driven. Built for a strong artist identity and sharp visual concept.</p><div class="tags"><span class="tag">Instrumental</span><span class="tag">Lyrics Available</span><span class="tag">Hip-Hop</span><span class="tag">K-pop</span></div></div>
-          <div class="track-action"><div class="mini-line"></div><a class="listen" target="_blank" href="https://www.dropbox.com/scl/fi/7b1ia7iphvj6rto263srj/baddest.wav?rlkey=2rft9zpe3lxybn82fuqfth1vd&st=u5k0b7r5&dl=0">Listen</a></div>
+          <div class="track-action"><div class="mini-line"></div><button class="listen" data-track="baddest">Play Demo</button></div>
         </article>
 
-        <article class="track-card">
+        <article class="track-card" data-track-card="monster">
           <div class="track-main"><div class="number">04 / Featured Instrumental</div><h3 class="track-title">Monster</h3><div class="track-type">K-pop Instrumental</div><p class="track-desc">Dark, cinematic, and dramatic. A high-concept instrumental for powerful choreography and intense visuals.</p><div class="tags"><span class="tag">Instrumental</span><span class="tag">Lyrics Available</span><span class="tag">Dark Concept</span><span class="tag">K-pop</span></div></div>
-          <div class="track-action"><div class="mini-line"></div><a class="listen" target="_blank" href="https://www.dropbox.com/scl/fi/pew7jankzdickwnmddbcc/Monster-instrumental.wav?rlkey=wb4a401vdp7e5mhdskxplp8jw&st=4qnkx9do&dl=0">Listen</a></div>
+          <div class="track-action"><div class="mini-line"></div><button class="listen" data-track="monster">Play Demo</button></div>
         </article>
       </div>
     </section>
@@ -332,10 +422,17 @@
     <section>
       <div class="section-head"><div><div class="section-kicker">More Concepts</div><h2>Catalog</h2></div><p class="section-note">Additional demos and instrumentals available for collaboration, adaptation, and placement consideration.</p></div>
       <div class="catalog-grid">
-        <article class="small-card"><h3>Stars</h3><p>Emotional trap / R&B instrumental with a soft opening and powerful chorus energy.</p><a target="_blank" href="https://www.dropbox.com/scl/fi/8xzyemji4469ofenthe06/stars-beat.wav?rlkey=jmg04uut5n2cqwxbb81z9r4tq&st=gatay5x0&dl=0">Listen</a></article>
-        <article class="small-card"><h3>Cliffhanger</h3><p>Pop song concept with lyrics available for artist development and adaptation.</p><a target="_blank" href="https://www.dropbox.com/scl/fi/ecrqj6mbd97h9asnswdet/Cliffhanger.wav?rlkey=on6qnahbxrzrpl1yzjecb3iqb&st=tr14t0nx&dl=0">Listen</a></article>
-        <article class="small-card"><h3>Porque Ya</h3><p>Spanish pop / trap demo with commercial crossover potential.</p><a target="_blank" href="https://www.dropbox.com/scl/fi/73l875k09sxc2og6hlq5q/Porque-Ya-demo.mp3?rlkey=18ffiqjpv37mjswuzqt0uvvlv&st=w6u2s2eu&dl=0">Listen</a></article>
+        <article class="small-card" data-track-card="stars"><h3>Stars</h3><p>Emotional trap / R&B instrumental with a soft opening and powerful chorus energy.</p><button data-track="stars">Play Demo</button></article>
+        <article class="small-card" data-track-card="cliffhanger"><h3>Cliffhanger</h3><p>Pop song concept with lyrics available for artist development and adaptation.</p><button data-track="cliffhanger">Play Demo</button></article>
+        <article class="small-card" data-track-card="porque-ya"><h3>Porque Ya</h3><p>Spanish pop / trap demo with commercial crossover potential.</p><button data-track="porque-ya">Play Demo</button></article>
+        <article class="small-card" data-track-card="sparkles"><h3>Sparkles</h3><p>Glossy pop instrumental with bright commercial energy and playful attitude.</p><button data-track="sparkles">Play Demo</button></article>
+        <article class="small-card" data-track-card="kpop-drill"><h3>Kpop Drill</h3><p>Harder performance-driven instrumental with drill influence and K-pop structure.</p><button data-track="kpop-drill">Play Demo</button></article>
       </div>
+    </section>
+
+    <section>
+      <div class="section-head"><div><div class="section-kicker">Player</div><h2>Listen</h2></div><p class="section-note">Use the main player below to play, pause, skip, control volume, and drag the timeline.</p></div>
+      <div class="playlist" id="playlist"></div>
     </section>
 
     <section id="about">
@@ -351,9 +448,56 @@
     </section>
   </main>
 
+  <div class="player-shell">
+    <div class="player" role="region" aria-label="Music player">
+      <div>
+        <div class="now-kicker">Now Playing</div>
+        <div class="now-title" id="nowTitle">Game Over</div>
+        <div class="now-meta" id="nowMeta">K-pop Girl Group Demo</div>
+      </div>
+
+      <div class="player-center">
+        <div class="vis" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="controls">
+          <button class="icon-btn" id="prevBtn" aria-label="Previous track">⟵</button>
+          <button class="icon-btn" id="rewindBtn" aria-label="Rewind 15 seconds">−15</button>
+          <button class="icon-btn play-main" id="playBtn" aria-label="Play or pause">▶</button>
+          <button class="icon-btn" id="forwardBtn" aria-label="Forward 15 seconds">+15</button>
+          <button class="icon-btn" id="nextBtn" aria-label="Next track">⟶</button>
+        </div>
+        <div class="seek-row">
+          <span id="currentTime">0:00</span>
+          <input class="progress" id="progress" type="range" min="0" max="100" value="0" step="0.1" aria-label="Track progress">
+          <span id="duration">0:00</span>
+        </div>
+      </div>
+
+      <div class="volume-wrap">
+        <span>VOL</span>
+        <input id="volume" type="range" min="0" max="1" value="0.9" step="0.01" aria-label="Volume">
+      </div>
+    </div>
+  </div>
+
+  <audio id="audio"></audio>
+
   <footer>NYA MUSIC • Original works for artist placement and creative projects</footer>
 
   <script>
+    const AUDIO_BASE = "https://audio.nya-music.com/";
+
+    const tracks = [
+      { id:"game-over", title:"Game Over", meta:"K-pop Girl Group Demo", file:"Game Over Demo.m4a", tag:"Featured Demo" },
+      { id:"top-player", title:"Top Player", meta:"Gaming / K-pop Anthem", file:"Top Player.wav", tag:"Lyrics Available" },
+      { id:"baddest", title:"Baddest", meta:"K-pop / Hip-Hop Instrumental", file:"baddest.wav", tag:"Lyrics Available" },
+      { id:"monster", title:"Monster", meta:"K-pop Instrumental", file:"Monster.wav", tag:"Lyrics Available" },
+      { id:"stars", title:"Stars", meta:"Emotional Trap / R&B Instrumental", file:"Nya - stars beat.wav", tag:"Instrumental" },
+      { id:"cliffhanger", title:"Cliffhanger", meta:"Pop Song", file:"Cliffhanger .wav", tag:"Lyrics Available" },
+      { id:"porque-ya", title:"Porque Ya", meta:"Spanish Pop / Trap Demo", file:"Porque Ya.mp3", tag:"Demo" },
+      { id:"sparkles", title:"Sparkles", meta:"Glossy Pop Instrumental", file:"Sparkles.wav", tag:"Instrumental" },
+      { id:"kpop-drill", title:"Kpop Drill", meta:"K-pop Drill Type Beat", file:"Kpop Drill TYPE Beat.wav", tag:"Instrumental" }
+    ];
+
     const sparkles = document.querySelector('.sparkles');
     for(let i=0;i<42;i++){
       const s=document.createElement('span');
@@ -364,9 +508,150 @@
       sparkles.appendChild(s);
     }
 
-    document.addEventListener('mousemove', e => {
-      document.documentElement.style.setProperty('--mx', e.clientX + 'px');
-      document.documentElement.style.setProperty('--my', e.clientY + 'px');
+    const audio = document.getElementById("audio");
+    const playBtn = document.getElementById("playBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const rewindBtn = document.getElementById("rewindBtn");
+    const forwardBtn = document.getElementById("forwardBtn");
+    const progress = document.getElementById("progress");
+    const volume = document.getElementById("volume");
+    const nowTitle = document.getElementById("nowTitle");
+    const nowMeta = document.getElementById("nowMeta");
+    const currentTimeEl = document.getElementById("currentTime");
+    const durationEl = document.getElementById("duration");
+    const playlist = document.getElementById("playlist");
+
+    let currentIndex = 0;
+    let isSeeking = false;
+
+    function srcFor(track){
+      return AUDIO_BASE + encodeURIComponent(track.file).replace(/%2F/g, "/");
+    }
+
+    function formatTime(seconds){
+      if(!Number.isFinite(seconds)) return "0:00";
+      const m = Math.floor(seconds / 60);
+      const s = Math.floor(seconds % 60).toString().padStart(2, "0");
+      return `${m}:${s}`;
+    }
+
+    function setActiveUI(){
+      const track = tracks[currentIndex];
+      nowTitle.textContent = track.title;
+      nowMeta.textContent = track.meta;
+      document.querySelectorAll("[data-track-card]").forEach(el => {
+        el.classList.toggle("is-playing", el.dataset.trackCard === track.id && !audio.paused);
+      });
+      document.querySelectorAll(".playlist-row").forEach((el, index) => {
+        el.classList.toggle("active", index === currentIndex);
+      });
+    }
+
+    function loadTrack(index, shouldPlay = true){
+      currentIndex = (index + tracks.length) % tracks.length;
+      const track = tracks[currentIndex];
+      audio.src = srcFor(track);
+      audio.load();
+      progress.value = 0;
+      progress.style.setProperty("--progress", "0%");
+      currentTimeEl.textContent = "0:00";
+      durationEl.textContent = "0:00";
+      setActiveUI();
+      if(shouldPlay){
+        audio.play().catch(() => {});
+      }
+    }
+
+    function togglePlay(){
+      if(!audio.src) loadTrack(currentIndex, true);
+      else if(audio.paused) audio.play().catch(() => {});
+      else audio.pause();
+    }
+
+    function renderPlaylist(){
+      playlist.innerHTML = tracks.map((track, i) => `
+        <button class="playlist-row" data-track="${track.id}" type="button">
+          <span class="pl-num">${String(i + 1).padStart(2, "0")}</span>
+          <span>
+            <span class="pl-title">${track.title}</span>
+            <span class="pl-meta">${track.meta}</span>
+          </span>
+          <span class="pl-tag">${track.tag}</span>
+        </button>
+      `).join("");
+    }
+
+    renderPlaylist();
+    loadTrack(0, false);
+
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-track]");
+      if(!btn) return;
+      const id = btn.dataset.track;
+      const index = tracks.findIndex(t => t.id === id);
+      if(index >= 0) loadTrack(index, true);
+    });
+
+    playBtn.addEventListener("click", togglePlay);
+    prevBtn.addEventListener("click", () => loadTrack(currentIndex - 1, true));
+    nextBtn.addEventListener("click", () => loadTrack(currentIndex + 1, true));
+    rewindBtn.addEventListener("click", () => audio.currentTime = Math.max(0, audio.currentTime - 15));
+    forwardBtn.addEventListener("click", () => audio.currentTime = Math.min(audio.duration || audio.currentTime + 15, audio.currentTime + 15));
+
+    audio.addEventListener("play", () => {
+      playBtn.textContent = "Ⅱ";
+      document.body.classList.add("playing");
+      setActiveUI();
+    });
+
+    audio.addEventListener("pause", () => {
+      playBtn.textContent = "▶";
+      document.body.classList.remove("playing");
+      setActiveUI();
+    });
+
+    audio.addEventListener("ended", () => loadTrack(currentIndex + 1, true));
+
+    audio.addEventListener("loadedmetadata", () => {
+      durationEl.textContent = formatTime(audio.duration);
+    });
+
+    audio.addEventListener("timeupdate", () => {
+      if(isSeeking || !audio.duration) return;
+      const pct = (audio.currentTime / audio.duration) * 100;
+      progress.value = pct;
+      progress.style.setProperty("--progress", `${pct}%`);
+      currentTimeEl.textContent = formatTime(audio.currentTime);
+      durationEl.textContent = formatTime(audio.duration);
+    });
+
+    progress.addEventListener("input", () => {
+      isSeeking = true;
+      progress.style.setProperty("--progress", `${progress.value}%`);
+      if(audio.duration){
+        currentTimeEl.textContent = formatTime((progress.value / 100) * audio.duration);
+      }
+    });
+
+    progress.addEventListener("change", () => {
+      if(audio.duration){
+        audio.currentTime = (progress.value / 100) * audio.duration;
+      }
+      isSeeking = false;
+    });
+
+    volume.addEventListener("input", () => audio.volume = volume.value);
+    audio.volume = volume.value;
+
+    document.addEventListener("keydown", (e) => {
+      if(e.target.matches("input, textarea")) return;
+      if(e.code === "Space"){
+        e.preventDefault();
+        togglePlay();
+      }
+      if(e.key === "ArrowRight") audio.currentTime = Math.min(audio.duration || audio.currentTime + 10, audio.currentTime + 10);
+      if(e.key === "ArrowLeft") audio.currentTime = Math.max(0, audio.currentTime - 10);
     });
   </script>
 </body>
