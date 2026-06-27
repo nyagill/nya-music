@@ -263,6 +263,12 @@
     .small-card p{color:#e7c3de;font-weight:650;line-height:1.5;min-height:48px;position:relative;z-index:2}
     .small-card .listen{position:relative;z-index:2;display:inline-flex;margin-top:10px;padding:13px 18px;font-size:11px}
 
+    .catalog-block{margin-bottom:34px}
+    .catalog-subhead{display:flex;align-items:center;gap:12px;margin:0 0 16px;color:#fff;font-family:"Space Grotesk",sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:15px;font-weight:900}
+    .catalog-subhead::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,rgba(255,0,140,.75),transparent)}
+    .notice-card{margin:20px 0 28px;border-radius:24px;padding:22px 24px;background:rgba(255,0,140,.10);border:1px solid rgba(255,123,219,.34);color:#f8d8ef;font-weight:700;line-height:1.55;box-shadow:inset 0 1px rgba(255,255,255,.12),0 0 40px rgba(255,0,140,.12)}
+    .notice-card strong{color:#fff}
+
     .audio-launch-note{margin-top:22px;color:#e9c2df;font-weight:700;text-align:center;font-size:14px;opacity:.85}
 
     .about-panel{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
@@ -355,7 +361,7 @@
 
   <nav>
     <div class="brand">NYA <span>MUSIC</span></div>
-    <div class="navlinks"><a href="#tracks">Tracks</a><a href="#vault">Demo Vault</a><a href="#about">About</a><a href="#contact">Contact</a></div>
+    <div class="navlinks"><a href="#demos">Demos</a><a href="#instrumentals">Instrumentals</a><a href="#about">About</a><a href="#contact">Contact</a></div>
   </nav>
 
   <header>
@@ -363,10 +369,10 @@
       <div class="eyebrow">Songwriter • Creative Technologist • Artist Placements</div>
       <h1>NYA</h1>
       <div class="subline">Commercial Music for K-pop • Pop • Games</div>
-      <p class="hero-copy">Original demos and instrumentals built for performance-driven artists, global pop projects, game worlds, and publisher-ready opportunities.</p>
+      <p class="hero-copy">Original songwriting demos, instrumentals, and concepts built for performance-driven artists, global pop projects, game worlds, and publisher-ready opportunities.</p>
       <div class="cta-row">
-        <a class="btn primary" href="#tracks">Featured Works</a>
-        <a class="btn secondary" href="#vault">Demo Vault</a>
+        <a class="btn primary" href="#demos">Listen to Demos</a>
+        <a class="btn secondary" href="#instrumentals">Explore Instrumentals</a>
         <a class="btn secondary" href="#contact">Contact</a>
       </div>
       <p class="audio-launch-note">Player opens only when a track is selected.</p>
@@ -374,43 +380,55 @@
   </header>
 
   <main>
-    <section id="tracks">
+    <section id="demos">
       <div class="section-head">
-        <div><div class="section-kicker">Selected Works</div><h2>Featured</h2></div>
-        <p class="section-note">A curated set of pitch-ready concepts for K-pop, pop, hip-hop, and game-inspired placements.</p>
+        <div><div class="section-kicker">Featured Demos</div><h2>Demos</h2></div>
+        <p class="section-note">Commercial songwriting demos created to showcase topline, lyric, melody, and concept direction for artist placement.</p>
+      </div>
+
+      <div class="notice-card">
+        <strong>Demo note:</strong> Some demos use AI-generated vocals for demo purposes only to showcase my original songwriting, melodies, and lyrical concepts. All compositions, instrumentals, arrangements, and production direction are my own. Stems, lyric sheets, instrumentals, and additional demo materials are available upon request.
       </div>
 
       <div class="featured">
+        <article class="track-card" data-id="baby-cool">
+          <div class="track-main"><div class="number">01 / Featured Demo</div><h3 class="track-title">Baby I'm Cool</h3><div class="track-type">R&B / Pop Demo</div><p class="track-desc">A heartbreak-inspired pop/R&B concept about moving forward with confidence. AI vocals are used for demo purposes only; the instrumental, concept, and production direction are mine.</p><div class="tags"><span class="tag">R&B</span><span class="tag">Pop</span><span class="tag">Demo</span><span class="tag">AI Vocal Demo</span></div></div>
+          <div class="track-action"><div class="mini-line"></div><button class="listen" data-track="baby-cool">Play Demo</button></div>
+        </article>
+
+        <article class="track-card" data-id="porque">
+          <div class="track-main"><div class="number">02 / Featured Demo</div><h3 class="track-title">Porque Ya</h3><div class="track-type">Spanish Trap / Rap Demo</div><p class="track-desc">A Spanish trap/rap demo co-written and performed with a friend. I own all rights and can provide materials upon request.</p><div class="tags"><span class="tag">Spanish</span><span class="tag">Trap</span><span class="tag">Rap</span><span class="tag">Demo</span></div></div>
+          <div class="track-action"><div class="mini-line"></div><button class="listen" data-track="porque">Play Demo</button></div>
+        </article>
+
         <article class="track-card" data-id="game-over">
-          <div class="track-main"><div class="number">01 / Featured Demo</div><h3 class="track-title">Game Over</h3><div class="track-type">K-pop Girl Group Demo</div><p class="track-desc">A confident, high-energy commercial concept with a memorable hook and performance-focused attitude.</p><div class="tags"><span class="tag">K-pop</span><span class="tag">Demo</span><span class="tag">Girl Group</span><span class="tag">Artist Placement</span></div></div>
+          <div class="track-main"><div class="number">03 / Featured Demo</div><h3 class="track-title">Game Over</h3><div class="track-type">K-pop Concept Demo</div><p class="track-desc">A confident, high-energy commercial K-pop concept with a memorable hook and performance-focused attitude. AI vocals are used for demo purposes only to present the songwriting idea.</p><div class="tags"><span class="tag">K-pop</span><span class="tag">Concept Demo</span><span class="tag">Girl Group</span><span class="tag">AI Vocal Demo</span></div></div>
           <div class="track-action"><div class="mini-line"></div><button class="listen" data-track="game-over">Play Demo</button></div>
-        </article>
-
-        <article class="track-card" data-id="top-player">
-          <div class="track-main"><div class="number">02 / Featured Instrumental</div><h3 class="track-title">Top Player</h3><div class="track-type">Gaming / K-pop Anthem</div><p class="track-desc">A bold, competitive instrumental designed for esports, game campaigns, and high-impact K-pop concepts.</p><div class="tags"><span class="tag">Instrumental</span><span class="tag">Lyrics Available</span><span class="tag">Gaming</span><span class="tag">K-pop</span></div></div>
-          <div class="track-action"><div class="mini-line"></div><button class="listen" data-track="top-player">Play Demo</button></div>
-        </article>
-
-        <article class="track-card" data-id="baddest">
-          <div class="track-main"><div class="number">03 / Featured Instrumental</div><h3 class="track-title">Baddest</h3><div class="track-type">K-pop / Hip-Hop Instrumental</div><p class="track-desc">Confident, stylish, and performance-driven. Built for a strong artist identity and sharp visual concept.</p><div class="tags"><span class="tag">Instrumental</span><span class="tag">Lyrics Available</span><span class="tag">Hip-Hop</span><span class="tag">K-pop</span></div></div>
-          <div class="track-action"><div class="mini-line"></div><button class="listen" data-track="baddest">Play Demo</button></div>
-        </article>
-
-        <article class="track-card" data-id="monster">
-          <div class="track-main"><div class="number">04 / Featured Instrumental</div><h3 class="track-title">Monster</h3><div class="track-type">K-pop Instrumental</div><p class="track-desc">Dark, cinematic, and dramatic. A high-concept instrumental for powerful choreography and intense visuals.</p><div class="tags"><span class="tag">Instrumental</span><span class="tag">Lyrics Available</span><span class="tag">Dark Concept</span><span class="tag">K-pop</span></div></div>
-          <div class="track-action"><div class="mini-line"></div><button class="listen" data-track="monster">Play Demo</button></div>
         </article>
       </div>
     </section>
 
-    <section id="vault">
-      <div class="section-head"><div><div class="section-kicker">Other Works</div><h2>Demo Vault</h2></div><p class="section-note">Additional concepts, instrumentals, and works available for collaboration, adaptation, and placement consideration.</p></div>
-      <div class="catalog-grid">
-        <article class="small-card" data-id="cliffhanger"><h3>Cliffhanger</h3><p>Pop song concept with lyrics available for artist development and adaptation.</p><button class="listen" data-track="cliffhanger">Play Demo</button></article>
-        <article class="small-card" data-id="stars"><h3>Stars</h3><p>Emotional trap / R&B instrumental with a soft opening and powerful chorus energy.</p><button class="listen" data-track="stars">Play Demo</button></article>
-        <article class="small-card" data-id="porque"><h3>Porque Ya</h3><p>Spanish pop / trap demo with commercial crossover potential.</p><button class="listen" data-track="porque">Play Demo</button></article>
-        <article class="small-card" data-id="sparkles"><h3>Sparkles</h3><p>Glossy, dreamy pop instrumental with bright commercial energy.</p><button class="listen" data-track="sparkles">Play Demo</button></article>
-        <article class="small-card" data-id="kpop-drill"><h3>Kpop Drill</h3><p>Harder K-pop drill concept with aggressive movement and performance energy.</p><button class="listen" data-track="kpop-drill">Play Demo</button></article>
+    <section id="instrumentals">
+      <div class="section-head"><div><div class="section-kicker">Writing Catalog</div><h2>Instrumentals & Concepts</h2></div><p class="section-note">Original instrumentals and songwriting concepts available for artist placement, licensing, collaboration, and adaptation. Lyrics are available for select tracks.</p></div>
+
+      <div class="catalog-block">
+        <div class="catalog-subhead">Lyrics Available</div>
+        <div class="catalog-grid">
+          <article class="small-card" data-id="top-player"><h3>Top Player</h3><p>Gaming / K-pop anthem with competitive esports energy. Lyrics available.</p><button class="listen" data-track="top-player">Play Demo</button></article>
+          <article class="small-card" data-id="cliffhanger"><h3>Cliffhanger</h3><p>Pop song concept with lyrics available for artist development and adaptation.</p><button class="listen" data-track="cliffhanger">Play Demo</button></article>
+          <article class="small-card" data-id="never-over"><h3>It's Never Really Over Till It's Over</h3><p>Indie / grunge / trap metal concept with lyrics available. Beat is uploaded as an instrumental concept.</p><button class="listen" data-track="never-over">Play Demo</button></article>
+        </div>
+      </div>
+
+      <div class="catalog-block">
+        <div class="catalog-subhead">Instrumentals</div>
+        <div class="catalog-grid">
+          <article class="small-card" data-id="monster"><h3>Monster</h3><p>Dark cinematic K-pop instrumental built for choreography, visuals, and high-impact performance.</p><button class="listen" data-track="monster">Play Demo</button></article>
+          <article class="small-card" data-id="baddest"><h3>Baddest</h3><p>K-pop / hip-hop instrumental with strong attitude and performance-driven energy.</p><button class="listen" data-track="baddest">Play Demo</button></article>
+          <article class="small-card" data-id="sparkles"><h3>Sparkles</h3><p>Glossy, dreamy pop instrumental with bright commercial energy.</p><button class="listen" data-track="sparkles">Play Demo</button></article>
+          <article class="small-card" data-id="stars"><h3>Stars</h3><p>Emotional trap / R&B instrumental with a soft opening and powerful chorus energy.</p><button class="listen" data-track="stars">Play Demo</button></article>
+          <article class="small-card" data-id="kpop-drill"><h3>Kpop Drill</h3><p>Harder K-pop drill concept with aggressive movement and performance energy.</p><button class="listen" data-track="kpop-drill">Play Demo</button></article>
+        </div>
       </div>
     </section>
 
@@ -455,7 +473,7 @@
     </div>
   </div>
 
-  <footer>NYA MUSIC • Original works for artist placement and creative projects</footer>
+  <footer>NYA MUSIC • Songwriting demos, instrumentals, and original works for artist placement</footer>
 
   <script>
     const sparkles = document.querySelector('.sparkles');
@@ -470,17 +488,18 @@
 
     const base = 'https://audio.nya-music.com/';
     const tracks = [
-      {id:'game-over', title:'Game Over', meta:'K-pop Girl Group Demo', file:'Game Over Demo.m4a', tags:['K-pop','Demo','Girl Group','Artist Placement']},
+      {id:'baby-cool', title:"Baby I'm Cool", meta:'R&B / Pop Demo', file:'baby im cool.MOV', tags:['R&B','Pop','Demo','AI Vocal Demo']},
+      {id:'porque', title:'Porque Ya', meta:'Spanish Trap / Rap Demo', file:'Porque Ya.mp3', tags:['Spanish','Trap','Rap','Demo']},
+      {id:'game-over', title:'Game Over', meta:'K-pop Concept Demo', file:'Game Over Demo.m4a', tags:['K-pop','Concept Demo','Girl Group','AI Vocal Demo']},
       {id:'top-player', title:'Top Player', meta:'Gaming / K-pop Anthem', file:'Top Player.wav', tags:['Instrumental','Lyrics Available','Gaming','K-pop']},
-      {id:'baddest', title:'Baddest', meta:'K-pop / Hip-Hop Instrumental', file:'baddest.wav', tags:['Instrumental','Lyrics Available','Hip-Hop','K-pop']},
-      {id:'monster', title:'Monster', meta:'K-pop Instrumental', file:'Monster.wav', tags:['Instrumental','Lyrics Available','Dark Concept','K-pop']},
       {id:'cliffhanger', title:'Cliffhanger', meta:'Pop Song Concept', file:'Cliffhanger .wav', tags:['Pop','Lyrics Available','Commercial']},
-      {id:'stars', title:'Stars', meta:'Emotional Trap / R&B Instrumental', file:'Nya - stars beat.wav', tags:['Instrumental','Trap','R&B']},
-      {id:'porque', title:'Porque Ya', meta:'Spanish Pop / Trap Demo', file:'Porque Ya.mp3', tags:['Spanish','Pop','Trap','Demo']},
+      {id:'never-over', title:"It's Never Really Over Till It's Over", meta:'Indie / Grunge / Trap Metal Instrumental', file:"It's never really over till it's over inspo instrumental.mp3", tags:['Indie','Grunge','Trap Metal','Lyrics Available']},
+      {id:'monster', title:'Monster', meta:'Dark K-pop Instrumental', file:'Monster.wav', tags:['Instrumental','Dark Concept','K-pop']},
+      {id:'baddest', title:'Baddest', meta:'K-pop / Hip-Hop Instrumental', file:'baddest.wav', tags:['Instrumental','Hip-Hop','K-pop']},
       {id:'sparkles', title:'Sparkles', meta:'Dreamy Pop Instrumental', file:'Sparkles.wav', tags:['Instrumental','Pop','Bright']},
+      {id:'stars', title:'Stars', meta:'Emotional Trap / R&B Instrumental', file:'Nya - stars beat.wav', tags:['Instrumental','Trap','R&B']},
       {id:'kpop-drill', title:'Kpop Drill', meta:'K-pop Drill Concept', file:'Kpop Drill TYPE Beat.wav', tags:['Instrumental','Drill','K-pop']}
     ];
-
     const audio = document.getElementById('audio');
     const overlay = document.getElementById('playerOverlay');
     const modal = document.getElementById('playerModal');
