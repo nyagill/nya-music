@@ -203,6 +203,110 @@
     h2{font-family:"Space Grotesk",sans-serif;font-size:clamp(34px,6vw,82px);line-height:.9;margin:8px 0 0;letter-spacing:-.055em;text-transform:uppercase}
     .section-note{max-width:390px;color:var(--muted);font-weight:600;line-height:1.55}
 
+
+    .video-feature{
+      position:relative;
+      overflow:hidden;
+      border-radius:36px;
+      padding:clamp(24px,4vw,48px);
+      background:
+        linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.035)),
+        radial-gradient(circle at 82% 10%,rgba(255,0,140,.48),transparent 38%),
+        rgba(8,2,12,.86);
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:0 35px 110px rgba(0,0,0,.68),0 0 85px rgba(255,0,140,.28), inset 0 1px rgba(255,255,255,.18);
+      backdrop-filter:blur(24px);
+      margin-bottom:34px;
+    }
+    .video-feature::before{
+      content:"";position:absolute;inset:-1px;border-radius:36px;padding:1px;
+      background:linear-gradient(135deg,rgba(255,255,255,.65),rgba(255,0,140,.9),transparent 55%);
+      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor; mask-composite:exclude;opacity:.58;pointer-events:none;
+    }
+    .video-layout{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:.92fr 1.08fr;
+      gap:clamp(22px,4vw,46px);
+      align-items:center;
+    }
+    .video-title{
+      font-family:"Space Grotesk";
+      font-size:clamp(58px,10vw,138px);
+      line-height:.82;
+      letter-spacing:-.065em;
+      text-transform:uppercase;
+      margin:0 0 16px;
+      text-shadow:0 0 34px rgba(255,0,140,.62);
+    }
+    .video-desc{
+      color:#eac4df;
+      font-size:18px;
+      line-height:1.55;
+      font-weight:650;
+      max-width:560px;
+      margin:0;
+    }
+    .cover-player{
+      position:relative;
+      overflow:hidden;
+      border-radius:30px;
+      border:1px solid rgba(255,255,255,.18);
+      background:#070109;
+      box-shadow:0 28px 90px rgba(0,0,0,.62),0 0 55px rgba(255,0,140,.28);
+      cursor:pointer;
+      aspect-ratio:16/9;
+    }
+    .cover-player img,
+    .cover-player video{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .cover-player video{
+      opacity:0;
+      pointer-events:none;
+      transition:.35s ease;
+      background:#070109;
+    }
+    .cover-player.playing video{
+      opacity:1;
+      pointer-events:auto;
+    }
+    .cover-player.playing img,
+    .cover-player.playing .play-cover{
+      opacity:0;
+      pointer-events:none;
+    }
+    .play-cover{
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,rgba(0,0,0,.1),rgba(0,0,0,.48));
+      transition:.25s ease;
+    }
+    .play-cover span{
+      width:96px;
+      height:96px;
+      border-radius:999px;
+      display:grid;
+      place-items:center;
+      padding-left:7px;
+      background:linear-gradient(135deg,var(--pink),#ff83df);
+      border:1px solid rgba(255,255,255,.35);
+      color:white;
+      font-size:42px;
+      box-shadow:0 0 55px rgba(255,0,140,.85);
+    }
+    .cover-player:hover .play-cover span{transform:scale(1.06)}
+    .demo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+
     .featured{display:grid;gap:26px}
     .track-card{
       position:relative;
@@ -345,6 +449,7 @@
       .catalog-grid{grid-template-columns:1fr}.about-panel{grid-template-columns:1fr}.section-head{display:block}.section-note{margin-top:15px}
       h1{font-size:28vw}.subline{letter-spacing:.18em}
       .timeline-wrap{grid-template-columns:1fr}.timeline-wrap span{display:none}.player-modal{border-radius:26px}.player-title{margin-right:34px}
+      .video-layout{grid-template-columns:1fr}.demo-grid{grid-template-columns:1fr}.cover-player{border-radius:22px}
     }
   </style>
 </head>
@@ -355,7 +460,7 @@
 
   <nav>
     <div class="brand">NYA <span>MUSIC</span></div>
-    <div class="navlinks"><a href="#demos">Demos</a><a href="#instrumentals">Instrumentals</a><a href="#about">About</a><a href="#contact">Contact</a></div>
+    <div class="navlinks"><a href="#demos">Featured</a><a href="#audio-demos">Demos</a><a href="#instrumentals">Instrumentals</a><a href="#about">About</a><a href="#contact">Contact</a></div>
   </nav>
 
   <header>
@@ -365,7 +470,8 @@
       <div class="subline">Original Music for Artists • Games • Commercial Projects</div>
       <p class="hero-copy">Original demos and instrumentals created for artists, publishers, games, and entertainment projects.</p>
       <div class="cta-row">
-        <a class="btn primary" href="#demos">Listen to Demos</a>
+        <a class="btn primary" href="#demos">Watch Featured Demo</a>
+        <a class="btn secondary" href="#audio-demos">Audio Demos</a>
         <a class="btn secondary" href="#instrumentals">Instrumentals</a>
         <a class="btn secondary" href="#contact">Contact</a>
       </div>
@@ -376,24 +482,54 @@
   <main>
     <section id="demos">
       <div class="section-head">
-        <div><div class="section-kicker">Vocal Demos</div><h2>Demos</h2></div>
+        <div><div class="section-kicker">Featured Work</div><h2>Featured Demo</h2></div>
+        <p class="section-note">Main visual demo for artist placement, K-pop concepts, and commercial projects.</p>
+      </div>
+
+      <article class="video-feature" data-id="game-over">
+        <div class="video-layout">
+          <div class="video-copy">
+            <div class="number">01 / Featured Demo</div>
+            <h3 class="video-title">Game Over</h3>
+            <div class="track-type">K-pop Girl Group Concept</div>
+            <p class="video-desc">High-energy commercial concept with a strong hook, performance-driven attitude, and visual direction for artist placement.</p>
+            <div class="tags">
+              <span class="tag">K-pop</span>
+              <span class="tag">Girl Group</span>
+              <span class="tag">Demo</span>
+              <span class="tag">Video</span>
+            </div>
+          </div>
+
+          <div class="cover-player" id="gameOverPlayer" aria-label="Play Game Over video">
+            <img src="https://audio.nya-music.com/game-over-cover.jpg" alt="Game Over cover art">
+            <video id="gameOverVideo" preload="metadata" playsinline controls>
+              <source src="https://audio.nya-music.com/game-over-video.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="play-cover"><span>▶</span></div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="audio-demos">
+      <div class="section-head">
+        <div><div class="section-kicker">Vocal Demos</div><h2>Audio Demos</h2></div>
         <p class="section-note">Vocal demos showcasing original songwriting concepts.</p>
       </div>
 
-      <div class="featured">
-        <article class="track-card" data-id="porque">
-          <div class="track-main"><div class="number">01 / Demo</div><h3 class="track-title">Porque Ya</h3><div class="track-type">Spanish Trap / Rap Demo</div><p class="track-desc">Spanish-language commercial demo, co-written and performed with a friend.</p><div class="tags"><span class="tag">Spanish</span><span class="tag">Trap</span><span class="tag">Rap</span><span class="tag">Demo</span></div></div>
-          <div class="track-action"><div class="mini-line"></div><button class="listen" data-track="porque">Play Demo</button></div>
+      <div class="demo-grid">
+        <article class="small-card" data-id="porque">
+          <h3>Porque Ya</h3>
+          <p>Spanish-language commercial demo, co-written and performed with a friend.</p>
+          <button class="listen" data-track="porque">Play Demo</button>
         </article>
 
-        <article class="track-card" data-id="baby-cool">
-          <div class="track-main"><div class="number">02 / Demo</div><h3 class="track-title">Baby I'm Cool</h3><div class="track-type">Pop / R&B Demo</div><p class="track-desc">Heartbreak-inspired commercial pop and R&B concept.</p><div class="tags"><span class="tag">Pop</span><span class="tag">R&amp;B</span><span class="tag">Demo</span></div></div>
-          <div class="track-action"><div class="mini-line"></div><button class="listen" data-track="baby-cool">Play Demo</button></div>
-        </article>
-
-        <article class="track-card" data-id="game-over">
-          <div class="track-main"><div class="number">03 / Demo</div><h3 class="track-title">Game Over</h3><div class="track-type">K-pop Concept Demo</div><p class="track-desc">High-energy girl group concept with a strong hook and performance-driven attitude.</p><div class="tags"><span class="tag">K-pop</span><span class="tag">Demo</span><span class="tag">Girl Group</span></div></div>
-          <div class="track-action"><div class="mini-line"></div><button class="listen" data-track="game-over">Play Demo</button></div>
+        <article class="small-card" data-id="baby-cool">
+          <h3>Baby I'm Cool</h3>
+          <p>Heartbreak-inspired commercial pop and R&B concept.</p>
+          <button class="listen" data-track="baby-cool">Play Demo</button>
         </article>
       </div>
     </section>
@@ -469,7 +605,6 @@
     const tracks = [
       {id:'porque', title:'Porque Ya', meta:'Spanish Trap / Rap Demo', file:'Porque Ya.mp3', tags:['Spanish','Trap','Rap','Demo']},
       {id:'baby-cool', title:"Baby I'm Cool", meta:'Pop / R&B Demo', file:'baby im cool.MOV', tags:['Pop','R&B','Demo']},
-      {id:'game-over', title:'Game Over', meta:'K-pop Concept Demo', file:'Game Over Demo.m4a', tags:['K-pop','Demo','Girl Group']},
       {id:'top-player', title:'Top Player', meta:'Gaming / K-pop Anthem', file:'Top Player.wav', tags:['Instrumental','Lyrics Available','Gaming','K-pop']},
       {id:'monster', title:'Monster', meta:'Dark K-pop Instrumental', file:'Monster.wav', tags:['Instrumental','Dark Concept','K-pop']},
       {id:'baddest', title:'Baddest', meta:'K-pop / Hip-Hop Instrumental', file:'baddest.wav', tags:['Instrumental','Hip-Hop','K-pop']},
@@ -586,6 +721,32 @@
       if(e.key === 'ArrowLeft') audio.currentTime = Math.max(0, audio.currentTime - 5);
       if(e.key === 'Escape') document.getElementById('closePlayer').click();
     });
+
+    const gameOverPlayer = document.getElementById('gameOverPlayer');
+    const gameOverVideo = document.getElementById('gameOverVideo');
+
+    if(gameOverPlayer && gameOverVideo){
+      gameOverPlayer.addEventListener('click', () => {
+        gameOverPlayer.classList.add('playing');
+        gameOverVideo.play().catch(() => {});
+      });
+
+      gameOverVideo.addEventListener('play', () => {
+        gameOverPlayer.classList.add('playing');
+      });
+
+      gameOverVideo.addEventListener('pause', () => {
+        if(gameOverVideo.currentTime === 0 || gameOverVideo.ended){
+          gameOverPlayer.classList.remove('playing');
+        }
+      });
+
+      gameOverVideo.addEventListener('ended', () => {
+        gameOverPlayer.classList.remove('playing');
+        gameOverVideo.currentTime = 0;
+      });
+    }
+
   </script>
 </body>
 </html>
