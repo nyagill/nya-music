@@ -90,6 +90,37 @@
     }
     @keyframes rise{from{transform:translateY(105vh) scale(.8);opacity:0}15%{opacity:.7}to{transform:translateY(-10vh) scale(1.3);opacity:0}}
 
+    .svg-container{
+      position:absolute;
+      width:0;
+      height:0;
+      overflow:hidden;
+      pointer-events:none;
+    }
+
+    @keyframes featureGlowBreath{
+      0%,100%{
+        opacity:.72;
+        transform:scale(1);
+      }
+      50%{
+        opacity:1;
+        transform:scale(1.012);
+      }
+    }
+
+    @keyframes featureSheen{
+      0%{transform:translateX(-140%) rotate(14deg);opacity:0}
+      18%{opacity:.55}
+      42%{opacity:.16}
+      100%{transform:translateX(150%) rotate(14deg);opacity:0}
+    }
+
+    @keyframes featureFloat{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-6px)}
+    }
+
     nav{
       position:fixed;
       top:0;left:0;right:0;
@@ -206,24 +237,58 @@
 
     .video-feature{
       position:relative;
-      overflow:hidden;
-      border-radius:36px;
-      padding:clamp(24px,4vw,48px);
+      overflow:visible;
+      border-radius:38px;
+      padding:7px;
       background:
-        linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.035)),
-        radial-gradient(circle at 82% 10%,rgba(255,0,140,.48),transparent 38%),
-        rgba(8,2,12,.86);
-      border:1px solid rgba(255,255,255,.18);
-      box-shadow:0 35px 110px rgba(0,0,0,.68),0 0 85px rgba(255,0,140,.28), inset 0 1px rgba(255,255,255,.18);
-      backdrop-filter:blur(24px);
+        linear-gradient(
+          -30deg,
+          rgba(255,0,140,.18),
+          rgba(255,255,255,.025),
+          rgba(255,123,219,.16)
+        ),
+        rgba(7,1,10,.86);
+      box-shadow:
+        0 35px 110px rgba(0,0,0,.68),
+        0 0 70px rgba(255,0,140,.28);
       margin-bottom:34px;
+      isolation:isolate;
+      animation:featureFloat 7s ease-in-out infinite;
     }
+
     .video-feature::before{
-      content:"";position:absolute;inset:-1px;border-radius:36px;padding:1px;
-      background:linear-gradient(135deg,rgba(255,255,255,.65),rgba(255,0,140,.9),transparent 55%);
-      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite:xor; mask-composite:exclude;opacity:.58;pointer-events:none;
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:38px;
+      border:2px solid #f26fcb;
+      filter:url(#turbulent-displace);
+      box-shadow:
+        0 0 5px rgba(255,255,255,.9),
+        0 0 10px #ffb7ef,
+        0 0 20px #ff4fd8,
+        0 0 42px rgba(255,79,216,.95),
+        0 0 90px rgba(255,0,140,.62);
+      pointer-events:none;
+      z-index:6;
+      animation:featureGlowBreath 2.9s ease-in-out infinite;
     }
+    .video-feature::after{
+      content:"";
+      position:absolute;
+      inset:-22px;
+      border-radius:48px;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255,255,255,.28), transparent 20%),
+        radial-gradient(circle at 82% 18%, rgba(255,0,140,.36), transparent 24%),
+        radial-gradient(circle at 50% 105%, rgba(255,43,194,.32), transparent 30%),
+        linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,0,140,.18), transparent 62%);
+      filter:blur(30px);
+      opacity:.72;
+      z-index:-1;
+      pointer-events:none;
+    }
+
     .video-layout{
       position:relative;
       z-index:2;
@@ -231,7 +296,33 @@
       grid-template-columns:.92fr 1.08fr;
       gap:clamp(22px,4vw,46px);
       align-items:center;
+      border-radius:34px;
+      padding:clamp(24px,4vw,48px);
+      background:
+        linear-gradient(135deg,rgba(255,255,255,.13),rgba(255,255,255,.035)),
+        radial-gradient(circle at 82% 10%,rgba(255,0,140,.42),transparent 38%),
+        radial-gradient(circle at 12% 92%,rgba(155,30,255,.22),transparent 36%),
+        rgba(8,2,12,.92);
+      border:1px solid rgba(255,255,255,.13);
+      box-shadow:
+        inset 0 1px rgba(255,255,255,.18),
+        inset 0 0 34px rgba(255,0,140,.08);
+      backdrop-filter:blur(24px);
+      overflow:hidden;
     }
+
+    .video-layout::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+      background:
+        linear-gradient(105deg,transparent 0%,rgba(255,255,255,.05) 30%,rgba(255,255,255,.28) 45%,rgba(255,123,219,.13) 55%,transparent 72%);
+      mix-blend-mode:screen;
+      animation:featureSheen 7s ease-in-out infinite;
+    }
+    .video-copy, .cover-player{position:relative;z-index:2}
     .video-title{
       font-family:"Space Grotesk";
       font-size:clamp(58px,10vw,138px);
@@ -251,11 +342,15 @@
     }
     .cover-player{
       position:relative;
+      z-index:2;
       overflow:hidden;
       border-radius:30px;
-      border:1px solid rgba(255,255,255,.18);
+      border:1px solid rgba(255,255,255,.22);
       background:#070109;
-      box-shadow:0 28px 90px rgba(0,0,0,.62),0 0 55px rgba(255,0,140,.28);
+      box-shadow:
+        0 28px 90px rgba(0,0,0,.62),
+        0 0 40px rgba(255,0,140,.35),
+        inset 0 0 18px rgba(255,0,140,.08);
       cursor:pointer;
       aspect-ratio:16/9;
     }
@@ -449,7 +544,23 @@
       .catalog-grid{grid-template-columns:1fr}.about-panel{grid-template-columns:1fr}.section-head{display:block}.section-note{margin-top:15px}
       h1{font-size:28vw}.subline{letter-spacing:.18em}
       .timeline-wrap{grid-template-columns:1fr}.timeline-wrap span{display:none}.player-modal{border-radius:26px}.player-title{margin-right:34px}
-      .video-layout{grid-template-columns:1fr}.demo-grid{grid-template-columns:1fr}.cover-player{border-radius:22px}
+      .video-feature::after{
+      content:"";
+      position:absolute;
+      inset:-22px;
+      border-radius:48px;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255,255,255,.28), transparent 20%),
+        radial-gradient(circle at 82% 18%, rgba(255,0,140,.36), transparent 24%),
+        radial-gradient(circle at 50% 105%, rgba(255,43,194,.32), transparent 30%),
+        linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,0,140,.18), transparent 62%);
+      filter:blur(30px);
+      opacity:.72;
+      z-index:-1;
+      pointer-events:none;
+    }
+
+    .video-layout{grid-template-columns:1fr}.demo-grid{grid-template-columns:1fr}.cover-player{border-radius:22px}
     }
   </style>
 </head>
@@ -457,6 +568,40 @@
   <div class="noise"></div>
   <div class="orb one"></div><div class="orb two"></div><div class="orb three"></div>
   <div class="sparkles" aria-hidden="true"></div>
+
+  <!-- Electric border filter for Featured Demo -->
+  <svg class="svg-container" aria-hidden="true">
+    <defs>
+      <filter id="turbulent-displace" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="1" />
+        <feOffset in="noise1" dx="0" dy="0" result="offsetNoise1">
+          <animate attributeName="dy" values="700; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
+
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="1" />
+        <feOffset in="noise2" dx="0" dy="0" result="offsetNoise2">
+          <animate attributeName="dy" values="0; -700" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
+
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise3" seed="2" />
+        <feOffset in="noise3" dx="0" dy="0" result="offsetNoise3">
+          <animate attributeName="dx" values="490; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
+
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise4" seed="2" />
+        <feOffset in="noise4" dx="0" dy="0" result="offsetNoise4">
+          <animate attributeName="dx" values="0; -490" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
+
+        <feComposite in="offsetNoise1" in2="offsetNoise2" result="part1" />
+        <feComposite in="offsetNoise3" in2="offsetNoise4" result="part2" />
+        <feBlend in="part1" in2="part2" mode="color-dodge" result="combinedNoise" />
+
+        <feDisplacementMap in="SourceGraphic" in2="combinedNoise" scale="30" xChannelSelector="R" yChannelSelector="B" />
+      </filter>
+    </defs>
+  </svg>
+
 
   <nav>
     <div class="brand">NYA <span>MUSIC</span></div>
@@ -525,7 +670,7 @@
           <p>Spanish-language commercial demo, co-written and performed with a friend.</p>
           <button class="listen" data-track="porque">Play Demo</button>
         </article>
-</div>
+      </div>
     </section>
 
     <section id="instrumentals">
@@ -597,7 +742,8 @@
 
     const base = 'https://audio.nya-music.com/';
     const tracks = [
-      {id:'porque', title:'Porque Ya', meta:'Spanish Trap / Rap Demo', file:'Porque Ya.mp3', tags:['Spanish','Trap','Rap','Demo']},      {id:'top-player', title:'Top Player', meta:'Gaming / K-pop Anthem', file:'Top Player.wav', tags:['Instrumental','Lyrics Available','Gaming','K-pop']},
+      {id:'porque', title:'Porque Ya', meta:'Spanish Trap / Rap Demo', file:'Porque Ya.mp3', tags:['Spanish','Trap','Rap','Demo']},
+      {id:'top-player', title:'Top Player', meta:'Gaming / K-pop Anthem', file:'Top Player.wav', tags:['Instrumental','Lyrics Available','Gaming','K-pop']},
       {id:'monster', title:'Monster', meta:'Dark K-pop Instrumental', file:'Monster.wav', tags:['Instrumental','Dark Concept','K-pop']},
       {id:'baddest', title:'Baddest', meta:'K-pop / Hip-Hop Instrumental', file:'baddest.wav', tags:['Instrumental','Hip-Hop','K-pop']},
       {id:'cliffhanger', title:'Cliffhanger', meta:'Pop Song Concept', file:'cliffhanger.wav', tags:['Pop','Lyrics Available','Commercial']},
