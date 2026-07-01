@@ -1080,6 +1080,92 @@ button, a, video{
   }
 }
 
+
+/* === PHONE SMOOTHNESS PATCH ===
+   Desktop keeps the full electric effect.
+   Phone uses a cheaper neon border so scrolling does not lag.
+*/
+@media (max-width: 850px){
+  html{
+    scroll-behavior:auto;
+  }
+
+  .noise,
+  .orb,
+  .sparkles{
+    display:none !important;
+  }
+
+  body::after{
+    display:none !important;
+  }
+
+  .site-bg{
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(255,0,140,.34), transparent 34%),
+      radial-gradient(circle at 50% 78%, rgba(143,0,255,.18), transparent 34%),
+      linear-gradient(135deg,#030105 0%,#100111 48%,#050107 100%) !important;
+  }
+
+  .nav,
+  .eyebrow,
+  .btn.secondary,
+  .video-layout,
+  .small-card,
+  .about-box,
+  .contact-card,
+  .player-overlay,
+  .player-modal{
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+  }
+
+  h1{
+    animation:none !important;
+    filter:drop-shadow(0 0 18px rgba(255,0,140,.42)) !important;
+  }
+
+  .video-layout::before{
+    display:none !important;
+  }
+
+  .electric-border{
+    filter:none !important;
+    animation:none !important;
+    border:2px solid #ff7bdb !important;
+    box-shadow:
+      0 0 4px rgba(255,255,255,.85),
+      0 0 12px rgba(255,123,219,.85),
+      0 0 26px rgba(255,0,140,.50),
+      0 0 44px rgba(255,0,140,.28) !important;
+  }
+
+  .video-feature::after{
+    filter:blur(10px) !important;
+    opacity:.38 !important;
+  }
+
+  .video-feature,
+  .small-card,
+  .btn,
+  .visualizer span{
+    animation:none !important;
+    transition:none !important;
+  }
+
+  .small-card:hover,
+  .btn:hover{
+    transform:none !important;
+  }
+
+  .featured-video{
+    transform:translateZ(0);
+    will-change:auto;
+  }
+}
+
 </style>
 </head>
 
@@ -1184,11 +1270,11 @@ button, a, video{
               id="gameOverVideo"
               class="featured-video"
               poster="https://audio.nya-music.com/game-over-cover.jpg"
-              preload="metadata"
+              preload="none"
               playsinline
               controls
             >
-              <source src="https://audio.nya-music.com/game-over-video.mp4?v=6" type="video/mp4" />
+              <source src="https://audio.nya-music.com/game-over-video.mp4?v=8" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
@@ -1322,13 +1408,16 @@ const durationEl = document.getElementById('duration');
 const volume = document.getElementById('volume');
 const gameOverVideo = document.getElementById('gameOverVideo');
 
-if (sparkles) {
-  for (let i = 0; i < 42; i++) {
+const isPhone = window.matchMedia('(max-width: 850px)').matches;
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (sparkles && !isPhone && !reduceMotion) {
+  for (let i = 0; i < 26; i++) {
     const s = document.createElement('span');
     s.style.left = Math.random() * 100 + 'vw';
-    s.style.animationDuration = (7 + Math.random() * 10) + 's';
+    s.style.animationDuration = (8 + Math.random() * 10) + 's';
     s.style.animationDelay = (-Math.random() * 12) + 's';
-    s.style.opacity = .18 + Math.random() * .55;
+    s.style.opacity = .14 + Math.random() * .42;
     sparkles.appendChild(s);
   }
 }
