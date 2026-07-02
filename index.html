@@ -1166,6 +1166,113 @@ button, a, video{
   }
 }
 
+
+/* === FINAL TWO FEATURED DEMOS PATCH === */
+
+/* Desktop: exactly two equal cards side by side */
+.featured-grid{
+  display:grid !important;
+  grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  gap:28px !important;
+  align-items:stretch !important;
+}
+
+.featured-grid .video-feature{
+  margin:0 !important;
+  height:100% !important;
+  min-width:0 !important;
+}
+
+.featured-grid .video-layout{
+  display:flex !important;
+  flex-direction:column !important;
+  height:100% !important;
+  gap:22px !important;
+  padding:clamp(22px,3vw,34px) !important;
+}
+
+.featured-grid .video-copy{
+  min-height:270px;
+}
+
+.featured-grid .video-title{
+  font-size:clamp(42px,5vw,76px) !important;
+}
+
+.featured-grid .video-desc{
+  font-size:16px !important;
+  line-height:1.5 !important;
+}
+
+.featured-grid .video-box{
+  width:100% !important;
+  margin-top:auto !important;
+  border-radius:26px !important;
+}
+
+.featured-grid .featured-video{
+  width:100% !important;
+  height:auto !important;
+  aspect-ratio:16/9 !important;
+  object-fit:cover !important;
+  display:block !important;
+}
+
+/* Desktop keeps REAL electric SVG border on BOTH cards */
+@media (min-width:851px){
+  .featured-grid .electric-border{
+    filter:url(#turbulent-displace) !important;
+    animation:featureGlowBreath 2.9s ease-in-out infinite !important;
+    border:2px solid #f26fcb !important;
+    box-shadow:
+      0 0 5px rgba(255,255,255,.9),
+      0 0 10px #ffb7ef,
+      0 0 20px #ff4fd8,
+      0 0 42px rgba(255,79,216,.95),
+      0 0 90px rgba(255,0,140,.62) !important;
+  }
+}
+
+/* Cyberworld gets its own darker cyber glow, but same electric border */
+.cyber-card .video-layout{
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.13),rgba(255,255,255,.035)),
+    radial-gradient(circle at 78% 10%,rgba(255,0,140,.34),transparent 38%),
+    radial-gradient(circle at 12% 92%,rgba(35,75,255,.30),transparent 36%),
+    rgba(8,2,12,.92) !important;
+}
+
+/* Phone: stacked, smooth neon border only */
+@media (max-width:850px){
+  .featured-grid{
+    grid-template-columns:1fr !important;
+    gap:24px !important;
+  }
+
+  .featured-grid .video-copy{
+    min-height:auto !important;
+  }
+
+  .featured-grid .video-layout{
+    padding:22px !important;
+  }
+
+  .featured-grid .video-title{
+    font-size:clamp(46px,14vw,74px) !important;
+  }
+
+  .featured-grid .electric-border{
+    filter:none !important;
+    animation:none !important;
+    border:2px solid #ff7bdb !important;
+    box-shadow:
+      0 0 4px rgba(255,255,255,.85),
+      0 0 12px rgba(255,123,219,.85),
+      0 0 26px rgba(255,0,140,.50),
+      0 0 44px rgba(255,0,140,.28) !important;
+  }
+}
+
 </style>
 </head>
 
@@ -1242,44 +1349,81 @@ button, a, video{
       <div class="section-head">
         <div>
           <div class="section-kicker">Featured Work</div>
-          <h2>Featured Demo</h2>
+          <h2>Featured Demos</h2>
         </div>
-        <p class="section-note">Main visual demo for artist placement, K-pop concepts, and commercial projects.</p>
+        <p class="section-note">Main visual demos for artist placement, game pitching, K-pop concepts, and commercial projects.</p>
       </div>
 
-      <article class="video-feature" data-id="game-over">
-        <div class="electric-border" aria-hidden="true"></div>
+      <div class="featured-grid">
+        <article class="video-feature feature-card" data-id="game-over">
+          <div class="electric-border" aria-hidden="true"></div>
 
-        <div class="video-layout">
-          <div class="video-copy">
-            <div class="number">01 / Featured Demo</div>
-            <h3 class="video-title">Game Over</h3>
-            <div class="track-type">K-pop Girl Group Concept</div>
-            <p class="video-desc">High-energy commercial concept with a strong hook, performance-driven attitude, and visual direction for artist placement.</p>
+          <div class="video-layout">
+            <div class="video-copy">
+              <div class="number">01 / Featured Demo</div>
+              <h3 class="video-title">Game Over</h3>
+              <div class="track-type">K-pop Girl Group Concept</div>
+              <p class="video-desc">High-energy commercial concept with a strong hook, performance-driven attitude, and visual direction for artist placement.</p>
 
-            <div class="tags">
-              <span class="tag">K-pop</span>
-              <span class="tag">Girl Group</span>
-              <span class="tag">Demo</span>
-              <span class="tag">Video</span>
+              <div class="tags">
+                <span class="tag">K-pop</span>
+                <span class="tag">Girl Group</span>
+                <span class="tag">Demo</span>
+                <span class="tag">Video</span>
+              </div>
+            </div>
+
+            <div class="video-box">
+              <video
+                id="gameOverVideo"
+                class="featured-video"
+                poster="https://audio.nya-music.com/game-over-cover.jpg"
+                preload="none"
+                playsinline
+                controls
+              >
+                <source src="https://audio.nya-music.com/game-over-video.mp4?v=9" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
+        </article>
 
-          <div class="video-box">
-            <video
-              id="gameOverVideo"
-              class="featured-video"
-              poster="https://audio.nya-music.com/game-over-cover.jpg"
-              preload="none"
-              playsinline
-              controls
-            >
-              <source src="https://audio.nya-music.com/game-over-video.mp4?v=8" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+        <article class="video-feature feature-card cyber-card" data-id="cyberworld">
+          <div class="electric-border" aria-hidden="true"></div>
+
+          <div class="video-layout">
+            <div class="video-copy">
+              <div class="number">02 / Featured Demo</div>
+              <h3 class="video-title">Cyberworld</h3>
+              <div class="track-type">Cyberpunk Type Inspired Beat</div>
+              <p class="video-desc">Dark futuristic game-focused track with cinematic pressure, neon worldbuilding, and trailer-ready energy for sync, games, and commercial projects.</p>
+
+              <div class="tags">
+                <span class="tag">Game</span>
+                <span class="tag">Cyberpunk</span>
+                <span class="tag">Sync</span>
+                <span class="tag">Video</span>
+              </div>
+            </div>
+
+            <div class="video-box">
+              <video
+                id="cyberworldVideo"
+                class="featured-video"
+                poster="https://audio.nya-music.com/cyberworld cover.png"
+                preload="none"
+                playsinline
+                controls
+              >
+                <source src="https://audio.nya-music.com/cyberworld.MOV?v=2" type="video/quicktime" />
+                <source src="https://audio.nya-music.com/cyberworld.MOV?v=2" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
+      </div>
     </section>
 
     <section id="audio-demos">
@@ -1407,6 +1551,8 @@ const currentTimeEl = document.getElementById('currentTime');
 const durationEl = document.getElementById('duration');
 const volume = document.getElementById('volume');
 const gameOverVideo = document.getElementById('gameOverVideo');
+const cyberworldVideo = document.getElementById('cyberworldVideo');
+const featuredVideos = [gameOverVideo, cyberworldVideo].filter(Boolean);
 
 const isPhone = window.matchMedia('(max-width: 850px)').matches;
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1458,9 +1604,11 @@ function markPlaying(id){
 }
 
 function pauseFeaturedVideo(){
-  if (gameOverVideo && !gameOverVideo.paused) {
-    gameOverVideo.pause();
-  }
+  featuredVideos.forEach(video => {
+    if (video && !video.paused) {
+      video.pause();
+    }
+  });
 }
 
 function loadTrack(index, autoplay = true){
@@ -1571,13 +1719,19 @@ audio.addEventListener('ended', () => {
   updateTimeline();
 });
 
-if (gameOverVideo) {
-  gameOverVideo.addEventListener('play', () => {
+featuredVideos.forEach(video => {
+  video.addEventListener('play', () => {
+    featuredVideos.forEach(otherVideo => {
+      if (otherVideo !== video && !otherVideo.paused) {
+        otherVideo.pause();
+      }
+    });
+
     if (audio && !audio.paused) {
       audio.pause();
     }
   });
-}
+});
 
 document.addEventListener('keydown', e => {
   if (!overlay.classList.contains('open')) return;
