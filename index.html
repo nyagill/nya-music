@@ -1355,41 +1355,22 @@ button, a, video{
       </div>
 
       <div class="featured-grid">
-        <article class="video-feature feature-card" data-id="game-over">
-          <div class="electric-border" aria-hidden="true"></div>
-
-          <div class="video-layout">
-            <div class="video-copy">
-              <div class="number">01 / Featured Demo</div>
-              <h3 class="video-title">Game Over</h3>
-              <div class="track-type">K-pop Girl Group Concept</div>
-              <p class="video-desc">High-energy commercial concept with a strong hook, performance-driven attitude, and visual direction for artist placement.</p>
-
-              <div class="tags">
-                <span class="tag">K-pop</span>
-                <span class="tag">Girl Group</span>
-                <span class="tag">Demo</span>
-                <span class="tag">Video</span>
-              </div>
-            </div>
-
-            <div class="video-box">
-              <video
-                id="gameOverVideo"
-                class="featured-video"
-                poster="https://audio.nya-music.com/game-over-cover.jpg"
-                preload="none"
-                playsinline
-                controls
-              >
-                <source src="https://audio.nya-music.com/game-over-video.mp4?v=9" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </div>
-        </article>
-
-        <article class="video-feature feature-card cyber-card" data-id="cyberworld">
+<article class="video-feature feature-card" data-id="heist">
+<div class="electric-border" aria-hidden="true"></div>
+<div class="video-layout">
+<div class="video-copy">
+<div class="number">01 / Featured Demo</div>
+<h3 class="video-title">Heist</h3>
+<div class="track-type">GTA • Heist • Trailer Music</div>
+<p class="video-desc">High-octane cinematic heist soundtrack inspired by GTA-style action, getaway chases, robberies, and blockbuster game trailers.</p>
+<div class="tags"><span class="tag">Games</span><span class="tag">Trailer</span><span class="tag">Action</span><span class="tag">Video</span></div>
+</div>
+<div class="video-box">
+<video id="heistVideo" class="featured-video" poster="https://audio.nya-music.com/heist.png" preload="none" playsinline controls>
+<source src="https://audio.nya-music.com/heist.mp4?v=1" type="video/mp4"/>
+</video>
+</div></div></article>
+<article class="video-feature feature-card cyber-card" data-id="cyberworld">
           <div class="electric-border" aria-hidden="true"></div>
 
           <div class="video-layout">
@@ -1423,8 +1404,41 @@ button, a, video{
             </div>
           </div>
         </article>
-      </div>
-    </section>
+</div>
+<article class="video-feature feature-card" data-id="game-over">
+          <div class="electric-border" aria-hidden="true"></div>
+
+          <div class="video-layout">
+            <div class="video-copy">
+              <div class="number">03 / Featured Demo</div>
+              <h3 class="video-title">Game Over</h3>
+              <div class="track-type">K-pop Girl Group Concept</div>
+              <p class="video-desc">High-energy commercial concept with a strong hook, performance-driven attitude, and visual direction for artist placement.</p>
+
+              <div class="tags">
+                <span class="tag">K-pop</span>
+                <span class="tag">Girl Group</span>
+                <span class="tag">Demo</span>
+                <span class="tag">Video</span>
+              </div>
+            </div>
+
+            <div class="video-box">
+              <video
+                id="gameOverVideo"
+                class="featured-video"
+                poster="https://audio.nya-music.com/game-over-cover.jpg"
+                preload="none"
+                playsinline
+                controls
+              >
+                <source src="https://audio.nya-music.com/game-over-video.mp4?v=9" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </article>
+</section>
 
     <section id="audio-demos">
       <div class="section-head">
@@ -1493,7 +1507,7 @@ button, a, video{
         <p>Available for songwriting, publishing, licensing, demos, and collaborations.</p>
         <div class="cta-row">
           <a class="btn primary" href="mailto:yourtrulynya@gmail.com">yourtrulynya@gmail.com</a>
-          <a class="btn secondary" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn secondary" href="https://www.linkedin.com/in/nya-gill-a8946620a" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
     </section>
@@ -1550,9 +1564,10 @@ const timeline = document.getElementById('timeline');
 const currentTimeEl = document.getElementById('currentTime');
 const durationEl = document.getElementById('duration');
 const volume = document.getElementById('volume');
-const gameOverVideo = document.getElementById('gameOverVideo');
+const heistVideo = document.getElementById('heistVideo');
 const cyberworldVideo = document.getElementById('cyberworldVideo');
-const featuredVideos = [gameOverVideo, cyberworldVideo].filter(Boolean);
+const gameOverVideo = document.getElementById('gameOverVideo');
+const featuredVideos = [heistVideo, cyberworldVideo, gameOverVideo].filter(Boolean);
 
 const isPhone = window.matchMedia('(max-width: 850px)').matches;
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
