@@ -553,9 +553,249 @@ width:100%;
       }
     }
 
+
+    /* ===== CINEMATIC ENTRY + SITE SOUNDTRACK ===== */
+    body.intro-locked{overflow:hidden}
+    .intro-gate{
+      position:fixed;
+      inset:0;
+      z-index:10000;
+      overflow:hidden;
+      display:grid;
+      place-items:center;
+      background:
+        radial-gradient(circle at 50% 52%,rgba(255,31,184,.14),transparent 28%),
+        radial-gradient(circle at 22% 30%,rgba(69,233,255,.12),transparent 24%),
+        #00050a;
+      transition:opacity .75s ease,visibility .75s ease;
+    }
+    .intro-gate.is-leaving{opacity:0;visibility:hidden}
+    .intro-stars,.intro-stars::before,.intro-stars::after{
+      position:absolute;inset:0;content:"";
+      background-image:
+        radial-gradient(circle,#fff 0 1px,transparent 1.6px),
+        radial-gradient(circle,var(--cyan) 0 1px,transparent 1.8px),
+        radial-gradient(circle,var(--pink) 0 1px,transparent 1.8px);
+      background-size:83px 83px,137px 137px,191px 191px;
+      background-position:0 0,19px 37px,61px 23px;
+      opacity:.34;
+      animation:introStarDrift 26s linear infinite;
+    }
+    .intro-stars::before{transform:scale(1.25);opacity:.20;animation-duration:42s}
+    .intro-stars::after{transform:scale(.75);opacity:.48;animation-duration:17s}
+    @keyframes introStarDrift{to{background-position:0 420px,19px 537px,61px 623px}}
+    .intro-grid{
+      position:absolute;inset:0;
+      background:
+        linear-gradient(rgba(69,233,255,.055) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,31,184,.045) 1px,transparent 1px);
+      background-size:54px 54px;
+      transform:perspective(700px) rotateX(68deg) translateY(44%);
+      transform-origin:center bottom;
+      opacity:.38;
+      animation:gridPulse 2.4s ease-in-out infinite;
+    }
+    @keyframes gridPulse{50%{opacity:.62;filter:drop-shadow(0 0 10px var(--cyan))}}
+    .intro-scan{
+      position:absolute;inset:-20% 0 auto;height:32%;
+      background:linear-gradient(to bottom,transparent,rgba(69,233,255,.09),rgba(255,255,255,.22),rgba(255,31,184,.10),transparent);
+      mix-blend-mode:screen;
+      animation:introScan 2.7s linear infinite;
+    }
+    @keyframes introScan{to{transform:translateY(440vh)}}
+    .intro-ship{
+      position:absolute;
+      width:110px;height:32px;
+      left:-18vw;
+      top:var(--top);
+      filter:drop-shadow(0 0 16px var(--cyan));
+      animation:introShipFly var(--dur) linear var(--delay) infinite;
+      opacity:var(--opacity);
+      transform:scale(var(--scale));
+    }
+    .intro-ship::before{
+      content:"";position:absolute;inset:5px 15px;
+      clip-path:polygon(0 50%,20% 0,77% 7%,100% 50%,77% 93%,20% 100%);
+      background:linear-gradient(90deg,#020911,var(--cyan),#fff,var(--pink),#020911);
+      border:1px solid rgba(255,255,255,.65);
+    }
+    .intro-ship::after{
+      content:"";position:absolute;right:92%;top:15px;width:145px;height:3px;
+      background:linear-gradient(90deg,transparent,var(--pink),#fff);
+      box-shadow:0 0 12px var(--pink);
+    }
+    @keyframes introShipFly{
+      from{translate:-18vw 0}
+      to{translate:138vw -8vh}
+    }
+    .intro-hud{
+      position:relative;
+      width:min(880px,calc(100vw - 34px));
+      padding:clamp(25px,5vw,52px);
+      border:1px solid rgba(69,233,255,.68);
+      background:linear-gradient(145deg,rgba(2,10,16,.92),rgba(14,2,15,.86));
+      box-shadow:0 0 0 1px rgba(255,31,184,.22),0 0 80px rgba(255,31,184,.23),inset 0 0 40px rgba(69,233,255,.05);
+      clip-path:polygon(0 28px,28px 0,calc(100% - 34px) 0,100% 34px,100% calc(100% - 28px),calc(100% - 28px) 100%,34px 100%,0 calc(100% - 34px));
+      overflow:hidden;
+    }
+    .intro-hud::before,.intro-hud::after{
+      content:"";position:absolute;left:0;right:0;height:2px;
+      background:linear-gradient(90deg,transparent,var(--cyan),var(--pink),transparent);
+      animation:hudSlice 1.8s steps(2,end) infinite;
+    }
+    .intro-hud::before{top:22%}.intro-hud::after{top:73%;animation-delay:-.7s}
+    @keyframes hudSlice{50%{transform:translateX(18px);opacity:.35}}
+    .intro-kicker{
+      color:var(--green);
+      font:800 12px "Share Tech Mono";
+      letter-spacing:.18em;
+      text-transform:uppercase;
+    }
+    .intro-title{
+      margin:14px 0 8px;
+      font:900 clamp(42px,9vw,108px)/.86 "Audiowide";
+      text-transform:uppercase;
+      background:linear-gradient(90deg,#fff,var(--cyan),var(--pink),#fff);
+      background-size:230% auto;
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      filter:drop-shadow(3px 0 rgba(255,31,184,.75)) drop-shadow(-3px 0 rgba(69,233,255,.65));
+      animation:introTitleFlow 2.3s linear infinite,introTitleGlitch 3.8s steps(1,end) infinite;
+    }
+    @keyframes introTitleFlow{to{background-position:230% center}}
+    @keyframes introTitleGlitch{
+      0%,91%,100%{transform:none;clip-path:none}
+      92%{transform:translateX(8px);clip-path:inset(8% 0 68% 0)}
+      94%{transform:translateX(-10px);clip-path:inset(44% 0 32% 0)}
+      96%{transform:translateX(4px);clip-path:inset(72% 0 8% 0)}
+    }
+    .intro-subtitle{
+      margin:0 0 24px;
+      color:#d9f9ff;
+      font:800 clamp(14px,2vw,20px) "Share Tech Mono";
+      letter-spacing:.18em;
+      text-transform:uppercase;
+    }
+    .intro-terminal{
+      min-height:136px;
+      padding:14px 16px;
+      border-left:2px solid var(--pink);
+      background:rgba(0,0,0,.30);
+      font:700 clamp(11px,1.7vw,14px)/1.75 "Share Tech Mono";
+      letter-spacing:.08em;
+      color:var(--green);
+    }
+    .intro-terminal .pink{color:var(--pink)}
+    .intro-terminal .cyan{color:var(--cyan)}
+    .intro-progress{
+      position:relative;height:9px;margin:22px 0 16px;
+      border:1px solid rgba(255,31,184,.68);
+      background:#07020a;
+      overflow:hidden;
+    }
+    .intro-progress span{
+      display:block;height:100%;width:0;
+      background:linear-gradient(90deg,var(--green),var(--cyan),var(--pink));
+      box-shadow:0 0 18px var(--pink);
+      transition:width .18s linear;
+    }
+    .intro-actions{display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap}
+    .intro-enter,.intro-skip{
+      min-height:46px;padding:0 19px;color:#fff;
+      border:1px solid rgba(69,233,255,.6);
+      background:linear-gradient(135deg,#071019,#17030f);
+      font:800 11px "Share Tech Mono";
+      letter-spacing:.13em;text-transform:uppercase;
+      box-shadow:inset 4px 0 var(--pink),inset -4px 0 var(--cyan),0 0 20px rgba(255,31,184,.22);
+    }
+    .intro-skip{background:transparent;opacity:.78}
+    .intro-status{font:800 11px "Share Tech Mono";color:var(--cyan);letter-spacing:.11em}
+
+    .site-soundbar{
+      position:fixed;
+      z-index:95;
+      top:58px;
+      left:50%;
+      transform:translateX(-50%);
+      width:min(780px,calc(100vw - 24px));
+      display:grid;
+      grid-template-columns:auto auto 1fr auto;
+      align-items:center;
+      gap:11px;
+      padding:9px 12px;
+      background:rgba(2,6,13,.92);
+      border:1px solid rgba(69,233,255,.40);
+      box-shadow:0 10px 34px rgba(0,0,0,.42),0 0 20px rgba(255,31,184,.16);
+      -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+      opacity:0;
+      visibility:hidden;
+      translate:0 -10px;
+      transition:.35s;
+    }
+    .site-soundbar.show{opacity:1;visibility:visible;translate:0 0}
+    .sound-label{
+      min-width:0;
+      font:800 10px "Share Tech Mono";
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+    .sound-toggle{
+      width:38px;height:34px;color:#fff;background:#10040e;
+      border:1px solid rgba(255,31,184,.44);
+    }
+    .sound-seek{width:100%;accent-color:var(--pink)}
+    .sound-time{font:700 10px "Share Tech Mono";color:var(--cyan);white-space:nowrap}
+    .sound-volume{width:74px;accent-color:var(--cyan)}
+    .site-soundbar audio{display:none}
+
+    @media(max-width:700px){
+      .site-soundbar{grid-template-columns:auto 1fr auto;top:52px}
+      .sound-label{display:none}
+      .sound-volume{display:none}
+      .intro-hud{padding:25px 20px}
+      .intro-ship:nth-of-type(n+4){display:none}
+    }
+
 </style>
 </head>
 <body>
+
+  <div class="intro-gate" id="introGate" aria-label="Enter Nya's World">
+    <div class="intro-stars"></div>
+    <div class="intro-grid"></div>
+    <div class="intro-scan"></div>
+    <div class="intro-ship" style="--top:18%;--dur:5.8s;--delay:-1s;--opacity:.75;--scale:.72"></div>
+    <div class="intro-ship" style="--top:39%;--dur:8.6s;--delay:-4.2s;--opacity:.44;--scale:.45"></div>
+    <div class="intro-ship" style="--top:68%;--dur:6.8s;--delay:-3.1s;--opacity:.58;--scale:.60"></div>
+    <div class="intro-ship" style="--top:27%;--dur:12s;--delay:-8s;--opacity:.28;--scale:.28"></div>
+
+    <div class="intro-hud">
+      <div class="intro-kicker">Neon gateway // access protocol</div>
+      <div class="intro-title">Nya's World</div>
+      <p class="intro-subtitle">You are entering a holographic music system</p>
+      <div class="intro-terminal" id="introTerminal">
+        <div>&gt; AWAITING VISITOR AUTHORIZATION...</div>
+        <div class="pink">&gt; AUDIO CORE STANDBY</div>
+        <div class="cyan">&gt; CITY GATE LOCKED</div>
+      </div>
+      <div class="intro-progress"><span id="introProgress"></span></div>
+      <div class="intro-actions">
+        <button class="intro-enter" id="introEnter" type="button">Enter Nya's World + Audio</button>
+        <button class="intro-skip" id="introSkip" type="button">Enter Without Audio</button>
+        <span class="intro-status" id="introStatus">SYSTEM IDLE // 000%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-soundbar" id="siteSoundbar" aria-label="Background audio controls">
+    <span class="sound-label">Background Audio</span>
+    <button class="sound-toggle" id="soundToggle" type="button" aria-label="Pause background audio">❚❚</button>
+    <input class="sound-seek" id="soundSeek" type="range" min="0" max="1000" value="0" aria-label="Seek background audio">
+    <span class="sound-time" id="soundTime">0:00 / 0:00</span>
+    <input class="sound-volume" id="soundVolume" type="range" min="0" max="1" step=".01" value=".55" aria-label="Background audio volume">
+    <audio id="siteSoundtrack" preload="metadata" loop src="https://audio.nya-music.com/aegot%27eoapntghalhnoaehrnaelnhaphn.wav"></audio>
+  </div>
+
   <div class="world" aria-hidden="true">
     <div class="planet one"></div>
     <div class="planet two"></div>
@@ -794,6 +1034,135 @@ width:100%;
 
   <script>
     (() => {
+
+      /* ===== CINEMATIC INTRO + INDEPENDENT BACKGROUND AUDIO ===== */
+      const introGate=document.getElementById("introGate");
+      const introEnter=document.getElementById("introEnter");
+      const introSkip=document.getElementById("introSkip");
+      const introProgress=document.getElementById("introProgress");
+      const introStatus=document.getElementById("introStatus");
+      const introTerminal=document.getElementById("introTerminal");
+      const siteSoundbar=document.getElementById("siteSoundbar");
+      const siteSoundtrack=document.getElementById("siteSoundtrack");
+      const soundToggle=document.getElementById("soundToggle");
+      const soundSeek=document.getElementById("soundSeek");
+      const soundTime=document.getElementById("soundTime");
+      const soundVolume=document.getElementById("soundVolume");
+
+      document.body.classList.add("intro-locked");
+      siteSoundtrack.volume=Number(soundVolume.value);
+
+      const bootLines=[
+        ["&gt; VISITOR SIGNAL ACQUIRED",""],
+        ["&gt; NEON CITY LINK: CONNECTED","cyan"],
+        ["&gt; RAIN ENGINE: ACTIVE",""],
+        ["&gt; SPACESHIP TRAFFIC: DETECTED","pink"],
+        ["&gt; HOLOGRAM PROJECTORS: ONLINE","cyan"],
+        ["&gt; ROBOT CORE: ONLINE","pink"],
+        ["&gt; MUSIC DATABASE: SYNCHRONIZED",""],
+        ["&gt; GATEWAY OPEN","cyan"],
+        ["&gt; YOU ARE NOW ENTERING NYA'S WORLD","pink"]
+      ];
+
+      function addBootLine(text,cls){
+        const div=document.createElement("div");
+        if(cls) div.className=cls;
+        div.innerHTML=text;
+        introTerminal.appendChild(div);
+        while(introTerminal.children.length>5) introTerminal.removeChild(introTerminal.firstElementChild);
+      }
+
+      function finishIntro(withAudio){
+        if(withAudio){
+          siteSoundtrack.play().catch(()=>{});
+          siteSoundbar.classList.add("show");
+          soundToggle.textContent="❚❚";
+          soundToggle.setAttribute("aria-label","Pause background audio");
+        }
+        introGate.classList.add("is-leaving");
+        document.body.classList.remove("intro-locked");
+        setTimeout(()=>introGate.remove(),850);
+      }
+
+      function runBoot(withAudio){
+        introEnter.disabled=true;
+        introSkip.disabled=true;
+        let progress=0;
+        let lineIndex=0;
+
+        if(withAudio){
+          siteSoundtrack.currentTime=0;
+          siteSoundtrack.play().catch(()=>{});
+        }
+
+        const timer=setInterval(()=>{
+          progress=Math.min(100,progress+Math.floor(5+Math.random()*9));
+          introProgress.style.width=progress+"%";
+          introStatus.textContent=`SYSTEM BOOT // ${String(progress).padStart(3,"0")}%`;
+
+          const targetLine=Math.floor((progress/100)*bootLines.length);
+          while(lineIndex<targetLine && lineIndex<bootLines.length){
+            addBootLine(bootLines[lineIndex][0],bootLines[lineIndex][1]);
+            lineIndex++;
+          }
+
+          if(progress>=100){
+            clearInterval(timer);
+            introStatus.textContent="ACCESS GRANTED // WELCOME";
+            addBootLine("&gt; WELCOME TO NYA'S WORLD","pink");
+            setTimeout(()=>finishIntro(withAudio),700);
+          }
+        },150);
+      }
+
+      introEnter.addEventListener("click",()=>runBoot(true));
+      introSkip.addEventListener("click",()=>runBoot(false));
+
+      function formatClock(seconds){
+        if(!Number.isFinite(seconds)) return "0:00";
+        const m=Math.floor(seconds/60);
+        const s=Math.floor(seconds%60).toString().padStart(2,"0");
+        return `${m}:${s}`;
+      }
+
+      siteSoundtrack.addEventListener("loadedmetadata",()=>{
+        soundTime.textContent=`${formatClock(siteSoundtrack.currentTime)} / ${formatClock(siteSoundtrack.duration)}`;
+      });
+      siteSoundtrack.addEventListener("timeupdate",()=>{
+        if(Number.isFinite(siteSoundtrack.duration) && !soundSeek.matches(":active")){
+          soundSeek.value=Math.round((siteSoundtrack.currentTime/siteSoundtrack.duration)*1000)||0;
+        }
+        soundTime.textContent=`${formatClock(siteSoundtrack.currentTime)} / ${formatClock(siteSoundtrack.duration)}`;
+      });
+      soundToggle.addEventListener("click",()=>{
+        if(siteSoundtrack.paused){
+          siteSoundtrack.play().catch(()=>{});
+          soundToggle.textContent="❚❚";
+          soundToggle.setAttribute("aria-label","Pause background audio");
+        }else{
+          siteSoundtrack.pause();
+          soundToggle.textContent="▶";
+          soundToggle.setAttribute("aria-label","Play background audio");
+        }
+      });
+      soundSeek.addEventListener("input",()=>{
+        if(Number.isFinite(siteSoundtrack.duration)){
+          siteSoundtrack.currentTime=(Number(soundSeek.value)/1000)*siteSoundtrack.duration;
+        }
+      });
+      soundVolume.addEventListener("input",()=>siteSoundtrack.volume=Number(soundVolume.value));
+      siteSoundtrack.addEventListener("play",()=>soundToggle.textContent="❚❚");
+      siteSoundtrack.addEventListener("pause",()=>soundToggle.textContent="▶");
+
+      /* Any demo audio or featured video pauses the site soundtrack. */
+      const pauseSiteSoundtrack=()=>{
+        if(!siteSoundtrack.paused) siteSoundtrack.pause();
+      };
+      document.querySelectorAll(".listen,.featured-video").forEach(control=>{
+        control.addEventListener("play",pauseSiteSoundtrack);
+        control.addEventListener("click",pauseSiteSoundtrack);
+      });
+
       const ua = navigator.userAgent;
       const isSafari = /Safari/i.test(ua) && !/Chrome|Chromium|CriOS|Edg|OPR|Android/i.test(ua);
       const isMobile = window.matchMedia("(max-width:850px)").matches || /iPhone|iPad|iPod|Android/i.test(ua);
@@ -902,6 +1271,7 @@ width:100%;
 
       document.querySelectorAll(".listen").forEach(btn=>{
         btn.addEventListener("click",()=>{
+          siteSoundtrack.pause();
           playerTitle.textContent=btn.dataset.title || "Track";
           playerMeta.textContent=btn.dataset.meta || (btn.dataset.src ? "Ready to play" : "Audio coming soon");
           playerMedia.pause();
