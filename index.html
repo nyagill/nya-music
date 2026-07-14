@@ -2887,10 +2887,104 @@ footer,
   }
 }
 
+
+/* === CHATGPT CYBER CITY PATCH === */
+.cyber-city{
+position:fixed;
+inset:0;
+z-index:-20;
+pointer-events:none;
+background:
+linear-gradient(to top,rgba(0,0,0,.95),rgba(0,0,0,.2)),
+url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1800&q=80') center bottom/cover no-repeat;
+opacity:.28;
+filter:saturate(1.6) contrast(1.2);
+}
+.planet{
+position:fixed;
+border-radius:50%;
+pointer-events:none;
+z-index:-18;
+animation:planetFloat 18s ease-in-out infinite;
+}
+.planet-one{
+width:220px;height:220px;
+right:7%;top:8%;
+background:radial-gradient(circle at 30% 30%,#fff,#ff7ed8 25%,#ff1493 60%,#420020 100%);
+box-shadow:0 0 60px #ff1493;
+}
+.planet-one::after{
+content:"";
+position:absolute;
+left:-40px;top:90px;
+width:300px;height:26px;
+border:3px solid rgba(255,170,230,.8);
+border-radius:50%;
+transform:rotate(-18deg);
+}
+.planet-two{
+width:90px;height:90px;
+left:8%;top:14%;
+background:radial-gradient(circle,#fff,#64f2ff,#129dff);
+box-shadow:0 0 35px cyan;
+animation-delay:-6s;
+}
+.planet-three{
+width:130px;height:130px;
+right:20%;
+bottom:12%;
+background:radial-gradient(circle,#fff,#ff77df,#8d0066);
+animation-delay:-10s;
+}
+@keyframes planetFloat{
+50%{transform:translateY(-25px) scale(1.05);}
+}
+.btn,.listen,.tag{
+clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);
+position:relative;
+overflow:hidden;
+}
+.btn:hover,.listen:hover{
+animation:uiGlitch .18s steps(2) 2;
+box-shadow:0 0 18px #ff1493,0 0 30px #24ecff;
+}
+.btn::before,.listen::before{
+content:"";
+position:absolute;
+inset:0;
+background:repeating-linear-gradient(90deg,transparent 0 4px,rgba(255,255,255,.14) 5px,transparent 6px);
+opacity:0;
+}
+.btn:hover::before,.listen:hover::before{
+opacity:1;
+animation:scan .3s linear infinite;
+}
+.video-feature:hover{
+animation:cardGlitch .22s steps(2) 2;
+filter:drop-shadow(0 0 18px #ff1493) drop-shadow(0 0 14px #24ecff);
+}
+@keyframes scan{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+@keyframes uiGlitch{
+20%{transform:translate(3px,-2px)}
+40%{transform:translate(-2px,2px)}
+60%{transform:translate(2px,1px)}
+}
+@keyframes cardGlitch{
+20%{transform:translateX(4px)}
+40%{transform:translateX(-4px)}
+60%{transform:translateY(-3px)}
+}
 </style>
 </head>
 
 <body>
+
+<!-- CYBER CITY BACKGROUND -->
+<div class="cyber-city"></div>
+<div class="planet planet-one"></div>
+<div class="planet planet-two"></div>
+<div class="planet planet-three"></div>
+
   <div class="site-bg" aria-hidden="true"></div>
   <div class="noise" aria-hidden="true"></div>
   <div class="orb orb-one" aria-hidden="true"></div>
