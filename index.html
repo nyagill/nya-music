@@ -2369,6 +2369,324 @@ radial-gradient(circle at 12% 88%,rgba(255,31,184,.20),transparent 40%),
 #07111d!important;
 }
 
+
+/* =========================================================
+   HOT-PINK CYBER CITY + CLEAN NYAN ROBOT CHAT
+   ========================================================= */
+
+/* Hide every old floating gadget. Keep only the robot. */
+.outer-cyber-decor,
+.audio-chip-widget,
+.pink-saturn,
+.pink-headphones,
+.mini-pink-drone,
+.pink-radar{
+  display:none !important;
+}
+
+/* Hot-pink line city behind the entire site */
+.cyber-city{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  overflow:hidden;
+  opacity:.78;
+  mask-image:linear-gradient(to bottom,transparent 0%,black 22%,black 88%,transparent 100%);
+}
+
+.city-skyline{
+  position:absolute;
+  inset:0;
+}
+
+.city-skyline i{
+  position:absolute;
+  left:var(--x);
+  bottom:0;
+  width:var(--w);
+  height:var(--h);
+  border:1px solid rgba(255,31,184,.78);
+  border-bottom:0;
+  background:
+    repeating-linear-gradient(
+      to right,
+      transparent 0 12px,
+      rgba(255,31,184,.24) 13px 14px,
+      transparent 15px 27px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0 15px,
+      rgba(255,84,207,.20) 16px 17px,
+      transparent 18px 31px
+    ),
+    linear-gradient(to top,rgba(255,31,184,.08),transparent 72%);
+  box-shadow:
+    0 0 8px rgba(255,31,184,.42),
+    inset 0 0 14px rgba(255,31,184,.10);
+  clip-path:polygon(
+    0 100%,0 18%,10% 18%,10% 8%,24% 8%,24% 0,
+    66% 0,66% 11%,82% 11%,82% 22%,100% 22%,100% 100%
+  );
+}
+
+.city-back{
+  opacity:.36;
+  transform:translateY(7%) scale(1.06);
+  filter:blur(.25px);
+}
+
+.city-front{
+  opacity:.72;
+  transform:translateY(11%);
+}
+
+.city-front i{
+  border-color:rgba(255,31,184,.94);
+  box-shadow:
+    0 0 9px rgba(255,31,184,.58),
+    0 0 22px rgba(255,31,184,.16),
+    inset 0 0 15px rgba(255,31,184,.12);
+}
+
+.city-horizon{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:10%;
+  height:2px;
+  background:linear-gradient(90deg,transparent,#ff1fb8 12%,#ff54cf 50%,#ff1fb8 88%,transparent);
+  box-shadow:
+    0 0 12px #ff1fb8,
+    0 0 34px rgba(255,31,184,.72);
+}
+
+.city-particles span{
+  position:absolute;
+  left:var(--left);
+  bottom:-20px;
+  width:var(--size);
+  height:var(--size);
+  border-radius:50%;
+  background:var(--particle-color);
+  box-shadow:0 0 12px var(--particle-color);
+  opacity:0;
+  animation:cityParticleRise var(--duration) linear var(--delay) infinite;
+}
+
+@keyframes cityParticleRise{
+  0%{transform:translate3d(0,0,0) scale(.7);opacity:0}
+  12%{opacity:.9}
+  78%{opacity:.55}
+  100%{transform:translate3d(var(--drift),-108vh,0) scale(1.4);opacity:0}
+}
+
+/* Keep city subtle behind actual content */
+.hero,
+main,
+.nav,
+footer{
+  position:relative;
+  z-index:2;
+}
+
+/* Cleaner standalone robot */
+.pink-bot{
+  right:28px !important;
+  bottom:30px !important;
+  z-index:120 !important;
+  transform:scale(.92);
+}
+
+.pink-bot .bot-message{
+  display:none !important;
+}
+
+/* Robot becomes a chat launcher */
+.pink-bot::after{
+  content:"CHAT";
+  position:absolute;
+  left:50%;
+  top:104px;
+  transform:translateX(-50%);
+  padding:4px 8px;
+  border:1px solid rgba(255,255,255,.4);
+  border-radius:999px;
+  color:#fff;
+  background:linear-gradient(135deg,#ff1fb8,#23dfff);
+  box-shadow:0 0 16px rgba(255,31,184,.55);
+  font:700 9px "Share Tech Mono",monospace;
+  letter-spacing:.12em;
+}
+
+.nyan-chat{
+  position:fixed;
+  right:28px;
+  bottom:152px;
+  z-index:121;
+  width:min(340px,calc(100vw - 28px));
+  max-height:460px;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  border:1px solid rgba(115,239,255,.48);
+  border-radius:20px;
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.11),rgba(255,255,255,.025)),
+    radial-gradient(circle at 100% 0,rgba(35,223,255,.19),transparent 35%),
+    radial-gradient(circle at 0 100%,rgba(255,31,184,.25),transparent 42%),
+    rgba(2,8,14,.96);
+  box-shadow:
+    0 24px 80px rgba(0,0,0,.64),
+    0 0 38px rgba(255,31,184,.26),
+    0 0 26px rgba(35,223,255,.16);
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(14px) scale(.97);
+  transition:.24s ease;
+}
+
+.nyan-chat.open{
+  opacity:1;
+  visibility:visible;
+  transform:none;
+}
+
+.nyan-chat-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:15px 16px;
+  border-bottom:1px solid rgba(115,239,255,.25);
+  background:linear-gradient(90deg,rgba(255,31,184,.22),rgba(35,223,255,.10));
+}
+
+.nyan-chat-head strong{
+  display:block;
+  font:800 14px "Orbitron",sans-serif;
+  letter-spacing:.08em;
+  color:#fff;
+}
+
+.nyan-chat-head small{
+  display:block;
+  margin-top:4px;
+  color:#9ef8ff;
+  font:10px "Share Tech Mono",monospace;
+  letter-spacing:.08em;
+}
+
+.nyan-chat-close{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.28);
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  font-size:21px;
+  cursor:pointer;
+}
+
+.nyan-chat-log{
+  flex:1;
+  min-height:180px;
+  max-height:300px;
+  overflow:auto;
+  padding:15px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  scrollbar-width:thin;
+  scrollbar-color:#ff1fb8 transparent;
+}
+
+.nyan-message{
+  max-width:88%;
+  padding:10px 12px;
+  border-radius:14px;
+  font:13px/1.42 "Oxanium",sans-serif;
+  word-wrap:break-word;
+}
+
+.nyan-message.bot{
+  align-self:flex-start;
+  color:#fff;
+  border:1px solid rgba(115,239,255,.25);
+  background:linear-gradient(135deg,rgba(255,31,184,.17),rgba(35,223,255,.10));
+}
+
+.nyan-message.user{
+  align-self:flex-end;
+  color:#fff;
+  border:1px solid rgba(255,158,230,.34);
+  background:linear-gradient(135deg,#ff1fb8,#ff54cf);
+  box-shadow:0 0 16px rgba(255,31,184,.22);
+}
+
+.nyan-chat-form{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:8px;
+  padding:12px;
+  border-top:1px solid rgba(115,239,255,.20);
+}
+
+.nyan-chat-form input{
+  min-width:0;
+  height:42px;
+  border-radius:12px;
+  border:1px solid rgba(115,239,255,.30);
+  outline:none;
+  padding:0 12px;
+  color:#fff;
+  background:rgba(255,255,255,.07);
+  font:13px "Oxanium",sans-serif;
+}
+
+.nyan-chat-form input:focus{
+  border-color:#ff54cf;
+  box-shadow:0 0 18px rgba(255,31,184,.24);
+}
+
+.nyan-chat-form input::placeholder{
+  color:#aec3d3;
+}
+
+.nyan-chat-form button{
+  min-width:66px;
+  border:1px solid rgba(255,255,255,.30);
+  border-radius:12px;
+  color:#fff;
+  cursor:pointer;
+  background:linear-gradient(135deg,#ff1fb8,#ff54cf 58%,#23dfff);
+  font:800 11px "Share Tech Mono",monospace;
+  letter-spacing:.08em;
+  box-shadow:0 0 18px rgba(255,31,184,.30);
+}
+
+@media (max-width:850px){
+  .cyber-city{
+    opacity:.48;
+  }
+
+  .pink-bot{
+    right:12px !important;
+    bottom:18px !important;
+    transform:scale(.76) !important;
+  }
+
+  .nyan-chat{
+    right:12px;
+    bottom:124px;
+    width:calc(100vw - 24px);
+    max-height:62svh;
+  }
+}
+
 </style>
 </head>
 
@@ -2384,38 +2702,7 @@ radial-gradient(circle at 12% 88%,rgba(255,31,184,.20),transparent 40%),
   <div class="pink-circuit-bg" aria-hidden="true"></div>
 
   <div class="outer-cyber-decor" aria-hidden="true">
-    <div class="pink-saturn">
-      <span class="saturn-core"></span>
-      <span class="saturn-ring"></span>
-    </div>
-
-    <div class="audio-chip-widget">
-      <span class="chip-brand">NYA</span>
-      <span class="chip-label">AUDIO CORE</span>
-      <span class="chip-light"></span>
-    </div>
-
-    <div class="pink-headphones">
-      <span class="headband"></span>
-      <span class="ear left"></span>
-      <span class="ear right"></span>
-      <span class="music-note">♪</span>
-    </div>
-
-    <div class="mini-pink-drone">
-      <span class="drone-body"></span>
-      <span class="drone-eye"></span>
-      <span class="drone-prop left"></span>
-      <span class="drone-prop right"></span>
-    </div>
-
-    <div class="pink-radar">
-      <span class="radar-grid"></span>
-      <span class="radar-sweep"></span>
-      <span class="radar-hit"></span>
-      <small>SYNC SIGNAL</small>
-    </div>
-  </div>
+</div>
 
   <button class="pink-bot" id="pinkBot" type="button" aria-label="Cyber assistant">
     <span class="bot-antenna"></span>
@@ -2427,6 +2714,26 @@ radial-gradient(circle at 12% 88%,rgba(255,31,184,.20),transparent 40%),
     <span class="bot-body">NYA</span>
     <span class="bot-message" id="pinkBotMessage">♪ SYSTEM READY</span>
   </button>
+
+  <section class="nyan-chat" id="nyanChat" aria-label="Nyan robot chat" aria-hidden="true">
+    <div class="nyan-chat-head">
+      <div>
+        <strong>NYAN ROBOT</strong>
+        <small>ONLINE · JUST FOR FUN</small>
+      </div>
+      <button class="nyan-chat-close" id="nyanChatClose" type="button" aria-label="Close robot chat">×</button>
+    </div>
+
+    <div class="nyan-chat-log" id="nyanChatLog" aria-live="polite">
+      <div class="nyan-message bot">Hi! My name is Nyan Robot. Ask me about Nya, music, demos, games, anime, contact, or just say hi. ♪</div>
+    </div>
+
+    <form class="nyan-chat-form" id="nyanChatForm">
+      <input id="nyanChatInput" type="text" maxlength="120" autocomplete="off" placeholder="Type anything..." aria-label="Message Nyan Robot">
+      <button type="submit">SEND</button>
+    </form>
+  </section>
+
 
 
   <svg class="svg-filter" aria-hidden="true">
@@ -2978,6 +3285,140 @@ audio.addEventListener('play', () => {
 audio.addEventListener('ended', () => {
   pinkBotSay('COMPOSITION COMPLETE', 3000);
 });
+
+
+// =========================================================
+// NYAN ROBOT: playful keyword-based chat (no external AI)
+// =========================================================
+const nyanBot = document.getElementById('pinkBot');
+const nyanChat = document.getElementById('nyanChat');
+const nyanChatClose = document.getElementById('nyanChatClose');
+const nyanChatForm = document.getElementById('nyanChatForm');
+const nyanChatInput = document.getElementById('nyanChatInput');
+const nyanChatLog = document.getElementById('nyanChatLog');
+const cityParticles = document.getElementById('cityParticles');
+
+function addNyanMessage(text, sender = 'bot'){
+  if (!nyanChatLog) return;
+  const bubble = document.createElement('div');
+  bubble.className = `nyan-message ${sender}`;
+  bubble.textContent = text;
+  nyanChatLog.appendChild(bubble);
+  nyanChatLog.scrollTop = nyanChatLog.scrollHeight;
+}
+
+function nyanReply(rawMessage){
+  const message = rawMessage.toLowerCase().trim();
+
+  if (!message) return 'Say something to me! I am listening. ♪';
+
+  if (/\b(hi|hello|hey|hiya|yo)\b/.test(message)){
+    return 'Hi! My name is Nyan Robot. I live inside Nya’s cyber music city. 🤖♪';
+  }
+
+  if (message.includes('who are you') || message.includes('your name')){
+    return 'I am Nyan Robot — tiny music assistant, professional button guard, and certified pink machine.';
+  }
+
+  if (message.includes('nya')){
+    return 'Nya is a songwriter, ghostwriter, ghost producer, and creative music producer making original work for artists, games, trailers, and entertainment.';
+  }
+
+  if (message.includes('heist')){
+    return 'HEIST is a high-energy cinematic trailer track. Scroll to Featured Work and press play!';
+  }
+
+  if (message.includes('cyberworld') || message.includes('cyber world')){
+    return 'CYBERWORLD is the futuristic game-inspired featured demo. It is one of my favorite city soundtracks. Beep beep.';
+  }
+
+  if (message.includes('demo') || message.includes('song') || message.includes('music') || message.includes('track')){
+    return 'You can explore Featured Work, Audio Demos, and Instrumentals. Click any track and the custom player will open.';
+  }
+
+  if (message.includes('game') || message.includes('gaming')){
+    return 'Nya creates cinematic, cyber, action, trailer, and game-ready music. I would personally request a robot boss battle theme.';
+  }
+
+  if (message.includes('anime')){
+    return 'Anime music? Excellent choice. Nya loves dramatic action, cyber, hip-hop, rock, and cinematic energy.';
+  }
+
+  if (message.includes('contact') || message.includes('email') || message.includes('hire') || message.includes('work with')){
+    return 'Use the Contact button or scroll to the contact section to discuss custom work, songwriting, production, or placements.';
+  }
+
+  if (message.includes('price') || message.includes('cost') || message.includes('rate')){
+    return 'Project rates depend on the song, usage, and deliverables. The best move is to contact Nya with the project details.';
+  }
+
+  if (message.includes('robot') || message.includes('cute')){
+    return 'Thank you. I polished my pixels today. ✨';
+  }
+
+  if (message.includes('love you')){
+    return 'Aww. My emotion processor is glowing hot pink now.';
+  }
+
+  if (message.includes('bye') || message.includes('goodbye')){
+    return 'Bye! I will keep guarding the music city. Come back anytime. ♪';
+  }
+
+  const fallbackReplies = [
+    'Interesting... my tiny robot brain is processing that. Try asking about Nya, demos, games, anime, contact, or music.',
+    'I may be small, but I know where the good music is. Ask me about HEIST or CYBERWORLD.',
+    'Beep! I do not fully understand that yet, but I am still cute.',
+    'That message exceeded my emotional circuitry. Ask me something music-related. ♪',
+    'My official response is: pink lights, loud drums, and excellent production.'
+  ];
+
+  return fallbackReplies[Math.floor(Math.random() * fallbackReplies.length)];
+}
+
+if (nyanBot && nyanChat){
+  nyanBot.addEventListener('click', () => {
+    const isOpen = nyanChat.classList.toggle('open');
+    nyanChat.setAttribute('aria-hidden', String(!isOpen));
+    if (isOpen) setTimeout(() => nyanChatInput?.focus(), 100);
+  });
+}
+
+nyanChatClose?.addEventListener('click', () => {
+  nyanChat?.classList.remove('open');
+  nyanChat?.setAttribute('aria-hidden', 'true');
+});
+
+nyanChatForm?.addEventListener('submit', event => {
+  event.preventDefault();
+  const message = nyanChatInput?.value.trim();
+  if (!message) return;
+
+  addNyanMessage(message, 'user');
+  nyanChatInput.value = '';
+
+  setTimeout(() => {
+    addNyanMessage(nyanReply(message), 'bot');
+  }, 380);
+});
+
+// Generate lightweight floating city particles.
+if (cityParticles){
+  const particleCount = window.innerWidth < 850 ? 22 : 48;
+
+  for (let i = 0; i < particleCount; i += 1){
+    const particle = document.createElement('span');
+    const useBlue = Math.random() > .78;
+
+    particle.style.setProperty('--left', `${Math.random() * 100}%`);
+    particle.style.setProperty('--size', `${1 + Math.random() * 3}px`);
+    particle.style.setProperty('--duration', `${8 + Math.random() * 15}s`);
+    particle.style.setProperty('--delay', `${-Math.random() * 18}s`);
+    particle.style.setProperty('--drift', `${-45 + Math.random() * 90}px`);
+    particle.style.setProperty('--particle-color', useBlue ? '#73efff' : '#ff54cf');
+
+    cityParticles.appendChild(particle);
+  }
+}
 
 </script>
 </body>
