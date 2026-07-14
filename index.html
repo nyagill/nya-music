@@ -296,33 +296,28 @@
     h2{margin:7px 0 0;font:900 clamp(34px,6vw,76px)/.9 "Audiowide";text-transform:uppercase;text-shadow:2px 0 var(--pink),-2px 0 var(--cyan),0 0 22px rgba(255,31,184,.40)}
     .section-note{max-width:390px;color:var(--muted);font-weight:600;line-height:1.5}
 
-    .featured-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px}
+    .featured-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;align-items:stretch}
     .feature-card{position:relative;padding:7px;isolation:isolate;min-width:0}
     .electric-border{
-      position:absolute;
-      inset:0;
-      border-radius:30px;
-      pointer-events:none;
-      z-index:8;
-      overflow:hidden;
+  position:absolute;
+  inset:0;
+  border-radius:38px;
+  border:2px solid #f26fcb;
+  filter:url(#turbulent-displace);
+  box-shadow:
+    0 0 5px rgba(255,255,255,.9),
+    0 0 10px #ffb7ef,
+    0 0 20px #ff4fd8,
+    0 0 42px rgba(255,79,216,.95),
+    0 0 90px rgba(255,0,140,.62);
+  pointer-events:none;
+  z-index:6;
+  animation:featureGlowBreath 2.9s ease-in-out infinite;
 }
-.electric-border::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      border-radius:30px;
-      padding:2px;
-      background:linear-gradient(135deg,#ff55d4,#ffffff,#63e9ff,#ff55d4);
-      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-      -webkit-mask-composite:xor;
-      mask-composite:exclude;
-      box-shadow:0 0 10px #fff,0 0 20px #ff55d4,0 0 45px rgba(255,31,184,.55),0 0 70px rgba(69,233,255,.25);
-      animation:borderGlow 4s linear infinite;
-}
-@keyframes borderGlow{
-0%{filter:hue-rotate(0deg) brightness(1);}
-50%{filter:hue-rotate(25deg) brightness(1.25);}
-100%{filter:hue-rotate(0deg) brightness(1);}
+
+@keyframes featureGlowBreath{
+  0%,100%{opacity:.72;transform:scale(1)}
+  50%{opacity:1;transform:scale(1.012)}
 }
     .feature-panel,.track-card,.about-box,.contact-card,.player-modal{
       position:relative;
@@ -358,6 +353,12 @@
     .contact-card{padding:42px 22px;text-align:center}
     .contact-card p{color:var(--muted);font-weight:600}
     footer{text-align:center;padding:20px;color:#91a8b4;font:700 11px "Share Tech Mono"}
+
+
+    @media (max-width:1100px) and (min-width:851px){
+      .featured-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .feature-card:last-child{grid-column:1 / -1;max-width:590px;width:100%;justify-self:center}
+    }
 
     /* ===== ROBOT CHAT ===== */
     .robot{
@@ -545,13 +546,35 @@
     <div class="scanlines"></div>
   </div>
 
-  <svg class="svg-filter" width="0" height="0" aria-hidden="true">
-    <filter id="turbulent-displace" x="-20%" y="-20%" width="140%" height="140%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.08" numOctaves="2" seed="7" result="noise">
-        <animate attributeName="baseFrequency" dur="6s" values="0.012 0.08;0.018 0.11;0.012 0.08" repeatCount="indefinite"/>
-      </feTurbulence>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="B"/>
-    </filter>
+  <svg class="svg-filter" aria-hidden="true">
+    <defs>
+      <filter id="turbulent-displace" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="1" />
+        <feOffset in="noise1" dx="0" dy="0" result="offsetNoise1">
+          <animate attributeName="dy" values="700; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
+
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="1" />
+        <feOffset in="noise2" dx="0" dy="0" result="offsetNoise2">
+          <animate attributeName="dy" values="0; -700" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
+
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise3" seed="2" />
+        <feOffset in="noise3" dx="0" dy="0" result="offsetNoise3">
+          <animate attributeName="dx" values="490; 0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
+
+        <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise4" seed="2" />
+        <feOffset in="noise4" dx="0" dy="0" result="offsetNoise4">
+          <animate attributeName="dx" values="0; -490" dur="6s" repeatCount="indefinite" calcMode="linear" />
+        </feOffset>
+
+        <feComposite in="offsetNoise1" in2="offsetNoise2" result="part1" />
+        <feComposite in="offsetNoise3" in2="offsetNoise4" result="part2" />
+        <feBlend in="part1" in2="part2" mode="color-dodge" result="combinedNoise" />
+        <feDisplacementMap in="SourceGraphic" in2="combinedNoise" scale="30" xChannelSelector="R" yChannelSelector="B" />
+      </filter>
+    </defs>
   </svg>
 
   <header class="nav">
@@ -581,18 +604,19 @@
   </section>
 
   <main>
+
     <section id="featured">
       <div class="section-head">
         <div>
           <div class="section-kicker">Featured Work</div>
           <h2>Featured Demos</h2>
         </div>
-        <p class="section-note">Cinematic, game-ready and artist-focused music built around strong concepts and visual storytelling.</p>
+        <p class="section-note">Main visual demos for artist placement, game pitching, K-pop concepts, and commercial projects.</p>
       </div>
 
       <div class="featured-grid">
         <article class="feature-card">
-          <div class="electric-border"></div>
+          <div class="electric-border" aria-hidden="true"></div>
           <div class="feature-panel">
             <div class="feature-copy">
               <div class="number">01 / FEATURED DEMO</div>
@@ -610,7 +634,7 @@
         </article>
 
         <article class="feature-card">
-          <div class="electric-border"></div>
+          <div class="electric-border" aria-hidden="true"></div>
           <div class="feature-panel">
             <div class="feature-copy">
               <div class="number">02 / FEATURED DEMO</div>
@@ -627,29 +651,60 @@
             </div>
           </div>
         </article>
+
+        <article class="feature-card">
+          <div class="electric-border" aria-hidden="true"></div>
+          <div class="feature-panel">
+            <div class="feature-copy">
+              <div class="number">03 / FEATURED DEMO</div>
+              <h3 class="video-title">Game Over</h3>
+              <div class="track-type">K-pop Girl Group Concept</div>
+              <p class="video-desc">High-energy commercial concept with a strong hook, performance-driven attitude, and visual direction for artist placement.</p>
+              <div class="tags"><span class="tag">K-pop</span><span class="tag">Girl Group</span><span class="tag">Demo</span><span class="tag">Video</span></div>
+            </div>
+            <div class="video-box">
+              <video class="featured-video" controls preload="metadata" playsinline poster="https://audio.nya-music.com/game-over-cover.jpg">
+                <source src="https://audio.nya-music.com/game-over-video.mp4?v=9" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
+
 
     <section id="demos">
       <div class="section-head">
-        <div><div class="section-kicker">Audio Library</div><h2>Demos</h2></div>
+        <div>
+          <div class="section-kicker">Featured Audio</div>
+          <h2>Porque Ya</h2>
+        </div>
+        <p class="section-note">Featured vocal demo showcasing an original global-pop songwriting concept.</p>
       </div>
       <div class="demo-grid">
-        <article class="track-card"><h3>Game Over</h3><p>Dark game-pop concept with cinematic tension and dramatic hooks.</p><button class="listen" data-title="Game Over" data-meta="K-pop Girl Group Concept" data-src="https://audio.nya-music.com/game-over-video.mp4?v=9">Open Player</button></article>
-        <article class="track-card"><h3>Porque Ya</h3><p>Melodic global-pop demo built for expressive vocals and memorable toplines.</p><button class="listen" data-title="Porque Ya" data-meta="Spanish Trap / Rap Demo" data-src="https://audio.nya-music.com/Porque%20Ya.mp3">Open Player</button></article>
-        <article class="track-card"><h3>Top Player</h3><p>Confident performance track with competitive game and sports energy.</p><button class="listen" data-title="Top Player" data-meta="Gaming / K-pop Anthem" data-src="https://audio.nya-music.com/Top%20Player.wav">Open Player</button></article>
-        <article class="track-card"><h3>Monster</h3><p>Heavy character-driven demo with dark pop and cinematic production.</p><button class="listen" data-title="Monster" data-meta="Dark K-pop Instrumental" data-src="https://audio.nya-music.com/Monster.wav">Open Player</button></article>
+        <article class="track-card">
+          <h3>Porque Ya</h3>
+          <p>Spanish-language commercial demo with melodic global-pop energy and an expressive topline.</p>
+          <button class="listen" data-title="Porque Ya" data-meta="Spanish Trap / Rap Demo" data-src="https://audio.nya-music.com/Porque%20Ya.mp3">Open Player</button>
+        </article>
       </div>
     </section>
 
+
     <section id="instrumentals">
       <div class="section-head">
-        <div><div class="section-kicker">Production Catalog</div><h2>Instrumentals</h2></div>
+        <div>
+          <div class="section-kicker">Writing Catalog</div>
+          <h2>More Audio</h2>
+        </div>
+        <p class="section-note">The remaining original instrumentals and song concepts, in portfolio order.</p>
       </div>
       <div class="catalog-grid">
+        <article class="track-card"><h3>Top Player</h3><p>Gaming and K-pop anthem with competitive esports energy.</p><button class="listen" data-title="Top Player" data-meta="Gaming / K-pop Anthem" data-src="https://audio.nya-music.com/Top%20Player.wav">Open Player</button></article>
+        <article class="track-card"><h3>Monster</h3><p>Dark K-pop instrumental for choreography, visuals, and powerful performance.</p><button class="listen" data-title="Monster" data-meta="Dark K-pop Instrumental" data-src="https://audio.nya-music.com/Monster.wav">Open Player</button></article>
         <article class="track-card"><h3>Baddest</h3><p>Hard-hitting attitude-driven production for bold artist concepts.</p><button class="listen" data-title="Baddest" data-meta="K-pop / Hip-Hop Instrumental" data-src="https://audio.nya-music.com/baddest.wav">Open Player</button></article>
         <article class="track-card"><h3>Cliffhanger</h3><p>Cinematic tension with trailer-ready movement and dramatic transitions.</p><button class="listen" data-title="Cliffhanger" data-meta="Pop Song Concept" data-src="https://audio.nya-music.com/cliffhanger.wav">Open Player</button></article>
-        <article class="track-card"><h3>Stars</h3><p>Atmospheric pop production with emotional lift and visual storytelling.</p><button class="listen" data-title="Stars" data-meta="Emotional Trap / R&B Instrumental" data-src="https://audio.nya-music.com/Nya%20-%20stars%20beat.wav">Open Player</button></article>
+        <article class="track-card"><h3>Stars</h3><p>Atmospheric pop production with emotional lift and visual storytelling.</p><button class="listen" data-title="Stars" data-meta="Emotional Trap / R&amp;B Instrumental" data-src="https://audio.nya-music.com/Nya%20-%20stars%20beat.wav">Open Player</button></article>
         <article class="track-card"><h3>Sparkles</h3><p>Bright futuristic pop with polished textures and playful movement.</p><button class="listen" data-title="Sparkles" data-meta="Dreamy Pop Instrumental" data-src="https://audio.nya-music.com/Sparkles.wav">Open Player</button></article>
         <article class="track-card"><h3>Kpop Drill</h3><p>Hybrid drill production designed for sharp choreography and performance.</p><button class="listen" data-title="Kpop Drill" data-meta="K-pop Drill Instrumental" data-src="https://audio.nya-music.com/Kpop%20Drill%20TYPE%20Beat.wav">Open Player</button></article>
       </div>
