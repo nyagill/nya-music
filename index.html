@@ -500,7 +500,21 @@
       *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important}
       .rain,.ship,.planet,.scanlines{display:none!important}
     }
-  </style>
+  
+    /* Restored featured artwork */
+    .featured-video{
+      background:#03040a center/cover no-repeat;
+    }
+    .featured-video[poster]{
+      object-fit:cover;
+    }
+    @media (max-width:850px){
+      .featured-video{
+        min-height:210px;
+      }
+    }
+
+</style>
 </head>
 <body>
   <div class="world" aria-hidden="true">
@@ -572,7 +586,7 @@
               <div class="tags"><span class="tag">Games</span><span class="tag">Trailer</span><span class="tag">Action</span><span class="tag">Video</span></div>
             </div>
             <div class="video-box">
-              <video class="featured-video" controls preload="metadata" playsinline>
+              <video class="featured-video" controls preload="metadata" playsinline poster="https://audio.nya-music.com/heist.png">
                 <source src="https://audio.nya-music.com/heist.mp4?v=1" type="video/mp4">
               </video>
             </div>
@@ -590,8 +604,9 @@
               <div class="tags"><span class="tag">Game</span><span class="tag">Cyberpunk</span><span class="tag">Sync</span><span class="tag">Video</span></div>
             </div>
             <div class="video-box">
-              <video class="featured-video" controls preload="metadata" playsinline>
+              <video class="featured-video" controls preload="metadata" playsinline poster="https://audio.nya-music.com/cyberworld%20cover.png">
                 <source src="https://audio.nya-music.com/cyberworld.MOV?v=2" type="video/quicktime">
+                <source src="https://audio.nya-music.com/cyberworld.MOV?v=2" type="video/mp4">
               </video>
             </div>
           </div>
@@ -604,10 +619,10 @@
         <div><div class="section-kicker">Audio Library</div><h2>Demos</h2></div>
       </div>
       <div class="demo-grid">
-        <article class="track-card"><h3>Game Over</h3><p>Dark game-pop concept with cinematic tension and dramatic hooks.</p><button class="listen" data-title="Game Over" data-src="https://audio.nya-music.com/game-over-video.mp4?v=9">Open Player</button></article>
-        <article class="track-card"><h3>Porque Ya</h3><p>Melodic global-pop demo built for expressive vocals and memorable toplines.</p><button class="listen" data-title="Porque Ya">Open Player</button></article>
-        <article class="track-card"><h3>Top Player</h3><p>Confident performance track with competitive game and sports energy.</p><button class="listen" data-title="Top Player">Open Player</button></article>
-        <article class="track-card"><h3>Monster</h3><p>Heavy character-driven demo with dark pop and cinematic production.</p><button class="listen" data-title="Monster">Open Player</button></article>
+        <article class="track-card"><h3>Game Over</h3><p>Dark game-pop concept with cinematic tension and dramatic hooks.</p><button class="listen" data-title="Game Over" data-meta="K-pop Girl Group Concept" data-src="https://audio.nya-music.com/game-over-video.mp4?v=9">Open Player</button></article>
+        <article class="track-card"><h3>Porque Ya</h3><p>Melodic global-pop demo built for expressive vocals and memorable toplines.</p><button class="listen" data-title="Porque Ya" data-meta="Spanish Trap / Rap Demo" data-src="https://audio.nya-music.com/Porque%20Ya.mp3">Open Player</button></article>
+        <article class="track-card"><h3>Top Player</h3><p>Confident performance track with competitive game and sports energy.</p><button class="listen" data-title="Top Player" data-meta="Gaming / K-pop Anthem" data-src="https://audio.nya-music.com/Top%20Player.wav">Open Player</button></article>
+        <article class="track-card"><h3>Monster</h3><p>Heavy character-driven demo with dark pop and cinematic production.</p><button class="listen" data-title="Monster" data-meta="Dark K-pop Instrumental" data-src="https://audio.nya-music.com/Monster.wav">Open Player</button></article>
       </div>
     </section>
 
@@ -616,11 +631,11 @@
         <div><div class="section-kicker">Production Catalog</div><h2>Instrumentals</h2></div>
       </div>
       <div class="catalog-grid">
-        <article class="track-card"><h3>Baddest</h3><p>Hard-hitting attitude-driven production for bold artist concepts.</p><button class="listen" data-title="Baddest">Open Player</button></article>
-        <article class="track-card"><h3>Cliffhanger</h3><p>Cinematic tension with trailer-ready movement and dramatic transitions.</p><button class="listen" data-title="Cliffhanger">Open Player</button></article>
-        <article class="track-card"><h3>Stars</h3><p>Atmospheric pop production with emotional lift and visual storytelling.</p><button class="listen" data-title="Stars">Open Player</button></article>
-        <article class="track-card"><h3>Sparkles</h3><p>Bright futuristic pop with polished textures and playful movement.</p><button class="listen" data-title="Sparkles">Open Player</button></article>
-        <article class="track-card"><h3>Kpop Drill</h3><p>Hybrid drill production designed for sharp choreography and performance.</p><button class="listen" data-title="Kpop Drill">Open Player</button></article>
+        <article class="track-card"><h3>Baddest</h3><p>Hard-hitting attitude-driven production for bold artist concepts.</p><button class="listen" data-title="Baddest" data-meta="K-pop / Hip-Hop Instrumental" data-src="https://audio.nya-music.com/baddest.wav">Open Player</button></article>
+        <article class="track-card"><h3>Cliffhanger</h3><p>Cinematic tension with trailer-ready movement and dramatic transitions.</p><button class="listen" data-title="Cliffhanger" data-meta="Pop Song Concept" data-src="https://audio.nya-music.com/cliffhanger.wav">Open Player</button></article>
+        <article class="track-card"><h3>Stars</h3><p>Atmospheric pop production with emotional lift and visual storytelling.</p><button class="listen" data-title="Stars" data-meta="Emotional Trap / R&B Instrumental" data-src="https://audio.nya-music.com/Nya%20-%20stars%20beat.wav">Open Player</button></article>
+        <article class="track-card"><h3>Sparkles</h3><p>Bright futuristic pop with polished textures and playful movement.</p><button class="listen" data-title="Sparkles" data-meta="Dreamy Pop Instrumental" data-src="https://audio.nya-music.com/Sparkles.wav">Open Player</button></article>
+        <article class="track-card"><h3>Kpop Drill</h3><p>Hybrid drill production designed for sharp choreography and performance.</p><button class="listen" data-title="Kpop Drill" data-meta="K-pop Drill Instrumental" data-src="https://audio.nya-music.com/Kpop%20Drill%20TYPE%20Beat.wav">Open Player</button></article>
       </div>
     </section>
 
@@ -680,7 +695,7 @@
       <button class="close-player" id="closePlayer" type="button">×</button>
       <h3 class="player-title" id="playerTitle">Select a Track</h3>
       <div class="player-meta" id="playerMeta">Audio player</div>
-      <video class="player-audio" id="playerMedia" controls playsinline></video>
+      <audio class="player-audio" id="playerMedia" controls preload="metadata"></audio>
     </div>
   </div>
 
@@ -795,7 +810,7 @@
       document.querySelectorAll(".listen").forEach(btn=>{
         btn.addEventListener("click",()=>{
           playerTitle.textContent=btn.dataset.title || "Track";
-          playerMeta.textContent=btn.dataset.src ? "Ready to play" : "Audio coming soon";
+          playerMeta.textContent=btn.dataset.meta || (btn.dataset.src ? "Ready to play" : "Audio coming soon");
           playerMedia.pause();
           playerMedia.removeAttribute("src");
           if(btn.dataset.src){
