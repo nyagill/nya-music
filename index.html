@@ -1,273 +1,821 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Nya | Songwriter Portfolio</title>
-  <meta name="description" content="Nya is an independent songwriter creating original music for K-pop artists, global pop acts, games, and entertainment." />
-
-  <link rel="preconnect" href="https:
-
-  if(particles && !particles.children.length){
-    const count = window.innerWidth < 850 ? 20 : 48;
-    for(let i=0;i<count;i+=1){
-      const p = document.createElement('span');
-      p.style.setProperty('--left', `${Math.random()*100}%`);
-      p.style.setProperty('--size', `${1 + Math.random()*3}px`);
-      p.style.setProperty('--color', Math.random()>.72 ? '#73efff' : '#ff54cf');
-      p.style.setProperty('--dur', `${8 + Math.random()*14}s`);
-      p.style.setProperty('--delay', `${-Math.random()*18}s`);
-      p.style.setProperty('--drift', `${-50 + Math.random()*100}px`);
-      particles.appendChild(p);
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#02040a">
+  <title>Nya Music | Songwriter · Ghostwriter · Ghost Producer</title>
+  <meta name="description" content="Original music, songwriting, ghostwriting and production for artists, games, trailers and entertainment.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Oxanium:wght@400;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --pink:#ff1fb8;
+      --pink2:#ff74dc;
+      --cyan:#45e9ff;
+      --green:#54ff9a;
+      --ink:#02040a;
+      --panel:rgba(2,7,15,.86);
+      --text:#f8fbff;
+      --muted:#c7d4df;
+      --edge:rgba(115,239,255,.38);
     }
-  }
 
-  // Boot sequence
-  window.addEventListener('load',()=>{
-    setTimeout(()=>boot?.classList.add('done'),1300);
-  });
-
-  // Glitch all interactive UI on click
-  document.querySelectorAll('a,button,.small-card,.video-feature').forEach(el=>{
-    el.addEventListener('click',()=>{
-      el.classList.remove('v2-click-glitch');
-      void el.offsetWidth;
-      el.classList.add('v2-click-glitch');
-      setTimeout(()=>el.classList.remove('v2-click-glitch'),180);
-    });
-  });
-
-  // Neon cursor on desktop
-  if(window.matchMedia('(pointer:fine)').matches && cursor && cursorDot){
-    document.body.classList.add('v2-pointer-ready');
-    document.addEventListener('mousemove',e=>{
-      cursor.style.left = `${e.clientX}px`;
-      cursor.style.top = `${e.clientY}px`;
-      cursorDot.style.left = `${e.clientX}px`;
-      cursorDot.style.top = `${e.clientY}px`;
-    });
-    document.addEventListener('mousedown',()=>document.body.classList.add('v2-pointer-active'));
-    document.addEventListener('mouseup',()=>document.body.classList.remove('v2-pointer-active'));
-  }
-
-  // Tiny UI sound generated in-browser; starts only after user interaction.
-  let audioCtx;
-  function uiBeep(freq=520,duration=.035,volume=.018){
-    try{
-      audioCtx ||= new (window.AudioContext || window.webkitAudioContext)();
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.type = 'square';
-      osc.frequency.value = freq;
-      gain.gain.setValueAtTime(volume,audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+duration);
-      osc.connect(gain).connect(audioCtx.destination);
-      osc.start();
-      osc.stop(audioCtx.currentTime+duration);
-    }catch(_){}
-  }
-
-  document.querySelectorAll('a,button,.listen,.small-card').forEach(el=>{
-    el.addEventListener('mouseenter',()=>uiBeep(620,.022,.008));
-    el.addEventListener('click',()=>uiBeep(320,.055,.015));
-  });
-})();
-
-
-// =========================================================
-// NYA HOLOGRAPHIC CYBERPUNK V3
-// =========================================================
-(function(){
-  const rain = null;
-  const particles = document.getElementById('megaParticles');
-  const traffic = document.getElementById('megaTraffic');
-  const boot = document.getElementById('megaBoot');
-  const cursor = document.getElementById('buttonCursor');
-
-  const tokens = ['0101','1010','NYA','AUDIO','CORE','SYNC','SYS','NODE','PLAY','<>','//','MUSIC'];
-
-  if(rain && !rain.children.length){
-    const columns = window.innerWidth < 850 ? 14 : 34;
-    for(let i=0;i<columns;i++){
-      const col = document.createElement('span');
-      col.className = `rain-column${Math.random()>.66 ? ' pink' : ''}`;
-      col.style.left = `${Math.random()*100}%`;
-      col.style.setProperty('--speed',`${7+Math.random()*15}s`);
-      col.style.setProperty('--delay',`${-Math.random()*18}s`);
-      col.textContent = Array.from({length:18},()=>tokens[Math.floor(Math.random()*tokens.length)]).join('\n');
-      rain.appendChild(col);
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--ink)}
+    body{
+      margin:0;
+      min-height:100vh;
+      overflow-x:hidden;
+      color:var(--text);
+      background:var(--ink);
+      font-family:"Oxanium",system-ui,sans-serif;
+      cursor:auto;
     }
-  }
+    a,button,input,video{font:inherit}
+    a,button,[role="button"],.track-card,.feature-card{cursor:pointer}
 
-  if(particles && !particles.children.length){
-    const count = window.innerWidth < 850 ? 24 : 70;
-    for(let i=0;i<count;i++){
-      const p = document.createElement('span');
-      p.style.setProperty('--left',`${Math.random()*100}%`);
-      p.style.setProperty('--size',`${1+Math.random()*3}px`);
-      p.style.setProperty('--color',Math.random()>.48 ? '#ff37c4' : '#39ff88');
-      p.style.setProperty('--speed',`${7+Math.random()*15}s`);
-      p.style.setProperty('--delay',`${-Math.random()*18}s`);
-      p.style.setProperty('--drift',`${-70+Math.random()*140}px`);
-      particles.appendChild(p);
+    /* ===== BACKGROUND ===== */
+    .world{
+      position:fixed;
+      inset:0;
+      z-index:0;
+      overflow:hidden;
+      pointer-events:none;
+      background:#02040a;
     }
-  }
-
-  if(traffic && !traffic.children.length){
-    const count = window.innerWidth < 850 ? 8 : 22;
-    for(let i=0;i<count;i++){
-      const t = document.createElement('span');
-      t.className = `traffic-light${Math.random()>.55 ? ' pink' : ''}`;
-      t.style.top = `${28+Math.random()*52}%`;
-      t.style.setProperty('--speed',`${5+Math.random()*10}s`);
-      t.style.setProperty('--delay',`${-Math.random()*12}s`);
-      traffic.appendChild(t);
+    .world::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(to bottom,rgba(2,4,10,.30),rgba(2,4,10,.42) 48%,rgba(2,4,10,.88)),
+        url("assets/colorful-neon-city-4k-tx-3024x1964.jpg") center center/cover no-repeat;
+      transform:scale(1.02);
     }
-  }
-
-  // exactly 3 seconds, then remove the boot layer completely
-  window.addEventListener('load',()=>{
-    setTimeout(()=>{
-      boot?.classList.add('done');
-      setTimeout(()=>boot?.remove(),650);
-    },3000);
-  });
-
-  // True sliced glitch, no shake.
-  const glitchTargets = document.querySelectorAll(
-    '.btn,.listen,.control-btn,.small-card,.about-box,.contact-card,.video-layout,.navlinks a,.pink-bot'
-  );
-  glitchTargets.forEach(el=>{
-    el.addEventListener('click',()=>{
-      el.classList.remove('is-glitching');
-      void el.offsetWidth;
-      el.classList.add('is-glitching');
-      setTimeout(()=>el.classList.remove('is-glitching'),380);
-    });
-  });
-
-  // Mouse hidden globally; show custom cursor only while over clickable UI.
-  if(window.matchMedia('(pointer:fine)').matches && cursor){
-    document.addEventListener('mousemove',e=>{
-      cursor.style.left = `${e.clientX}px`;
-      cursor.style.top = `${e.clientY}px`;
-    });
-
-    const interactive = document.querySelectorAll(
-      'a,button,input,video,.small-card,.video-feature,.tag,.timeline,.volume'
-    );
-
-    interactive.forEach(el=>{
-      el.addEventListener('mouseenter',()=>cursor.classList.add('show'));
-      el.addEventListener('mouseleave',()=>cursor.classList.remove('show'));
-    });
-
-    document.addEventListener('mousedown',()=>cursor.classList.add('click'));
-    document.addEventListener('mouseup',()=>cursor.classList.remove('click'));
-  }
-})();
-
-
-// =========================================================
-// V4 REAL RAIN + BUTTON-ONLY RETICLE
-// =========================================================
-(function(){
-  const cursor = document.getElementById('buttonCursor');
-
-  function buildRain(containerId, count, speedRange, heightRange, widthRange, opacityRange, driftRange){
-    const container = document.getElementById(containerId);
-    if(!container || container.children.length) return;
-
-    for(let i=0;i<count;i++){
-      const drop = document.createElement('span');
-      drop.className = 'drop';
-
-      const speed = speedRange[0] + Math.random() * (speedRange[1] - speedRange[0]);
-      const height = heightRange[0] + Math.random() * (heightRange[1] - heightRange[0]);
-      const width = widthRange[0] + Math.random() * (widthRange[1] - widthRange[0]);
-      const opacity = opacityRange[0] + Math.random() * (opacityRange[1] - opacityRange[0]);
-      const drift = driftRange[0] + Math.random() * (driftRange[1] - driftRange[0]);
-
-      drop.style.setProperty('--x', `${Math.random() * 110 - 5}%`);
-      drop.style.setProperty('--speed', `${speed}s`);
-      drop.style.setProperty('--delay', `${-Math.random() * 8}s`);
-      drop.style.setProperty('--h', `${height}px`);
-      drop.style.setProperty('--w', `${width}px`);
-      drop.style.setProperty('--o', opacity.toFixed(2));
-      drop.style.setProperty('--drift', `${drift}px`);
-
-      container.appendChild(drop);
+    .world::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 14% 12%,rgba(69,233,255,.13),transparent 24%),
+        radial-gradient(circle at 82% 18%,rgba(255,31,184,.18),transparent 28%),
+        linear-gradient(to top,rgba(0,0,0,.40),transparent 50%);
+      mix-blend-mode:screen;
     }
-  }
 
-  const mobile = window.innerWidth < 850;
+    .rain{position:absolute;inset:-12%;overflow:hidden;z-index:3}
+    .drop{
+      position:absolute;
+      top:-18vh;
+      left:var(--x);
+      width:var(--w);
+      height:var(--h);
+      opacity:var(--o);
+      background:linear-gradient(to bottom,transparent,rgba(215,250,255,.86) 34%,rgba(255,77,202,.38) 76%,transparent);
+      transform:rotate(8deg);
+      animation:rainFall var(--speed) linear var(--delay) infinite;
+    }
+    .rain.back{opacity:.30;filter:blur(.45px)}
+    .rain.mid{opacity:.50}
+    .rain.front{opacity:.68}
+    @keyframes rainFall{
+      from{transform:translate3d(0,-18vh,0) rotate(8deg)}
+      to{transform:translate3d(var(--drift),132vh,0) rotate(8deg)}
+    }
 
-  buildRain(
-    'rainBack',
-    mobile ? 55 : 150,
-    [1.7, 2.7],
-    [18, 36],
-    [.5, 1],
-    [.14, .34],
-    [18, 40]
-  );
+    .ship{
+      position:absolute;
+      z-index:4;
+      width:58px;
+      height:18px;
+      opacity:.46;
+      filter:drop-shadow(0 0 10px var(--cyan));
+      animation:shipFly var(--dur) linear var(--delay) infinite;
+    }
+    .ship::before{
+      content:"";
+      position:absolute;
+      inset:3px 9px;
+      clip-path:polygon(0 50%,22% 0,76% 0,100% 50%,76% 100%,22% 100%);
+      background:linear-gradient(90deg,#07101a,var(--cyan),#07101a);
+      border:1px solid rgba(255,255,255,.45);
+    }
+    .ship::after{
+      content:"";
+      position:absolute;
+      right:100%;
+      top:8px;
+      width:70px;
+      height:2px;
+      background:linear-gradient(90deg,transparent,var(--pink));
+      box-shadow:0 0 8px var(--pink);
+    }
+    @keyframes shipFly{
+      from{transform:translateX(-20vw) translateY(0)}
+      to{transform:translateX(125vw) translateY(-7vh)}
+    }
 
-  buildRain(
-    'rainMid',
-    mobile ? 38 : 100,
-    [1.05, 1.75],
-    [28, 58],
-    [.7, 1.25],
-    [.20, .46],
-    [24, 54]
-  );
+    .planet{
+      position:absolute;
+      z-index:2;
+      border-radius:50%;
+      opacity:.52;
+      animation:planetFloat 12s ease-in-out infinite;
+    }
+    .planet.one{
+      width:120px;height:120px;right:6%;top:11%;
+      background:radial-gradient(circle at 32% 28%,#fff 0 4%,#ff9ee4 12%,#ff1fb8 42%,#1b0615 77%);
+      box-shadow:0 0 42px rgba(255,31,184,.46);
+    }
+    .planet.one::after{
+      content:"";
+      position:absolute;left:-28%;right:-28%;top:44%;height:18%;
+      border:2px solid rgba(69,233,255,.78);
+      border-radius:50%;
+      transform:rotate(-18deg);
+      box-shadow:0 0 14px rgba(69,233,255,.65);
+    }
+    .planet.two{
+      width:52px;height:52px;left:7%;top:20%;
+      background:radial-gradient(circle at 30% 30%,#fff,#8fffe0 25%,#147c58 64%,#04120d);
+      box-shadow:0 0 24px rgba(84,255,154,.42);
+      animation-delay:-5s;
+    }
+    @keyframes planetFloat{50%{transform:translateY(-15px) rotate(3deg)}}
 
-  buildRain(
-    'rainFront',
-    mobile ? 0 : 58,
-    [.65, 1.05],
-    [48, 92],
-    [1, 1.8],
-    [.26, .58],
-    [34, 72]
-  );
+    .scanlines{
+      position:absolute;
+      inset:0;
+      z-index:6;
+      opacity:.07;
+      background:repeating-linear-gradient(to bottom,transparent 0 3px,rgba(255,255,255,.14) 4px,transparent 5px);
+    }
 
-  if(cursor && window.matchMedia('(pointer:fine)').matches){
-    document.addEventListener('mousemove', event => {
-      cursor.style.left = `${event.clientX}px`;
-      cursor.style.top = `${event.clientY}px`;
-    });
+    /* ===== LAYOUT ===== */
+    .nav,.hero,main,footer,.robot,.chat,.player-overlay{position:relative;z-index:20}
+    .nav{
+      position:fixed;
+      inset:0 0 auto 0;
+      z-index:80;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:15px clamp(18px,4vw,56px);
+      background:rgba(2,5,11,.78);
+      border-bottom:1px solid rgba(69,233,255,.28);
+      -webkit-backdrop-filter:blur(14px);
+      backdrop-filter:blur(14px);
+    }
+    .brand{
+      color:#fff;
+      text-decoration:none;
+      font:900 15px "Audiowide";
+      letter-spacing:.13em;
+    }
+    .brand span{color:var(--pink);text-shadow:0 0 15px var(--pink)}
+    .navlinks{display:flex;gap:20px}
+    .navlinks a{
+      color:#d8f7ff;
+      text-decoration:none;
+      font:700 12px "Share Tech Mono";
+      letter-spacing:.09em;
+    }
+    .navlinks a:hover{color:#fff;text-shadow:0 0 12px var(--cyan)}
 
-    const interactiveSelector = [
-      'a',
-      'button',
-      'input',
-      'textarea',
-      'select',
-      'video',
-      '.btn',
-      '.listen',
-      '.control-btn',
-      '.small-card',
-      '.video-feature',
-      '.pink-bot',
-      '.timeline',
-      '.volume'
-    ].join(',');
+    .hero{
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      padding:112px 20px 76px;
+    }
+    .hero-inner{max-width:1080px}
+    .eyebrow{
+      display:inline-block;
+      padding:10px 15px;
+      border:1px solid rgba(69,233,255,.45);
+      background:rgba(2,8,15,.72);
+      font:700 12px "Share Tech Mono";
+      letter-spacing:.10em;
+      text-transform:uppercase;
+    }
+    h1{
+      position:relative;
+      margin:26px 0 14px;
+      font:900 clamp(74px,18vw,210px)/.78 "Audiowide";
+      letter-spacing:.02em;
+      text-transform:uppercase;
+      background:linear-gradient(90deg,#fff,#ff9fe5 31%,#ff1fb8 55%,#72efff 80%,#fff);
+      background-size:220% auto;
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      filter:drop-shadow(4px 0 rgba(255,31,184,.65)) drop-shadow(-3px 0 rgba(69,233,255,.48)) drop-shadow(0 0 32px rgba(255,31,184,.55));
+      animation:titleFlow 5s linear infinite;
+    }
+    @keyframes titleFlow{to{background-position:220% center}}
+    .subline{
+      font:800 clamp(14px,2.1vw,25px) "Share Tech Mono";
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      text-shadow:0 0 18px var(--pink);
+    }
+    .hero-copy{
+      max-width:780px;
+      margin:22px auto 30px;
+      color:var(--muted);
+      font-size:clamp(17px,1.8vw,22px);
+      line-height:1.55;
+      font-weight:600;
+    }
+    .cta-row{display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
 
-    document.querySelectorAll(interactiveSelector).forEach(element => {
-      element.addEventListener('mouseenter', () => cursor.classList.add('show'));
-      element.addEventListener('mouseleave', () => {
-        cursor.classList.remove('show');
-        cursor.classList.remove('click');
+    .btn,.listen,.control-btn,.chat-form button{
+      position:relative;
+      overflow:hidden;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:49px;
+      padding:0 22px;
+      color:#fff;
+      text-decoration:none;
+      text-transform:uppercase;
+      font:800 11px "Share Tech Mono";
+      letter-spacing:.09em;
+      border:1px solid rgba(69,233,255,.56);
+      background:linear-gradient(135deg,#080b10,#15040f 52%,#031013);
+      box-shadow:inset 4px 0 var(--pink),inset -4px 0 var(--cyan),0 0 18px rgba(255,31,184,.28);
+      clip-path:polygon(0 10px,10px 0,calc(100% - 14px) 0,100% 14px,100% calc(100% - 10px),calc(100% - 10px) 100%,14px 100%,0 calc(100% - 14px));
+    }
+    .btn::after,.listen::after,.control-btn::after,.track-card::after,.feature-panel::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      opacity:0;
+      pointer-events:none;
+      background:
+        linear-gradient(90deg,transparent 0 8%,rgba(255,31,184,.86) 9% 28%,transparent 29%),
+        linear-gradient(90deg,transparent 0 50%,rgba(69,233,255,.78) 51% 78%,transparent 79%);
+      background-size:100% 23%,100% 17%;
+      background-position:0 23%,0 70%;
+      background-repeat:no-repeat;
+      mix-blend-mode:screen;
+    }
+    .btn:hover::after,.listen:hover::after,.control-btn:hover::after,.track-card:hover::after,.feature-panel:hover::after{
+      animation:sliceGlitch .42s steps(1,end);
+    }
+    .is-glitching::after{animation:clickGlitch .30s steps(1,end)!important}
+    @keyframes sliceGlitch{
+      0%,100%{opacity:0}
+      20%{opacity:.85;clip-path:inset(8% 0 72% 0);transform:translateX(9px)}
+      40%{opacity:.7;clip-path:inset(38% 0 46% 0);transform:translateX(-10px)}
+      60%{opacity:.9;clip-path:inset(68% 0 12% 0);transform:translateX(6px)}
+    }
+    @keyframes clickGlitch{
+      0%{opacity:1;clip-path:inset(0 0 76% 0);transform:translateX(14px)}
+      30%{clip-path:inset(28% 0 50% 0);transform:translateX(-15px)}
+      60%{clip-path:inset(62% 0 16% 0);transform:translateX(10px)}
+      100%{opacity:0}
+    }
+
+    main{padding:24px clamp(16px,4vw,62px) 70px}
+    section{max-width:1220px;margin:0 auto 84px}
+    .section-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:24px;
+      margin-bottom:25px;
+      border-left:3px solid var(--pink);
+      padding-left:17px;
+    }
+    .section-kicker{color:var(--cyan);font:800 12px "Share Tech Mono";letter-spacing:.18em;text-transform:uppercase}
+    h2{margin:7px 0 0;font:900 clamp(34px,6vw,76px)/.9 "Audiowide";text-transform:uppercase;text-shadow:2px 0 var(--pink),-2px 0 var(--cyan),0 0 22px rgba(255,31,184,.40)}
+    .section-note{max-width:390px;color:var(--muted);font-weight:600;line-height:1.5}
+
+    .featured-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px}
+    .feature-card{position:relative;padding:7px;isolation:isolate;min-width:0}
+    .electric-border{
+      position:absolute;
+      inset:0;
+      border:2px solid #f26fcb;
+      border-radius:30px;
+      pointer-events:none;
+      z-index:8;
+      filter:url(#turbulent-displace);
+      box-shadow:0 0 5px #fff,0 0 12px #ffb7ef,0 0 24px #ff4fd8,0 0 55px rgba(255,0,140,.70);
+    }
+    .feature-panel,.track-card,.about-box,.contact-card,.player-modal{
+      position:relative;
+      background:linear-gradient(135deg,rgba(69,233,255,.045),rgba(255,31,184,.075)),var(--panel);
+      border:1px solid rgba(69,233,255,.33);
+      box-shadow:inset 0 0 0 1px rgba(255,31,184,.10),0 22px 65px rgba(0,0,0,.45);
+      clip-path:polygon(0 15px,15px 0,calc(100% - 24px) 0,100% 24px,100% calc(100% - 15px),calc(100% - 15px) 100%,24px 100%,0 calc(100% - 24px));
+    }
+    .feature-panel{display:flex;flex-direction:column;height:100%;gap:22px;padding:clamp(22px,3vw,34px)}
+    .feature-copy{min-height:265px}
+    .number{font:800 12px "Share Tech Mono";letter-spacing:.16em;color:var(--cyan);margin-bottom:18px}
+    .video-title{margin:0 0 13px;font:900 clamp(38px,4.7vw,72px)/.88 "Audiowide";text-transform:uppercase;overflow-wrap:anywhere;text-shadow:2px 0 var(--pink),-2px 0 var(--cyan),0 0 20px rgba(255,31,184,.42)}
+    .track-type{font-weight:800;font-size:19px;margin-bottom:10px}
+    .video-desc{margin:0;color:var(--muted);font-size:16px;line-height:1.5;font-weight:600}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+    .tag{padding:7px 9px;border:1px solid rgba(255,31,184,.34);background:rgba(255,31,184,.10);font:800 10px "Share Tech Mono";letter-spacing:.10em;text-transform:uppercase}
+    .video-box{margin-top:auto;overflow:hidden;border:1px solid rgba(255,31,184,.38);background:#000;box-shadow:0 0 28px rgba(255,31,184,.22)}
+    .featured-video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#000}
+
+    .demo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
+    .catalog-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+    .track-card{padding:24px;min-height:205px;overflow:hidden}
+    .track-card h3{margin:0 0 8px;font:900 27px "Audiowide";text-transform:uppercase}
+    .track-card p{color:var(--muted);line-height:1.48;font-weight:600;min-height:47px}
+    .listen{margin-top:9px}
+    .about-panel{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .about-box{padding:30px}
+    .about-box p{margin:0;color:#d8e6ed;line-height:1.65;font-size:17px;font-weight:600}
+    .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
+    .stat{padding:18px;border:1px solid rgba(255,31,184,.28);background:rgba(255,31,184,.08)}
+    .stat strong{display:block;font:900 25px "Audiowide";margin-bottom:4px}
+    .stat span{font:800 10px "Share Tech Mono";letter-spacing:.08em;text-transform:uppercase;color:#bfd0d8}
+    .contact-card{padding:42px 22px;text-align:center}
+    .contact-card p{color:var(--muted);font-weight:600}
+    footer{text-align:center;padding:20px;color:#91a8b4;font:700 11px "Share Tech Mono"}
+
+    /* ===== ROBOT CHAT ===== */
+    .robot{
+      position:fixed;
+      right:18px;
+      bottom:20px;
+      z-index:120;
+      width:82px;
+      height:108px;
+      border:0;
+      background:none;
+    }
+    .bot-antenna{position:absolute;left:40px;top:1px;width:2px;height:17px;background:#fff}
+    .bot-antenna::after{content:"";position:absolute;left:-4px;top:-4px;width:10px;height:10px;border-radius:50%;background:var(--pink);box-shadow:0 0 12px var(--pink)}
+    .bot-head{position:absolute;left:12px;top:17px;width:58px;height:47px;border-radius:18px;background:linear-gradient(145deg,#ffd9f3,#ff3ebf 60%,#7b064a);border:2px solid #fff;box-shadow:0 0 20px rgba(255,31,184,.65)}
+    .bot-eye{position:absolute;top:14px;width:8px;height:9px;border-radius:50%;background:#fff;box-shadow:0 0 10px #fff;animation:blink 5s infinite}
+    .bot-eye.left{left:13px}.bot-eye.right{right:13px}
+    @keyframes blink{0%,46%,50%,100%{transform:scaleY(1)}48%{transform:scaleY(.15)}}
+    .bot-mouth{position:absolute;left:50%;bottom:8px;width:14px;height:4px;transform:translateX(-50%);border-bottom:2px solid #fff}
+    .bot-body{position:absolute;left:19px;top:61px;width:44px;height:33px;border-radius:7px 7px 15px 15px;background:linear-gradient(145deg,#ff8edb,#ff1493);border:1px solid #fff;display:grid;place-items:center;font:800 9px "Audiowide"}
+
+    .chat{
+      position:fixed;
+      right:18px;
+      bottom:138px;
+      z-index:121;
+      width:min(340px,calc(100vw - 28px));
+      display:flex;
+      flex-direction:column;
+      max-height:440px;
+      background:rgba(1,7,10,.97);
+      border:1px solid rgba(69,233,255,.50);
+      box-shadow:0 20px 70px rgba(0,0,0,.65),0 0 30px rgba(255,31,184,.18);
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(10px);
+      transition:.20s;
+    }
+    .chat.open{opacity:1;visibility:visible;transform:none}
+    .chat-head{display:flex;justify-content:space-between;align-items:center;padding:13px 14px;border-bottom:1px solid rgba(69,233,255,.22)}
+    .chat-head strong{font:800 13px "Audiowide"}
+    .chat-head small{display:block;color:var(--cyan);font:10px "Share Tech Mono"}
+    .chat-close{width:30px;height:30px;border:1px solid rgba(255,255,255,.25);background:#071015;color:#fff}
+    .chat-log{padding:14px;display:flex;flex-direction:column;gap:9px;min-height:170px;max-height:280px;overflow:auto}
+    .message{max-width:88%;padding:9px 11px;line-height:1.4;font-size:13px}
+    .message.bot{align-self:flex-start;border:1px solid rgba(69,233,255,.24);background:rgba(69,233,255,.06)}
+    .message.user{align-self:flex-end;background:linear-gradient(135deg,#ff1fb8,#ff62d2);color:#fff}
+    .chat-form{display:grid;grid-template-columns:1fr auto;gap:7px;padding:11px;border-top:1px solid rgba(69,233,255,.18)}
+    .chat-form input{min-width:0;height:42px;padding:0 11px;color:#fff;background:#071015;border:1px solid rgba(69,233,255,.28);outline:none}
+    .chat-form input:focus{border-color:var(--pink);box-shadow:0 0 15px rgba(255,31,184,.22)}
+
+    /* ===== CUSTOM RETICLE ===== */
+    .reticle{
+      position:fixed;
+      left:0;
+      top:0;
+      width:40px;
+      height:40px;
+      z-index:9999;
+      pointer-events:none;
+      opacity:0;
+      transform:translate(-50%,-50%) scale(.84);
+      border:1px solid var(--cyan);
+      box-shadow:0 0 18px rgba(69,233,255,.62),inset 0 0 12px rgba(255,31,184,.18);
+      transition:opacity .10s,transform .10s,width .10s,height .10s;
+    }
+    .reticle::before,.reticle::after{content:"";position:absolute;background:var(--pink);box-shadow:0 0 9px var(--pink)}
+    .reticle::before{left:50%;top:-7px;width:1px;height:54px}
+    .reticle::after{top:50%;left:-7px;height:1px;width:54px}
+    .reticle.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+    .reticle.click{width:54px;height:54px;animation:reticleGlitch .22s steps(2,end)}
+    @keyframes reticleGlitch{
+      0%{clip-path:inset(0 0 70% 0)}
+      33%{clip-path:inset(34% 0 42% 0);filter:hue-rotate(60deg)}
+      66%{clip-path:inset(68% 0 8% 0)}
+      100%{clip-path:inset(0);filter:none}
+    }
+
+    /* ===== PLAYER ===== */
+    .player-overlay{
+      position:fixed;
+      inset:0;
+      z-index:150;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      background:rgba(0,2,6,.76);
+      -webkit-backdrop-filter:blur(12px);
+      backdrop-filter:blur(12px);
+    }
+    .player-overlay.open{display:flex}
+    .player-modal{width:min(720px,100%);padding:30px}
+    .close-player{position:absolute;right:14px;top:14px;width:38px;height:38px;border:1px solid rgba(255,255,255,.25);background:#071015;color:#fff}
+    .player-title{margin:0 46px 8px 0;font:900 clamp(38px,7vw,72px)/.9 "Audiowide";text-transform:uppercase}
+    .player-meta{color:var(--muted);font-weight:700;margin-bottom:20px}
+    .player-audio{width:100%;margin-top:14px}
+
+    /* ===== MOBILE / SAFARI SIMPLE MODE ===== */
+    @media (max-width:850px){
+      html{scroll-behavior:auto}
+      .nav{position:sticky;padding:13px 16px}
+      .navlinks{display:none}
+      .hero{min-height:auto;padding:84px 16px 56px}
+      h1{font-size:27vw;animation:none}
+      .subline{letter-spacing:.12em}
+      main{padding:10px 14px 54px}
+      section{margin-bottom:62px}
+      .section-head{display:block}
+      .section-note{margin-top:13px}
+      .featured-grid,.demo-grid,.catalog-grid,.about-panel{grid-template-columns:1fr}
+      .feature-copy{min-height:auto}
+      .video-title{font-size:clamp(42px,13vw,68px)}
+      .feature-panel,.track-card,.about-box,.contact-card,.player-modal{
+        clip-path:none;
+        border-radius:18px;
+        -webkit-backdrop-filter:none;
+        backdrop-filter:none;
+      }
+      .electric-border{
+        filter:none;
+        border-radius:22px;
+        box-shadow:0 0 5px #fff,0 0 12px #ffb7ef,0 0 24px #ff4fd8,0 0 38px rgba(255,0,140,.48);
+      }
+      .planet.one{width:82px;height:82px;right:-15px;top:13%}
+      .planet.two{width:38px;height:38px;left:2%;top:21%}
+      .ship{display:none}
+      .rain.front{display:none}
+      .rain.back{opacity:.18}
+      .rain.mid{opacity:.28}
+      .scanlines{opacity:.04}
+      .world::before{background-position:center center}
+      .robot{right:10px;bottom:12px;transform:scale(.82)}
+      .chat{right:10px;bottom:116px;width:calc(100vw - 20px)}
+      .reticle{display:none}
+      .player-overlay{align-items:flex-end;padding:10px}
+      .player-modal{max-height:90svh;overflow:auto}
+    }
+
+    body.simple-mode .rain.front,
+    body.simple-mode .ship,
+    body.simple-mode .scanlines,
+    body.simple-mode .planet.two{display:none}
+    body.simple-mode .rain.back{opacity:.14}
+    body.simple-mode .rain.mid{opacity:.24}
+    body.simple-mode .feature-panel,
+    body.simple-mode .track-card,
+    body.simple-mode .about-box,
+    body.simple-mode .contact-card,
+    body.simple-mode .player-modal{
+      -webkit-backdrop-filter:none;
+      backdrop-filter:none;
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important}
+      .rain,.ship,.planet,.scanlines{display:none!important}
+    }
+  </style>
+</head>
+<body>
+  <div class="world" aria-hidden="true">
+    <div class="planet one"></div>
+    <div class="planet two"></div>
+    <div class="rain back" id="rainBack"></div>
+    <div class="rain mid" id="rainMid"></div>
+    <div class="rain front" id="rainFront"></div>
+    <div class="ship" style="top:28%;--dur:13s;--delay:-3s"></div>
+    <div class="ship" style="top:42%;--dur:17s;--delay:-9s;transform:scale(.72)"></div>
+    <div class="ship" style="top:17%;--dur:21s;--delay:-14s;transform:scale(.55)"></div>
+    <div class="scanlines"></div>
+  </div>
+
+  <svg class="svg-filter" width="0" height="0" aria-hidden="true">
+    <filter id="turbulent-displace" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.08" numOctaves="2" seed="7" result="noise">
+        <animate attributeName="baseFrequency" dur="6s" values="0.012 0.08;0.018 0.11;0.012 0.08" repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="B"/>
+    </filter>
+  </svg>
+
+  <header class="nav">
+    <a class="brand" href="#top">NYA <span>MUSIC</span></a>
+    <nav class="navlinks" aria-label="Primary">
+      <a href="#featured">// FEATURED</a>
+      <a href="#demos">// DEMOS</a>
+      <a href="#instrumentals">// INSTRUMENTALS</a>
+      <a href="#about">// ABOUT</a>
+      <a href="#contact">// CONTACT</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <div class="eyebrow">Songwriter · Ghostwriter · Ghost Producer</div>
+      <h1>NYA</h1>
+      <div class="subline">Original music for artists · games · commercial projects</div>
+      <p class="hero-copy">Original demos and instrumentals created for artists, publishers, games, trailers, and entertainment projects.</p>
+      <div class="cta-row">
+        <a class="btn" href="#featured">Watch Featured Demo</a>
+        <a class="btn" href="#demos">Audio Demos</a>
+        <a class="btn" href="#instrumentals">Instrumentals</a>
+        <a class="btn" href="#contact">Contact</a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section id="featured">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Featured Work</div>
+          <h2>Featured Demos</h2>
+        </div>
+        <p class="section-note">Cinematic, game-ready and artist-focused music built around strong concepts and visual storytelling.</p>
+      </div>
+
+      <div class="featured-grid">
+        <article class="feature-card">
+          <div class="electric-border"></div>
+          <div class="feature-panel">
+            <div class="feature-copy">
+              <div class="number">01 / FEATURED DEMO</div>
+              <h3 class="video-title">Heist</h3>
+              <div class="track-type">GTA · Heist · Trailer Music</div>
+              <p class="video-desc">High-octane cinematic heist soundtrack inspired by getaway chases, robberies, and blockbuster game trailers.</p>
+              <div class="tags"><span class="tag">Games</span><span class="tag">Trailer</span><span class="tag">Action</span><span class="tag">Video</span></div>
+            </div>
+            <div class="video-box">
+              <video class="featured-video" controls preload="metadata" playsinline>
+                <source src="https://audio.nya-music.com/heist.mp4?v=1" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </article>
+
+        <article class="feature-card">
+          <div class="electric-border"></div>
+          <div class="feature-panel">
+            <div class="feature-copy">
+              <div class="number">02 / FEATURED DEMO</div>
+              <h3 class="video-title">Cyberworld</h3>
+              <div class="track-type">Cyberpunk Type Inspired Beat</div>
+              <p class="video-desc">A futuristic, game-focused track with cinematic pressure, neon-city energy, and trailer-ready production.</p>
+              <div class="tags"><span class="tag">Game</span><span class="tag">Cyberpunk</span><span class="tag">Sync</span><span class="tag">Video</span></div>
+            </div>
+            <div class="video-box">
+              <video class="featured-video" controls preload="metadata" playsinline>
+                <source src="https://audio.nya-music.com/cyberworld.MOV?v=2" type="video/quicktime">
+              </video>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="demos">
+      <div class="section-head">
+        <div><div class="section-kicker">Audio Library</div><h2>Demos</h2></div>
+      </div>
+      <div class="demo-grid">
+        <article class="track-card"><h3>Game Over</h3><p>Dark game-pop concept with cinematic tension and dramatic hooks.</p><button class="listen" data-title="Game Over" data-src="https://audio.nya-music.com/game-over-video.mp4?v=9">Open Player</button></article>
+        <article class="track-card"><h3>Porque Ya</h3><p>Melodic global-pop demo built for expressive vocals and memorable toplines.</p><button class="listen" data-title="Porque Ya">Open Player</button></article>
+        <article class="track-card"><h3>Top Player</h3><p>Confident performance track with competitive game and sports energy.</p><button class="listen" data-title="Top Player">Open Player</button></article>
+        <article class="track-card"><h3>Monster</h3><p>Heavy character-driven demo with dark pop and cinematic production.</p><button class="listen" data-title="Monster">Open Player</button></article>
+      </div>
+    </section>
+
+    <section id="instrumentals">
+      <div class="section-head">
+        <div><div class="section-kicker">Production Catalog</div><h2>Instrumentals</h2></div>
+      </div>
+      <div class="catalog-grid">
+        <article class="track-card"><h3>Baddest</h3><p>Hard-hitting attitude-driven production for bold artist concepts.</p><button class="listen" data-title="Baddest">Open Player</button></article>
+        <article class="track-card"><h3>Cliffhanger</h3><p>Cinematic tension with trailer-ready movement and dramatic transitions.</p><button class="listen" data-title="Cliffhanger">Open Player</button></article>
+        <article class="track-card"><h3>Stars</h3><p>Atmospheric pop production with emotional lift and visual storytelling.</p><button class="listen" data-title="Stars">Open Player</button></article>
+        <article class="track-card"><h3>Sparkles</h3><p>Bright futuristic pop with polished textures and playful movement.</p><button class="listen" data-title="Sparkles">Open Player</button></article>
+        <article class="track-card"><h3>Kpop Drill</h3><p>Hybrid drill production designed for sharp choreography and performance.</p><button class="listen" data-title="Kpop Drill">Open Player</button></article>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-head">
+        <div><div class="section-kicker">About</div><h2>Creative Direction</h2></div>
+      </div>
+      <div class="about-panel">
+        <div class="about-box">
+          <p>Nya develops original music concepts, toplines, lyrics, instrumentals and visual direction for artist projects, games, trailers and entertainment. Instrumentals are entirely original. Demo vocals may be replaced depending on the project.</p>
+        </div>
+        <div class="stats">
+          <div class="stat"><strong>Original</strong><span>Music and concepts</span></div>
+          <div class="stat"><strong>Flexible</strong><span>Vocals can be replaced</span></div>
+          <div class="stat"><strong>Global</strong><span>Artist and game focus</span></div>
+          <div class="stat"><strong>Custom</strong><span>Project-based work</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact-card">
+        <div class="section-kicker">Contact</div>
+        <h2>Build Something Unreal</h2>
+        <p>For songwriting, production, demos, game music, sync opportunities, or custom projects.</p>
+        <a class="btn" href="mailto:yourtrulynya@gmail.com">yourtrulynya@gmail.com</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 NYA MUSIC · ALL RIGHTS RESERVED</footer>
+
+  <button class="robot" id="robot" type="button" aria-label="Open Nyan Robot chat">
+    <span class="bot-antenna"></span>
+    <span class="bot-head"><i class="bot-eye left"></i><i class="bot-eye right"></i><i class="bot-mouth"></i></span>
+    <span class="bot-body">NYA</span>
+  </button>
+
+  <aside class="chat" id="chat" aria-hidden="true">
+    <div class="chat-head">
+      <div><strong>NYAN ROBOT</strong><small>ONLINE · JUST FOR FUN</small></div>
+      <button class="chat-close" id="chatClose" type="button">×</button>
+    </div>
+    <div class="chat-log" id="chatLog">
+      <div class="message bot">Hi! My name is Nyan Robot. Ask me about Nya, music, demos, games, anime, contact, or just say hi. ♪</div>
+    </div>
+    <form class="chat-form" id="chatForm">
+      <input id="chatInput" maxlength="120" autocomplete="off" placeholder="Type anything...">
+      <button type="submit">Send</button>
+    </form>
+  </aside>
+
+  <div class="reticle" id="reticle" aria-hidden="true"></div>
+
+  <div class="player-overlay" id="playerOverlay" aria-hidden="true">
+    <div class="player-modal">
+      <button class="close-player" id="closePlayer" type="button">×</button>
+      <h3 class="player-title" id="playerTitle">Select a Track</h3>
+      <div class="player-meta" id="playerMeta">Audio player</div>
+      <video class="player-audio" id="playerMedia" controls playsinline></video>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const ua = navigator.userAgent;
+      const isSafari = /Safari/i.test(ua) && !/Chrome|Chromium|CriOS|Edg|OPR|Android/i.test(ua);
+      const isMobile = window.matchMedia("(max-width:850px)").matches || /iPhone|iPad|iPod|Android/i.test(ua);
+      if (isSafari || isMobile) document.body.classList.add("simple-mode");
+
+      function addRain(id,count,speedMin,speedMax,hMin,hMax,wMin,wMax,oMin,oMax,driftMin,driftMax){
+        const layer = document.getElementById(id);
+        if(!layer) return;
+        const fragment = document.createDocumentFragment();
+        for(let i=0;i<count;i++){
+          const d=document.createElement("span");
+          d.className="drop";
+          d.style.setProperty("--x",`${Math.random()*110-5}%`);
+          d.style.setProperty("--speed",`${speedMin+Math.random()*(speedMax-speedMin)}s`);
+          d.style.setProperty("--delay",`${-Math.random()*8}s`);
+          d.style.setProperty("--h",`${hMin+Math.random()*(hMax-hMin)}px`);
+          d.style.setProperty("--w",`${wMin+Math.random()*(wMax-wMin)}px`);
+          d.style.setProperty("--o",(oMin+Math.random()*(oMax-oMin)).toFixed(2));
+          d.style.setProperty("--drift",`${driftMin+Math.random()*(driftMax-driftMin)}px`);
+          fragment.appendChild(d);
+        }
+        layer.appendChild(fragment);
+      }
+
+      addRain("rainBack",isMobile?34:95,1.8,2.8,16,34,.5,1,.12,.30,15,36);
+      addRain("rainMid",isMobile?28:72,1.1,1.8,27,56,.7,1.2,.18,.42,22,50);
+      if(!isMobile && !isSafari) addRain("rainFront",45,.7,1.1,46,88,1,1.7,.24,.54,30,68);
+
+      const reticle=document.getElementById("reticle");
+      if(reticle && window.matchMedia("(pointer:fine)").matches){
+        document.addEventListener("mousemove",e=>{
+          reticle.style.left=`${e.clientX}px`;
+          reticle.style.top=`${e.clientY}px`;
+        });
+        const interactive=document.querySelectorAll("a,button,input,video,.track-card,.feature-card");
+        interactive.forEach(el=>{
+          el.addEventListener("mouseenter",()=>reticle.classList.add("show"));
+          el.addEventListener("mouseleave",()=>reticle.classList.remove("show","click"));
+          el.addEventListener("mousedown",()=>reticle.classList.add("click"));
+          el.addEventListener("mouseup",()=>reticle.classList.remove("click"));
+        });
+      }
+
+      document.querySelectorAll("a,button,.track-card,.feature-panel").forEach(el=>{
+        el.addEventListener("click",()=>{
+          el.classList.remove("is-glitching");
+          void el.offsetWidth;
+          el.classList.add("is-glitching");
+          setTimeout(()=>el.classList.remove("is-glitching"),340);
+        });
       });
 
-      element.addEventListener('mousedown', () => cursor.classList.add('click'));
-      element.addEventListener('mouseup', () => cursor.classList.remove('click'));
-    });
-  }
-})();
+      const robot=document.getElementById("robot");
+      const chat=document.getElementById("chat");
+      const chatClose=document.getElementById("chatClose");
+      const chatForm=document.getElementById("chatForm");
+      const chatInput=document.getElementById("chatInput");
+      const chatLog=document.getElementById("chatLog");
 
-</script>
+      robot.addEventListener("click",()=>{
+        const open=chat.classList.toggle("open");
+        chat.setAttribute("aria-hidden",String(!open));
+        if(open) setTimeout(()=>chatInput.focus(),100);
+      });
+      chatClose.addEventListener("click",()=>{
+        chat.classList.remove("open");
+        chat.setAttribute("aria-hidden","true");
+      });
+
+      function addMessage(text,type){
+        const div=document.createElement("div");
+        div.className=`message ${type}`;
+        div.textContent=text;
+        chatLog.appendChild(div);
+        chatLog.scrollTop=chatLog.scrollHeight;
+      }
+
+      function reply(message){
+        const m=message.toLowerCase();
+        if(/\b(hi|hello|hey|yo)\b/.test(m)) return "Hi! My name is Nyan Robot. I live inside Nya's cyber city. 🤖♪";
+        if(m.includes("nya")) return "Nya is a songwriter, ghostwriter, ghost producer, and creative producer making music for artists, games, trailers, and entertainment.";
+        if(m.includes("heist")) return "HEIST is a high-energy cinematic trailer track. Scroll to Featured Demos and press play.";
+        if(m.includes("cyber")) return "CYBERWORLD is a futuristic game-inspired featured demo with neon-city energy.";
+        if(m.includes("game")) return "Nya creates cinematic, cyber, action, trailer, and game-ready music.";
+        if(m.includes("anime")) return "Anime music? Excellent choice. Nya loves dramatic action, cyber, hip-hop, rock, and cinematic energy.";
+        if(m.includes("contact")||m.includes("email")||m.includes("hire")) return "Use the Contact section or email yourtrulynya@gmail.com.";
+        if(m.includes("price")||m.includes("rate")) return "Rates depend on the song, usage, and deliverables. Send project details through the contact section.";
+        if(m.includes("bye")) return "Bye! I will keep guarding the cyber city. ♪";
+        return "Beep! Ask me about Nya, demos, HEIST, CYBERWORLD, games, anime, or contact.";
+      }
+
+      chatForm.addEventListener("submit",e=>{
+        e.preventDefault();
+        const text=chatInput.value.trim();
+        if(!text) return;
+        addMessage(text,"user");
+        chatInput.value="";
+        setTimeout(()=>addMessage(reply(text),"bot"),300);
+      });
+
+      const overlay=document.getElementById("playerOverlay");
+      const closePlayer=document.getElementById("closePlayer");
+      const playerTitle=document.getElementById("playerTitle");
+      const playerMedia=document.getElementById("playerMedia");
+      const playerMeta=document.getElementById("playerMeta");
+
+      document.querySelectorAll(".listen").forEach(btn=>{
+        btn.addEventListener("click",()=>{
+          playerTitle.textContent=btn.dataset.title || "Track";
+          playerMeta.textContent=btn.dataset.src ? "Ready to play" : "Audio coming soon";
+          playerMedia.pause();
+          playerMedia.removeAttribute("src");
+          if(btn.dataset.src){
+            playerMedia.src=btn.dataset.src;
+            playerMedia.load();
+          }
+          overlay.classList.add("open");
+          overlay.setAttribute("aria-hidden","false");
+        });
+      });
+
+      function closeOverlay(){
+        overlay.classList.remove("open");
+        overlay.setAttribute("aria-hidden","true");
+        playerMedia.pause();
+      }
+      closePlayer.addEventListener("click",closeOverlay);
+      overlay.addEventListener("click",e=>{if(e.target===overlay) closeOverlay()});
+      document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeOverlay();chat.classList.remove("open")}});
+    })();
+  </script>
 </body>
 </html>
