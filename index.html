@@ -3946,6 +3946,271 @@ html,body{
   .mega-boot{display:none}
 }
 
+
+/* =========================================================
+   V4 REAL RAIN + NORMAL CURSOR PATCH
+   ========================================================= */
+
+/* Completely remove Matrix/code rain */
+.mega-code-rain,
+.rain-column{
+  display:none !important;
+}
+
+/* Real rain made from individual streaks */
+.real-rain{
+  position:absolute;
+  inset:-12% -8%;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:6;
+}
+
+.real-rain .drop{
+  position:absolute;
+  top:-16vh;
+  left:var(--x);
+  width:var(--w);
+  height:var(--h);
+  opacity:var(--o);
+  background:linear-gradient(
+    to bottom,
+    transparent,
+    rgba(190,247,255,.72) 30%,
+    rgba(255,72,202,.48) 72%,
+    transparent
+  );
+  filter:drop-shadow(0 0 4px rgba(80,230,255,.28));
+  transform:rotate(8deg);
+  animation:realRainFall var(--speed) linear var(--delay) infinite;
+}
+
+.rain-back{
+  opacity:.34;
+  filter:blur(.45px);
+}
+
+.rain-mid{
+  opacity:.50;
+}
+
+.rain-front{
+  opacity:.68;
+  filter:drop-shadow(0 0 4px rgba(255,31,184,.12));
+}
+
+@keyframes realRainFall{
+  from{
+    transform:translate3d(0,-20vh,0) rotate(8deg);
+  }
+  to{
+    transform:translate3d(var(--drift),130vh,0) rotate(8deg);
+  }
+}
+
+/* Rain reflection glow near city horizon */
+.mega-cyber-world::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:34%;
+  z-index:7;
+  pointer-events:none;
+  background:
+    linear-gradient(180deg,transparent,rgba(255,31,184,.06) 42%,rgba(57,255,136,.04)),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 28px,
+      rgba(255,31,184,.06) 29px 31px,
+      transparent 32px 54px,
+      rgba(57,255,136,.04) 55px 57px
+    );
+  mix-blend-mode:screen;
+}
+
+/* Keep city vivid behind content */
+.mega-city-svg{
+  opacity:.90 !important;
+  filter:saturate(1.45) contrast(1.12) brightness(1.06) !important;
+}
+
+.mega-hologram-ad{
+  opacity:.85;
+}
+
+/* Normal system cursor always visible */
+html,
+body,
+body *{
+  cursor:auto !important;
+}
+
+a,
+button,
+input,
+textarea,
+select,
+video,
+.btn,
+.listen,
+.control-btn,
+.small-card,
+.video-feature,
+.pink-bot,
+.timeline,
+.volume{
+  cursor:pointer !important;
+}
+
+/* Holographic reticle appears only over clickable elements */
+.button-cursor{
+  position:fixed;
+  left:0;
+  top:0;
+  width:42px;
+  height:42px;
+  z-index:9999;
+  pointer-events:none;
+  opacity:0;
+  transform:translate(-50%,-50%) scale(.82);
+  border:1px solid #39ff88;
+  clip-path:polygon(
+    0 8px,8px 0,
+    100% 0,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    0 100%
+  );
+  box-shadow:
+    0 0 18px rgba(57,255,136,.64),
+    inset 0 0 12px rgba(255,31,184,.22);
+  transition:
+    opacity .10s ease,
+    transform .10s ease,
+    width .10s ease,
+    height .10s ease;
+}
+
+.button-cursor::before,
+.button-cursor::after{
+  content:"";
+  position:absolute;
+  background:#ff1fb8;
+  box-shadow:0 0 9px #ff1fb8;
+}
+
+.button-cursor::before{
+  left:50%;
+  top:-8px;
+  width:1px;
+  height:58px;
+}
+
+.button-cursor::after{
+  left:-8px;
+  top:50%;
+  width:58px;
+  height:1px;
+}
+
+.button-cursor span{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:5px;
+  height:5px;
+  transform:translate(-50%,-50%);
+  background:#fff;
+  box-shadow:0 0 10px #39ff88;
+}
+
+.button-cursor.show{
+  opacity:1;
+  transform:translate(-50%,-50%) scale(1);
+}
+
+.button-cursor.click{
+  width:56px;
+  height:56px;
+  border-color:#ff1fb8;
+  animation:cursorClickGlitch .22s steps(2,end);
+}
+
+@keyframes cursorClickGlitch{
+  0%{
+    clip-path:inset(0 0 70% 0);
+  }
+  33%{
+    clip-path:inset(34% 0 42% 0);
+    filter:hue-rotate(60deg);
+  }
+  66%{
+    clip-path:inset(68% 0 8% 0);
+  }
+  100%{
+    clip-path:polygon(
+      0 8px,8px 0,
+      100% 0,
+      100% calc(100% - 8px),
+      calc(100% - 8px) 100%,
+      0 100%
+    );
+    filter:none;
+  }
+}
+
+/* Prevent old cursor-hiding rules from winning */
+@media (pointer:fine){
+  html,
+  body,
+  body *{
+    cursor:auto !important;
+  }
+
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  video,
+  .btn,
+  .listen,
+  .control-btn,
+  .small-card,
+  .video-feature,
+  .pink-bot,
+  .timeline,
+  .volume{
+    cursor:pointer !important;
+  }
+}
+
+@media (max-width:850px){
+  .button-cursor{
+    display:none !important;
+  }
+
+  .rain-front{
+    display:none;
+  }
+
+  .rain-back{
+    opacity:.20;
+  }
+
+  .rain-mid{
+    opacity:.32;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .real-rain{
+    display:none;
+  }
+}
+
 </style>
 </head>
 
@@ -3953,9 +4218,7 @@ html,body{
 
 <div class="mega-cyber-world" aria-hidden="true">
   <div class="mega-nebula"></div>
-  <div class="mega-code-rain" id="megaCodeRain"></div>
-
-  <div class="mega-planets">
+<div class="mega-planets">
     <span class="mega-planet p1"><i></i></span>
     <span class="mega-planet p2"><i></i></span>
     <span class="mega-planet p3"><i></i></span>
@@ -3998,7 +4261,9 @@ html,body{
   <div class="mega-hologram-ad ad2"><b>SYNC</b><span>ONLINE</span></div>
   <div class="mega-flying-traffic" id="megaTraffic"></div>
   <div class="mega-particles" id="megaParticles"></div>
-  <div class="mega-rain"></div>
+  <div class="real-rain rain-back" id="rainBack"></div>
+  <div class="real-rain rain-mid" id="rainMid"></div>
+  <div class="real-rain rain-front" id="rainFront"></div>
   <div class="mega-scanlines"></div>
 </div>
 
@@ -4959,6 +5224,107 @@ if (cityParticles){
 
     document.addEventListener('mousedown',()=>cursor.classList.add('click'));
     document.addEventListener('mouseup',()=>cursor.classList.remove('click'));
+  }
+})();
+
+
+// =========================================================
+// V4 REAL RAIN + BUTTON-ONLY RETICLE
+// =========================================================
+(function(){
+  const cursor = document.getElementById('buttonCursor');
+
+  function buildRain(containerId, count, speedRange, heightRange, widthRange, opacityRange, driftRange){
+    const container = document.getElementById(containerId);
+    if(!container || container.children.length) return;
+
+    for(let i=0;i<count;i++){
+      const drop = document.createElement('span');
+      drop.className = 'drop';
+
+      const speed = speedRange[0] + Math.random() * (speedRange[1] - speedRange[0]);
+      const height = heightRange[0] + Math.random() * (heightRange[1] - heightRange[0]);
+      const width = widthRange[0] + Math.random() * (widthRange[1] - widthRange[0]);
+      const opacity = opacityRange[0] + Math.random() * (opacityRange[1] - opacityRange[0]);
+      const drift = driftRange[0] + Math.random() * (driftRange[1] - driftRange[0]);
+
+      drop.style.setProperty('--x', `${Math.random() * 110 - 5}%`);
+      drop.style.setProperty('--speed', `${speed}s`);
+      drop.style.setProperty('--delay', `${-Math.random() * 8}s`);
+      drop.style.setProperty('--h', `${height}px`);
+      drop.style.setProperty('--w', `${width}px`);
+      drop.style.setProperty('--o', opacity.toFixed(2));
+      drop.style.setProperty('--drift', `${drift}px`);
+
+      container.appendChild(drop);
+    }
+  }
+
+  const mobile = window.innerWidth < 850;
+
+  buildRain(
+    'rainBack',
+    mobile ? 55 : 150,
+    [1.7, 2.7],
+    [18, 36],
+    [.5, 1],
+    [.14, .34],
+    [18, 40]
+  );
+
+  buildRain(
+    'rainMid',
+    mobile ? 38 : 100,
+    [1.05, 1.75],
+    [28, 58],
+    [.7, 1.25],
+    [.20, .46],
+    [24, 54]
+  );
+
+  buildRain(
+    'rainFront',
+    mobile ? 0 : 58,
+    [.65, 1.05],
+    [48, 92],
+    [1, 1.8],
+    [.26, .58],
+    [34, 72]
+  );
+
+  if(cursor && window.matchMedia('(pointer:fine)').matches){
+    document.addEventListener('mousemove', event => {
+      cursor.style.left = `${event.clientX}px`;
+      cursor.style.top = `${event.clientY}px`;
+    });
+
+    const interactiveSelector = [
+      'a',
+      'button',
+      'input',
+      'textarea',
+      'select',
+      'video',
+      '.btn',
+      '.listen',
+      '.control-btn',
+      '.small-card',
+      '.video-feature',
+      '.pink-bot',
+      '.timeline',
+      '.volume'
+    ].join(',');
+
+    document.querySelectorAll(interactiveSelector).forEach(element => {
+      element.addEventListener('mouseenter', () => cursor.classList.add('show'));
+      element.addEventListener('mouseleave', () => {
+        cursor.classList.remove('show');
+        cursor.classList.remove('click');
+      });
+
+      element.addEventListener('mousedown', () => cursor.classList.add('click'));
+      element.addEventListener('mouseup', () => cursor.classList.remove('click'));
+    });
   }
 })();
 
