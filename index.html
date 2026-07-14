@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@500;600;700;800;900&family=Share+Tech+Mono&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Audiowide&family=Orbitron:wght@500;600;700;800;900&family=Oxanium:wght@400;500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
   <style>
 :root{
@@ -1275,83 +1275,80 @@ button, a, video{
 
 
 /* =========================================================
-   ULTRA PINK CYBER / SPACE / ROBOTICS SYSTEM
+   PINK-ONLY GLAM CYBER REDESIGN
+   Keeps the original turbulent SVG border untouched on desktop.
+   Decorations remain outside the demo cards.
    ========================================================= */
 :root{
-  --black:#010006;
-  --black-2:#07000d;
-  --pink:#ff008c;
-  --pink-2:#ff2bc2;
-  --pink-3:#ff8ce8;
-  --hot:#ff1493;
-  --cyan:#48e6ff;
-  --violet:#a33cff;
-  --white:#fff8ff;
-  --muted:#e5b9dc;
-  --line:rgba(255,47,198,.28);
+  --black:#040004;
+  --black-2:#090007;
+  --pink:#ff1493;
+  --pink-2:#ff3ebf;
+  --pink-3:#ff9fdf;
+  --hot:#ff008c;
+  --baby:#ffd6ef;
+  --blush:#fff0fa;
+  --white:#fffaff;
+  --muted:#f2c9e0;
+  --cyan:#9ef8ff;
+  --line:rgba(255,159,223,.24);
 }
 
 body{
-  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
-  background:#020006;
+  background:#040004;
   cursor:crosshair;
 }
 
 .site-bg{
   background:
-    radial-gradient(circle at 15% 18%,rgba(255,0,153,.62),transparent 26%),
-    radial-gradient(circle at 83% 10%,rgba(74,230,255,.22),transparent 25%),
-    radial-gradient(circle at 64% 78%,rgba(163,60,255,.34),transparent 33%),
-    linear-gradient(145deg,#010006 0%,#14001c 48%,#020008 100%);
+    radial-gradient(circle at 15% 18%,rgba(255,20,147,.62),transparent 27%),
+    radial-gradient(circle at 84% 10%,rgba(255,159,223,.40),transparent 23%),
+    radial-gradient(circle at 56% 84%,rgba(255,214,239,.18),transparent 34%),
+    linear-gradient(145deg,#030003 0%,#0a0007 46%,#050004 100%) !important;
 }
 
-.starfield,
-.space-nebula,
-.cyber-rain{
+.orb-one{
+  background:radial-gradient(circle,rgba(255,20,147,.82),rgba(255,20,147,.08) 48%,transparent 72%) !important;
+}
+.orb-two{
+  background:radial-gradient(circle,rgba(255,94,200,.72),rgba(255,94,200,.08) 48%,transparent 72%) !important;
+}
+.orb-three{
+  background:radial-gradient(circle,rgba(255,190,229,.34),rgba(255,20,147,.05) 48%,transparent 72%) !important;
+}
+
+.pink-stars,
+.pink-circuit-bg{
   position:fixed;
   inset:0;
   pointer-events:none;
 }
 
-.starfield{
+.pink-stars{
   z-index:-4;
-  opacity:.85;
+  opacity:.82;
   background-image:
-    radial-gradient(circle,rgba(255,255,255,.92) 0 1px,transparent 1.6px),
-    radial-gradient(circle,rgba(255,98,213,.82) 0 1px,transparent 1.6px),
-    radial-gradient(circle,rgba(72,230,255,.72) 0 1px,transparent 1.5px);
-  background-size:87px 87px,131px 131px,173px 173px;
-  background-position:0 0,37px 61px,81px 13px;
-  animation:starDrift 50s linear infinite;
+    radial-gradient(circle,rgba(255,255,255,.96) 0 1px,transparent 1.6px),
+    radial-gradient(circle,rgba(255,159,223,.88) 0 1px,transparent 1.5px),
+    radial-gradient(circle,rgba(255,214,239,.72) 0 1px,transparent 1.4px);
+  background-size:89px 89px,137px 137px,181px 181px;
+  background-position:0 0,42px 66px,87px 16px;
+  animation:pinkStarDrift 50s linear infinite;
 }
 
-.space-nebula{
+.pink-circuit-bg{
   z-index:-3;
-  opacity:.7;
-  filter:blur(30px);
+  opacity:.12;
   background:
-    radial-gradient(ellipse at 15% 50%,rgba(255,0,166,.26),transparent 28%),
-    radial-gradient(ellipse at 88% 32%,rgba(119,42,255,.26),transparent 30%),
-    radial-gradient(ellipse at 52% 85%,rgba(72,230,255,.12),transparent 34%);
-  animation:nebulaPulse 12s ease-in-out infinite alternate;
+    linear-gradient(rgba(255,62,191,.09) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,62,191,.09) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:linear-gradient(to bottom,black,transparent 92%);
 }
 
-.cyber-rain{
-  z-index:-2;
-  opacity:.13;
-  background-image:repeating-linear-gradient(
-    90deg,
-    transparent 0 36px,
-    rgba(255,0,174,.7) 37px 38px,
-    transparent 39px 74px
-  );
-  mask-image:linear-gradient(to bottom,transparent,black 20%,transparent 92%);
-  animation:rainSlide 16s linear infinite;
+@keyframes pinkStarDrift{
+  to{background-position:89px 89px,179px 203px,268px 197px}
 }
-
-@keyframes starDrift{to{background-position:87px 87px,168px 192px,254px 186px}}
-@keyframes nebulaPulse{to{transform:scale(1.08) rotate(2deg);opacity:.88}}
-@keyframes rainSlide{to{transform:translateY(120px)}}
 
 body::before{
   content:"";
@@ -1359,27 +1356,25 @@ body::before{
   inset:0;
   z-index:70;
   pointer-events:none;
-  opacity:.15;
-  background:repeating-linear-gradient(to bottom,transparent 0 3px,rgba(255,255,255,.04) 4px,transparent 5px);
+  opacity:.1;
+  background:repeating-linear-gradient(to bottom,transparent 0 3px,rgba(255,255,255,.035) 4px,transparent 5px);
   mix-blend-mode:screen;
 }
 
-body::after{
-  opacity:.55;
-  background-image:
-    linear-gradient(rgba(255,0,174,.07) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(72,230,255,.045) 1px,transparent 1px);
-  background-size:54px 54px;
-  mask-image:linear-gradient(to bottom,black,transparent 94%);
-}
-
 .nav{
-  background:rgba(5,0,10,.78);
-  border-bottom:1px solid rgba(255,0,174,.5);
-  box-shadow:0 0 34px rgba(255,0,174,.2),inset 0 -1px rgba(72,230,255,.12);
+  background:rgba(7,0,7,.82);
+  border-bottom:1px solid rgba(255,62,191,.46);
+  box-shadow:0 0 30px rgba(255,20,147,.19);
 }
 
-.brand,
+.brand{
+  font-family:Orbitron,sans-serif;
+  text-shadow:
+    2px 0 0 rgba(255,214,239,.68),
+    -2px 0 0 rgba(255,20,147,.9),
+    0 0 20px rgba(255,20,147,.78);
+}
+
 .navlinks,
 .eyebrow,
 .subline,
@@ -1388,20 +1383,14 @@ body::after{
 .tag,
 .listen,
 .player-kicker,
-footer,
-.hud-corner{
+footer{
   font-family:"Share Tech Mono",monospace;
-}
-
-.brand{
-  font-family:Orbitron,sans-serif;
-  text-shadow:3px 0 rgba(72,230,255,.72),-3px 0 rgba(255,0,174,.9),0 0 22px rgba(255,0,174,.8);
 }
 
 .navlinks a::before{
   content:"//";
-  color:var(--pink-2);
   margin-right:5px;
+  color:var(--pink-2);
 }
 
 .hero{
@@ -1414,81 +1403,123 @@ footer,
   width:720px;
   height:720px;
   border-radius:50%;
-  border:1px solid rgba(255,0,174,.18);
+  border:1px solid rgba(255,159,223,.16);
   box-shadow:
-    0 0 0 80px rgba(255,0,174,.025),
-    0 0 0 170px rgba(72,230,255,.018),
-    0 0 120px rgba(255,0,174,.16);
-  animation:heroOrbit 24s linear infinite;
+    0 0 0 80px rgba(255,20,147,.025),
+    0 0 0 170px rgba(255,214,239,.016),
+    0 0 120px rgba(255,20,147,.15);
+  animation:pinkOrbit 25s linear infinite;
 }
 
 .hero::after{
   content:"";
   position:absolute;
-  width:460px;
+  width:470px;
   height:2px;
-  background:linear-gradient(90deg,transparent,var(--pink-2),#fff,var(--cyan),transparent);
-  box-shadow:0 0 22px var(--pink);
-  animation:heroScan 5s linear infinite;
+  background:linear-gradient(90deg,transparent,var(--pink-2),#fff,var(--baby),transparent);
+  box-shadow:0 0 24px var(--pink);
+  animation:pinkScan 5.5s linear infinite;
 }
 
-@keyframes heroOrbit{to{transform:rotate(360deg)}}
-@keyframes heroScan{
+@keyframes pinkOrbit{to{transform:rotate(360deg)}}
+@keyframes pinkScan{
   0%{top:22%;left:-35%;opacity:0}
   15%{opacity:1}
   100%{top:72%;left:110%;opacity:0}
 }
 
-.hero-inner{position:relative;z-index:4}
+.hero-inner{position:relative;z-index:3}
 
 .eyebrow{
-  border-radius:4px;
-  border:1px solid rgba(255,0,174,.58);
-  background:linear-gradient(90deg,rgba(255,0,174,.15),rgba(72,230,255,.06));
-  clip-path:polygon(0 0,95% 0,100% 28%,100% 100%,5% 100%,0 72%);
-}
-
-h1,h2,.video-title,.small-card h3,.player-title{
-  font-family:Orbitron,sans-serif !important;
-  font-weight:900;
-  text-transform:uppercase;
+  border-color:rgba(255,159,223,.46);
+  background:linear-gradient(90deg,rgba(255,20,147,.17),rgba(255,214,239,.08));
+  box-shadow:inset 0 1px rgba(255,255,255,.16),0 0 28px rgba(255,20,147,.18);
 }
 
 h1{
-  letter-spacing:.01em;
-  background:linear-gradient(90deg,#fff 0%,#fff 17%,#ff9ce9 34%,#ff00ae 54%,#a33cff 73%,#48e6ff 88%,#fff 100%);
-  background-size:220% auto;
-  filter:drop-shadow(5px 0 rgba(255,0,174,.88)) drop-shadow(-5px 0 rgba(72,230,255,.6)) drop-shadow(0 0 42px rgba(255,0,174,.72));
-  animation:shine 5s linear infinite,heroTextFlicker 4.8s steps(1,end) infinite;
+  font-family:Orbitron,sans-serif;
+  font-weight:900;
+  font-size:clamp(84px,18vw,220px);
+  letter-spacing:.02em;
+  line-height:.76;
+  margin:28px 0 12px;
+  position:relative;
+  background:linear-gradient(90deg,#fff 0%,#fff 15%,#ffd6ef 31%,#ff75ce 48%,#ff1493 63%,#ff79d1 80%,#fff 100%) !important;
+  background-size:220% auto !important;
+  -webkit-background-clip:text !important;
+  background-clip:text !important;
+  -webkit-text-fill-color:transparent !important;
+  color:transparent !important;
+  filter:drop-shadow(0 0 34px rgba(255,20,147,.72)) !important;
+  animation:shine 5s linear infinite,pinkHeroGlitch 4.8s steps(1,end) infinite !important;
 }
 
-@keyframes heroTextFlicker{
-  0%,94%,100%{transform:translate(0)}
-  95%{transform:translate(7px,-2px)}
-  96%{transform:translate(-5px,1px)}
+h1::before,
+h1::after{
+  content:attr(data-text);
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.72;
+  -webkit-text-fill-color:transparent;
+  -webkit-background-clip:text;
+  background-clip:text;
+  background:inherit;
+}
+
+h1::before{
+  transform:translate(5px,-1px);
+  filter:drop-shadow(-3px 0 var(--baby));
+  clip-path:polygon(0 8%,100% 8%,100% 20%,0 20%);
+}
+
+h1::after{
+  transform:translate(-5px,1px);
+  filter:drop-shadow(3px 0 var(--pink-2));
+  clip-path:polygon(0 68%,100% 68%,100% 82%,0 82%);
+}
+
+@keyframes pinkHeroGlitch{
+  0%,92%,100%{transform:translate(0)}
+  93%{transform:translate(7px,-2px)}
+  95%{transform:translate(-5px,1px)}
   97%{transform:translate(2px)}
 }
 
 .subline{
-  text-shadow:2px 0 rgba(255,0,174,.9),-2px 0 rgba(72,230,255,.6),0 0 24px rgba(255,0,174,.85);
+  text-shadow:
+    2px 0 rgba(255,20,147,.86),
+    -2px 0 rgba(255,214,239,.58),
+    0 0 24px rgba(255,62,191,.78);
 }
 
 .btn{
-  border-radius:4px;
   font-family:"Share Tech Mono",monospace;
   text-transform:uppercase;
-  clip-path:polygon(0 0,90% 0,100% 30%,100% 100%,10% 100%,0 70%);
 }
 
 .btn.primary{
-  background:linear-gradient(135deg,#ff008c,#ff00c8 60%,#8c32ff);
-  box-shadow:5px 5px rgba(72,230,255,.18),-4px -4px rgba(255,0,174,.18),0 0 40px rgba(255,0,174,.65);
+  background:linear-gradient(135deg,#ff1493,#ff3ebf 60%,#ff9fdf) !important;
+  box-shadow:0 0 38px rgba(255,20,147,.64),inset 0 1px rgba(255,255,255,.38) !important;
+}
+
+.btn.secondary{
+  background:linear-gradient(135deg,rgba(255,20,147,.13),rgba(255,214,239,.07)) !important;
+  border-color:rgba(255,159,223,.34) !important;
+}
+
+h2,
+.video-title,
+.small-card h3,
+.player-title{
+  font-family:Orbitron,sans-serif;
 }
 
 h2{
-  color:white;
-  text-shadow:4px 0 var(--pink),-2px 0 rgba(72,230,255,.76),0 0 28px rgba(255,0,174,.58);
-  letter-spacing:.01em;
+  text-shadow:
+    3px 0 0 rgba(255,20,147,.9),
+    -2px 0 0 rgba(255,214,239,.56),
+    0 0 27px rgba(255,62,191,.5);
 }
 
 .section-head{
@@ -1502,218 +1533,182 @@ h2{
   position:absolute;
   left:0;
   bottom:-12px;
-  width:min(460px,75%);
+  width:min(430px,72%);
   height:2px;
-  background:linear-gradient(90deg,var(--pink-2),var(--cyan),transparent);
-  box-shadow:0 0 15px var(--pink);
+  background:linear-gradient(90deg,var(--pink-2),var(--baby),transparent);
+  box-shadow:0 0 15px rgba(255,20,147,.58);
 }
 
-.video-feature,
-.small-card,
-.about-box,
-.contact-card,
-.player-modal{
-  border-radius:8px !important;
-  clip-path:polygon(0 0,96% 0,100% 6%,100% 94%,96% 100%,4% 100%,0 94%,0 6%);
-}
-
-.video-layout{
-  border-radius:5px !important;
+.video-layout,
+.cyber-card .video-layout{
   background:
-    repeating-linear-gradient(0deg,transparent 0 7px,rgba(255,0,174,.025) 8px),
-    linear-gradient(135deg,rgba(255,255,255,.09),rgba(255,255,255,.02)),
-    radial-gradient(circle at 82% 10%,rgba(255,0,174,.34),transparent 40%),
-    radial-gradient(circle at 8% 92%,rgba(72,230,255,.12),transparent 38%),
-    rgba(7,0,12,.95);
+    repeating-linear-gradient(0deg,transparent 0 7px,rgba(255,159,223,.022) 8px),
+    linear-gradient(135deg,rgba(255,255,255,.11),rgba(255,255,255,.03)),
+    radial-gradient(circle at 82% 10%,rgba(255,62,191,.32),transparent 40%),
+    radial-gradient(circle at 9% 93%,rgba(255,214,239,.10),transparent 38%),
+    rgba(8,0,9,.95) !important;
 }
 
-.video-feature::before{
-  content:"TRACK_NODE";
-  position:absolute;
-  top:11px;
-  right:18px;
-  z-index:7;
-  font-family:"Share Tech Mono",monospace;
-  font-size:10px;
-  letter-spacing:.17em;
-  color:var(--cyan);
-  opacity:.72;
-}
-
-.video-title,.small-card h3,.player-title{
-  text-shadow:3px 0 rgba(255,0,174,.95),-2px 0 rgba(72,230,255,.72),0 0 26px rgba(255,0,174,.72);
+.video-title,
+.small-card h3,
+.player-title{
+  text-shadow:
+    3px 0 0 rgba(255,20,147,.88),
+    -2px 0 0 rgba(255,214,239,.5),
+    0 0 24px rgba(255,62,191,.6);
 }
 
 .video-box{
-  border-radius:4px;
-  border:1px solid rgba(255,0,174,.55);
-  box-shadow:0 0 0 1px rgba(72,230,255,.14),0 0 38px rgba(255,0,174,.35);
-}
-
-.tag,.listen{
-  border-radius:3px;
+  border-color:rgba(255,159,223,.44);
+  box-shadow:0 28px 90px rgba(0,0,0,.62),0 0 40px rgba(255,20,147,.30),inset 0 0 18px rgba(255,214,239,.06);
 }
 
 .small-card{
+  background:linear-gradient(135deg,rgba(255,20,147,.12),rgba(255,214,239,.045)),rgba(8,0,9,.91);
+  border-color:rgba(255,159,223,.28);
+}
+
+.stat{
+  background:linear-gradient(135deg,rgba(255,20,147,.17),rgba(255,214,239,.06));
+  border-color:rgba(255,159,223,.27);
+}
+
+.contact-card{
   background:
-    linear-gradient(135deg,rgba(255,0,174,.12),rgba(72,230,255,.035)),
-    rgba(7,0,12,.9);
-  border-color:rgba(255,0,174,.34);
+    radial-gradient(circle at 50% 0,rgba(255,62,191,.34),transparent 42%),
+    linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.025));
 }
 
-.small-card::after{
-  content:"AUDIO NODE";
-  position:absolute;
-  top:13px;
-  right:15px;
-  font-family:"Share Tech Mono",monospace;
-  font-size:9px;
-  letter-spacing:.12em;
-  color:var(--cyan);
-  opacity:.64;
+.player-modal{
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.035)),
+    radial-gradient(circle at 18% 0%,rgba(255,62,191,.36),transparent 36%),
+    radial-gradient(circle at 100% 110%,rgba(255,214,239,.13),transparent 42%),
+    rgba(8,0,9,.95);
+  border-color:rgba(255,159,223,.48);
 }
 
-.small-card.playing{
-  animation:cardPulse 1.8s ease-in-out infinite;
+/* KEEP ORIGINAL TURBULENT BORDER ON DESKTOP */
+@media (min-width:851px){
+  .electric-border,
+  .featured-grid .electric-border{
+    filter:url(#turbulent-displace) !important;
+    animation:featureGlowBreath 2.9s ease-in-out infinite !important;
+    border:2px solid #f26fcb !important;
+    border-radius:38px !important;
+    box-shadow:
+      0 0 5px rgba(255,255,255,.9),
+      0 0 10px #ffb7ef,
+      0 0 20px #ff4fd8,
+      0 0 42px rgba(255,79,216,.95),
+      0 0 90px rgba(255,0,140,.62) !important;
+    z-index:6 !important;
+    pointer-events:none !important;
+  }
+
+  .video-feature{
+    overflow:visible !important;
+  }
+
+  .outer-cyber-decor{
+    z-index:2;
+  }
 }
 
-@keyframes cardPulse{
-  50%{box-shadow:0 0 80px rgba(255,0,174,.62),inset 0 0 22px rgba(72,230,255,.1)}
-}
-
-/* Floating gadgets */
-.floating-tech{
+/* Decorations are outside the cards */
+.outer-cyber-decor{
   position:fixed;
   inset:0;
-  z-index:2;
   pointer-events:none;
 }
 
-.gadget{
+.outer-cyber-decor > *{
   position:absolute;
   pointer-events:auto;
-  filter:drop-shadow(0 0 18px rgba(255,0,174,.55));
-  transition:.3s;
+  filter:drop-shadow(0 0 18px rgba(255,20,147,.48));
 }
 
-.gadget:hover{
-  transform:scale(1.1) !important;
-  filter:drop-shadow(0 0 28px rgba(255,0,174,.95)) drop-shadow(0 0 12px rgba(72,230,255,.55));
+.pink-saturn{
+  width:108px;
+  height:108px;
+  right:4%;
+  top:18%;
+  animation:decorFloat 8s ease-in-out infinite;
+}
+.saturn-core{
+  position:absolute;
+  inset:29px;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 28%,#fff,#ffd6ef 23%,#ff4fc1 58%,#6d003e 78%);
+  box-shadow:0 0 30px rgba(255,20,147,.66);
+}
+.saturn-ring{
+  position:absolute;
+  left:5px;
+  right:5px;
+  top:49px;
+  height:18px;
+  border:2px solid var(--baby);
+  border-radius:50%;
+  transform:rotate(-18deg);
+  box-shadow:0 0 14px var(--pink);
 }
 
-.gadget-saturn{
-  width:110px;height:110px;top:18%;right:5%;
-  animation:floatGadget 8s ease-in-out infinite;
-}
-.planet-core{
-  position:absolute;inset:28px;border-radius:50%;
-  background:radial-gradient(circle at 35% 28%,#fff,#ff66d7 22%,#8f32ff 55%,#180022 75%);
-  box-shadow:0 0 32px rgba(255,0,174,.75);
-}
-.planet-ring{
-  position:absolute;left:5px;right:5px;top:49px;height:18px;border:2px solid var(--pink-3);border-radius:50%;
-  transform:rotate(-18deg);box-shadow:0 0 14px var(--pink);
-}
-.ring-two{transform:rotate(18deg);border-color:rgba(72,230,255,.62)}
-
-.gadget-chip{
-  width:126px;height:94px;left:3%;top:27%;
-  border:1px solid rgba(255,0,174,.75);
-  background:linear-gradient(135deg,rgba(255,0,174,.18),rgba(72,230,255,.05)),rgba(5,0,12,.86);
+.audio-chip-widget{
+  width:128px;
+  height:92px;
+  left:3%;
+  top:27%;
+  border:1px solid rgba(255,159,223,.68);
+  background:linear-gradient(135deg,rgba(255,20,147,.16),rgba(255,214,239,.06)),rgba(7,0,8,.88);
   clip-path:polygon(0 0,86% 0,100% 18%,100% 100%,14% 100%,0 82%);
-  animation:floatGadget 7.4s ease-in-out -2s infinite;
+  animation:decorFloat 7.5s ease-in-out -2s infinite;
 }
-.gadget-chip::before,.gadget-chip::after{
-  content:"";position:absolute;left:8px;right:8px;height:1px;background:linear-gradient(90deg,var(--pink),var(--cyan),transparent)
-}
-.gadget-chip::before{top:17px}.gadget-chip::after{bottom:18px}
-.chip-label{position:absolute;left:15px;top:26px;font:900 24px Orbitron;color:white}
-.chip-sub{position:absolute;left:15px;top:56px;font:10px "Share Tech Mono";letter-spacing:.12em;color:var(--pink-3)}
-.chip-led{position:absolute;right:15px;bottom:14px;width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 15px var(--cyan);animation:blink 1.2s infinite}
+.chip-brand{position:absolute;left:15px;top:25px;font:900 23px Orbitron;color:#fff}
+.chip-label{position:absolute;left:15px;top:57px;font:10px "Share Tech Mono";letter-spacing:.11em;color:var(--baby)}
+.chip-light{position:absolute;right:14px;bottom:13px;width:7px;height:7px;border-radius:50%;background:var(--baby);box-shadow:0 0 14px var(--baby);animation:pinkBlink 1.2s infinite}
 
-.gadget-headphones{
-  width:120px;height:112px;right:4%;top:57%;
-  animation:floatGadget 9s ease-in-out -3s infinite;
+.pink-headphones{
+  width:120px;
+  height:112px;
+  right:4%;
+  top:57%;
+  animation:decorFloat 9s ease-in-out -3s infinite;
 }
-.headband{position:absolute;left:22px;top:8px;width:76px;height:72px;border:9px solid #ff4fc8;border-bottom:0;border-radius:48px 48px 0 0;box-shadow:0 0 20px rgba(255,0,174,.7)}
-.ear{position:absolute;top:58px;width:29px;height:42px;border-radius:10px;background:linear-gradient(135deg,#ff62d4,#4d004c);border:2px solid white}
-.ear.left{left:10px}.ear.right{right:10px}
-.headphone-note{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);font-size:30px;color:white;text-shadow:0 0 18px var(--pink)}
-
-.gadget-keyboard{
-  width:160px;height:78px;left:2%;bottom:12%;
-  border:1px solid rgba(255,0,174,.65);
-  background:rgba(7,0,12,.82);
-  transform:rotate(8deg);
-  animation:floatKeyboard 10s ease-in-out infinite;
+.pink-headphones .headband{
+  position:absolute;left:22px;top:8px;width:76px;height:72px;border:9px solid #ff8edb;border-bottom:0;border-radius:48px 48px 0 0;box-shadow:0 0 20px rgba(255,20,147,.58)
 }
-.keyboard-screen{position:absolute;left:10px;top:7px;font:9px "Share Tech Mono";color:var(--cyan)}
-.keys{position:absolute;left:9px;right:9px;bottom:8px;height:38px;display:flex;gap:2px}
-.keys i{flex:1;background:linear-gradient(#fff,#ffc9ef);border-radius:0 0 2px 2px;box-shadow:inset 0 -5px rgba(255,0,174,.2)}
-.keys i:nth-child(2),.keys i:nth-child(5),.keys i:nth-child(7){animation:keyGlow 2s infinite}
-
-.gadget-radar{
-  width:108px;height:108px;right:2.5%;bottom:11%;
-  border:1px solid rgba(255,0,174,.6);border-radius:50%;
-  background:radial-gradient(circle,rgba(255,0,174,.08),rgba(3,0,8,.8));
-  animation:floatGadget 7s ease-in-out -1s infinite;
+.pink-headphones .ear{
+  position:absolute;top:58px;width:29px;height:42px;border-radius:10px;background:linear-gradient(135deg,#ffd6ef,#ff3ebf);border:2px solid white
 }
-.radar-grid{position:absolute;inset:13px;border-radius:50%;background:repeating-radial-gradient(circle,transparent 0 10px,rgba(255,0,174,.24) 11px 12px)}
-.radar-line{position:absolute;left:50%;top:50%;width:43%;height:2px;background:linear-gradient(90deg,var(--pink),transparent);transform-origin:left;animation:radarSpin 2.6s linear infinite}
-.radar-dot{position:absolute;right:24px;top:27px;width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 14px var(--cyan)}
-.gadget-radar b{position:absolute;left:50%;bottom:-21px;transform:translateX(-50%);white-space:nowrap;font:9px "Share Tech Mono";color:var(--pink-3)}
+.pink-headphones .ear.left{left:10px}
+.pink-headphones .ear.right{right:10px}
+.pink-headphones .music-note{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);font-size:30px;color:white;text-shadow:0 0 18px var(--pink)}
 
-.gadget-cassette{
-  width:125px;height:82px;left:7%;top:67%;
-  border:1px solid rgba(255,0,174,.75);
-  background:linear-gradient(145deg,rgba(255,0,174,.25),rgba(72,230,255,.05)),rgba(7,0,12,.86);
-  transform:rotate(-8deg);
-  animation:floatCassette 9s ease-in-out -4s infinite;
+.mini-pink-drone{
+  width:92px;height:60px;right:16%;top:31%;
+  animation:dronePatrol 14s ease-in-out infinite;
 }
-.cassette-title{position:absolute;left:10px;top:8px;font:9px "Share Tech Mono";color:white}
-.reel{position:absolute;top:31px;width:23px;height:23px;border:3px dotted var(--pink-3);border-radius:50%;animation:radarSpin 3s linear infinite}
-.reel-a{left:25px}.reel-b{right:25px}
-.cassette-line{position:absolute;left:22px;right:22px;bottom:10px;height:3px;background:linear-gradient(90deg,var(--pink),var(--cyan))}
+.drone-body{position:absolute;left:27px;top:18px;width:38px;height:27px;border-radius:50%;background:linear-gradient(145deg,#ffd6ef,#ff3ebf);border:2px solid #fff}
+.drone-eye{position:absolute;left:42px;top:27px;width:8px;height:8px;border-radius:50%;background:var(--baby);box-shadow:0 0 12px var(--baby)}
+.drone-prop{position:absolute;top:8px;width:28px;height:8px;border:2px solid var(--pink-3);border-radius:50%}
+.drone-prop.left{left:2px}.drone-prop.right{right:2px}
 
-.gadget-drone{
-  width:92px;height:62px;right:16%;top:31%;
-  animation:droneFly 15s ease-in-out infinite;
+.pink-radar{
+  width:106px;height:106px;right:3%;bottom:12%;border:1px solid rgba(255,159,223,.55);border-radius:50%;background:radial-gradient(circle,rgba(255,20,147,.08),rgba(5,0,6,.82));animation:decorFloat 7s ease-in-out -1s infinite
 }
-.drone-eye{position:absolute;left:27px;top:17px;width:38px;height:28px;border-radius:50%;background:linear-gradient(145deg,#ff65d6,#6d116f);border:2px solid white}
-.drone-eye::after{content:"";position:absolute;left:13px;top:8px;width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
-.drone-wing{position:absolute;top:8px;width:27px;height:8px;border:2px solid var(--pink-3);border-radius:50%}
-.wing-l{left:3px}.wing-r{right:3px}
-.drone-tail{position:absolute;left:44px;bottom:0;width:4px;height:15px;background:var(--pink);box-shadow:0 0 10px var(--pink)}
+.radar-grid{position:absolute;inset:13px;border-radius:50%;background:repeating-radial-gradient(circle,transparent 0 10px,rgba(255,62,191,.23) 11px 12px)}
+.radar-sweep{position:absolute;left:50%;top:50%;width:43%;height:2px;background:linear-gradient(90deg,var(--pink),transparent);transform-origin:left;animation:radarSpin 2.6s linear infinite}
+.radar-hit{position:absolute;right:24px;top:27px;width:6px;height:6px;border-radius:50%;background:var(--baby);box-shadow:0 0 14px var(--baby)}
+.pink-radar small{position:absolute;left:50%;bottom:-21px;transform:translateX(-50%);white-space:nowrap;font:9px "Share Tech Mono";color:var(--baby)}
 
-@keyframes floatGadget{50%{transform:translateY(-22px) rotate(4deg)}}
-@keyframes floatKeyboard{50%{transform:translateY(-20px) rotate(3deg)}}
-@keyframes floatCassette{50%{transform:translateY(-20px) rotate(-2deg)}}
-@keyframes droneFly{0%,100%{transform:translate(0,0)}25%{transform:translate(-70px,-25px)}50%{transform:translate(-20px,25px)}75%{transform:translate(60px,-12px)}}
+@keyframes decorFloat{50%{transform:translateY(-20px) rotate(3deg)}}
+@keyframes dronePatrol{0%,100%{transform:translate(0,0)}25%{transform:translate(-64px,-24px)}50%{transform:translate(-18px,24px)}75%{transform:translate(58px,-10px)}}
 @keyframes radarSpin{to{transform:rotate(360deg)}}
-@keyframes blink{50%{opacity:.18}}
-@keyframes keyGlow{50%{background:#ff48c7;box-shadow:0 0 16px var(--pink)}}
+@keyframes pinkBlink{50%{opacity:.2}}
 
-/* HUD corners */
-.hud-corner{
-  position:fixed;
-  z-index:45;
-  pointer-events:none;
-  min-width:115px;
-  padding:8px 11px;
-  font-size:9px;
-  letter-spacing:.12em;
-  color:#ffd7f4;
-  border-color:rgba(255,0,174,.5);
-}
-.hud-corner span,.hud-corner b{display:block}
-.hud-corner b{color:var(--cyan);margin-top:3px}
-.hud-top-left{top:78px;left:15px;border-left:1px solid;border-top:1px solid}
-.hud-top-right{top:78px;right:15px;text-align:right;border-right:1px solid;border-top:1px solid}
-.hud-bottom-left{bottom:15px;left:15px;border-left:1px solid;border-bottom:1px solid}
-.hud-bottom-right{bottom:15px;right:15px;text-align:right;border-right:1px solid;border-bottom:1px solid}
-
-/* Robot assistant */
-.robot-assistant{
+/* Pink robot assistant */
+.pink-bot{
   position:fixed;
   right:24px;
   bottom:28px;
@@ -1723,243 +1718,493 @@ h2{
   border:0;
   background:none;
   cursor:pointer;
-  animation:robotFloat 3.2s ease-in-out infinite;
+  animation:botFloat 3.2s ease-in-out infinite;
 }
-.robot-head{
+.bot-head{
   position:absolute;left:13px;top:16px;width:60px;height:49px;border-radius:20px 20px 17px 17px;
-  background:linear-gradient(145deg,#ff7cdb,#7c116e 60%,#290027);
-  border:2px solid #ffd8f4;
-  box-shadow:0 0 22px rgba(255,0,174,.8),inset 0 0 14px rgba(72,230,255,.16);
+  background:linear-gradient(145deg,#ffd6ef,#ff3ebf 64%,#8a004e);
+  border:2px solid #fff0fa;
+  box-shadow:0 0 22px rgba(255,20,147,.72),inset 0 0 14px rgba(255,214,239,.16);
 }
-.robot-face{
-  position:absolute;inset:8px;border-radius:14px;background:#09000e;border:1px solid rgba(72,230,255,.55)
+.bot-eye{position:absolute;top:15px;width:8px;height:9px;border-radius:50%;background:var(--baby);box-shadow:0 0 10px var(--baby)}
+.bot-eye.left{left:14px}.bot-eye.right{right:14px}
+.bot-mouth{position:absolute;left:50%;bottom:8px;width:14px;height:4px;transform:translateX(-50%);border-bottom:2px solid white}
+.bot-body{position:absolute;left:20px;top:62px;width:46px;height:34px;border-radius:8px 8px 16px 16px;background:linear-gradient(145deg,#ff8edb,#ff1493);border:1px solid #fff0fa;color:white;font:800 10px Orbitron;display:grid;place-items:center;box-shadow:0 0 18px rgba(255,20,147,.56)}
+.bot-antenna{position:absolute;left:42px;top:2px;width:2px;height:17px;background:var(--baby)}
+.bot-antenna::after{content:"";position:absolute;left:-4px;top:-3px;width:10px;height:10px;border-radius:50%;background:var(--baby);box-shadow:0 0 13px var(--baby)}
+.bot-message{
+  position:absolute;right:82px;top:22px;white-space:nowrap;padding:8px 11px;border:1px solid rgba(255,159,223,.56);background:rgba(8,0,9,.92);color:#fff0fa;font:10px "Share Tech Mono";letter-spacing:.08em;border-radius:10px;opacity:0;transform:translateX(8px);transition:.25s
 }
-.robot-eye{position:absolute;top:12px;width:8px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
-.eye-l{left:10px}.eye-r{right:10px}
-.robot-mouth{position:absolute;left:50%;bottom:8px;width:14px;height:4px;transform:translateX(-50%);border-bottom:2px solid var(--pink-3)}
-.robot-body{
-  position:absolute;left:20px;top:62px;width:46px;height:34px;border-radius:6px 6px 16px 16px;
-  background:linear-gradient(145deg,#ff39c2,#57004e);
-  border:1px solid #ffd9f4;
-  color:white;font:800 10px Orbitron;display:grid;place-items:center;
-  box-shadow:0 0 18px rgba(255,0,174,.66)
-}
-.robot-antenna{position:absolute;left:42px;top:2px;width:2px;height:17px;background:var(--pink-3)}
-.robot-antenna::after{content:"";position:absolute;left:-4px;top:-3px;width:10px;height:10px;border-radius:50%;background:var(--cyan);box-shadow:0 0 13px var(--cyan)}
-.robot-shadow{position:absolute;left:19px;bottom:0;width:50px;height:10px;border-radius:50%;background:rgba(255,0,174,.35);filter:blur(5px)}
-.robot-bubble{
-  position:absolute;right:82px;top:22px;white-space:nowrap;
-  padding:8px 11px;border:1px solid rgba(255,0,174,.62);
-  background:rgba(7,0,13,.9);color:#ffd8f5;
-  font:10px "Share Tech Mono";letter-spacing:.08em;
-  clip-path:polygon(0 0,92% 0,100% 25%,100% 100%,8% 100%,0 75%);
-  opacity:0;transform:translateX(8px);transition:.25s;
-}
-.robot-assistant:hover .robot-bubble,
-.robot-assistant.active .robot-bubble{opacity:1;transform:none}
-@keyframes robotFloat{50%{transform:translateY(-12px)}}
+.pink-bot:hover .bot-message,.pink-bot.active .bot-message{opacity:1;transform:none}
+@keyframes botFloat{50%{transform:translateY(-12px)}}
 
-/* Player becomes an audio robotics terminal */
-.player-overlay{
-  background:
-    radial-gradient(circle at 50% 50%,rgba(255,0,174,.18),transparent 40%),
-    rgba(1,0,6,.82);
-}
-
-.player-modal{
-  width:min(880px,100%);
-  border:1px solid rgba(255,0,174,.65);
-  box-shadow:0 40px 150px rgba(0,0,0,.86),0 0 130px rgba(255,0,174,.5),inset 0 0 45px rgba(72,230,255,.05);
-  padding:clamp(24px,4vw,44px);
-}
-
-.player-modal::before{
-  content:"NYA AUDIO TERMINAL // CONNECTED";
-  position:absolute;left:18px;top:12px;
-  font:9px "Share Tech Mono";letter-spacing:.14em;color:var(--cyan);opacity:.75
-}
-
-.audio-core-scene{
+/* Audio core inside player */
+.player-core{
   position:absolute;
   right:34px;
-  top:70px;
-  width:220px;
-  height:220px;
+  top:72px;
+  width:210px;
+  height:210px;
   pointer-events:none;
-  opacity:.95;
 }
-
-.core-orbit{
-  position:absolute;inset:18px;border:1px solid rgba(255,0,174,.55);border-radius:50%;
-  box-shadow:0 0 20px rgba(255,0,174,.3);animation:radarSpin 9s linear infinite
-}
-.orbit-b{inset:38px;border-color:rgba(72,230,255,.45);animation-direction:reverse;animation-duration:6s}
-.core-orbit::before,.core-orbit::after{
-  content:"";position:absolute;width:8px;height:8px;border-radius:50%;background:var(--pink-3);box-shadow:0 0 12px var(--pink)
-}
-.core-orbit::before{left:16px;top:28px}.core-orbit::after{right:20px;bottom:26px;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
-.core-robot{position:absolute;left:69px;top:48px;width:82px;height:104px;animation:robotFloat 3s ease-in-out infinite}
-.core-head{position:absolute;left:10px;top:0;width:62px;height:46px;border-radius:18px;background:linear-gradient(145deg,#ff75d8,#6d0d62);border:2px solid white}
-.core-head i{position:absolute;top:17px;width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
-.core-head i:first-child{left:14px}.core-head i:nth-child(2){right:14px}
-.core-head b{position:absolute;left:50%;bottom:7px;width:16px;height:3px;transform:translateX(-50%);border-bottom:2px solid white}
-.core-antenna{position:absolute;left:40px;top:-17px;width:2px;height:19px;background:var(--pink-3)}
-.core-antenna::after{content:"";position:absolute;left:-4px;top:-2px;width:10px;height:10px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
-.core-body{position:absolute;left:17px;top:47px;width:49px;height:48px;border-radius:5px 5px 18px 18px;background:linear-gradient(145deg,#ff2ec1,#4a0047);border:1px solid white;color:white;font:800 8px Orbitron;display:grid;place-items:center;text-align:center}
-.core-disc{position:absolute;left:76px;top:159px;width:68px;height:68px;border-radius:50%;border:2px solid var(--pink-3);box-shadow:0 0 20px var(--pink);animation:radarSpin 4s linear infinite}
-.core-disc span{position:absolute;inset:12px;border-radius:50%;background:radial-gradient(circle,#fff 0 7px,#ff4fca 8px 14px,#16001d 15px)}
-.core-wave{position:absolute;left:14px;right:14px;bottom:-4px;height:34px;display:flex;align-items:center;justify-content:center;gap:4px}
-.core-wave i{width:4px;height:8px;background:linear-gradient(var(--cyan),var(--pink));box-shadow:0 0 8px var(--pink);animation:bars .8s ease-in-out infinite}
-.core-wave i:nth-child(2n){animation-delay:.12s}.core-wave i:nth-child(3n){animation-delay:.24s}
-.core-status{position:absolute;left:50%;bottom:-30px;transform:translateX(-50%);white-space:nowrap;font:9px "Share Tech Mono";letter-spacing:.12em;color:var(--pink-3)}
-
-.player-modal.playing .core-status::after{content:" // PLAYBACK ACTIVE";color:var(--cyan)}
-.player-title,.player-meta,.visualizer,.controls,.timeline-wrap,.volume-row,.player-tags{max-width:500px}
+.core-ring{position:absolute;border:1px solid rgba(255,159,223,.46);border-radius:50%;box-shadow:0 0 18px rgba(255,20,147,.26);animation:radarSpin 9s linear infinite}
+.core-ring-one{inset:18px}
+.core-ring-two{inset:38px;border-color:rgba(255,214,239,.35);animation-direction:reverse;animation-duration:6s}
+.core-bot{position:absolute;left:66px;top:47px;width:78px;height:104px;animation:botFloat 3s ease-in-out infinite}
+.core-face{position:absolute;left:8px;top:0;width:62px;height:46px;border-radius:18px;background:linear-gradient(145deg,#ffd6ef,#ff3ebf);border:2px solid white}
+.core-face b{position:absolute;top:17px;width:8px;height:8px;border-radius:50%;background:var(--baby);box-shadow:0 0 10px var(--baby)}
+.core-face b:first-child{left:14px}.core-face b:nth-child(2){right:14px}
+.core-face em{position:absolute;left:50%;bottom:7px;width:16px;height:3px;transform:translateX(-50%);border-bottom:2px solid white}
+.core-ant{position:absolute;left:39px;top:-17px;width:2px;height:19px;background:var(--baby)}
+.core-ant::after{content:"";position:absolute;left:-4px;top:-2px;width:10px;height:10px;border-radius:50%;background:var(--baby);box-shadow:0 0 12px var(--baby)}
+.core-body{position:absolute;left:15px;top:47px;width:49px;height:48px;border-radius:7px 7px 18px 18px;background:linear-gradient(145deg,#ff8edb,#ff1493);border:1px solid white;color:white;font:800 8px Orbitron;display:grid;place-items:center;text-align:center}
+.player-title,.player-meta,.visualizer,.controls,.timeline-wrap,.volume-row,.player-tags{max-width:490px}
 
 @media (max-width:1100px){
-  .gadget-chip,.gadget-keyboard,.gadget-cassette{opacity:.52;transform:scale(.8)}
-  .gadget-headphones,.gadget-saturn{opacity:.62;transform:scale(.82)}
+  .audio-chip-widget,.pink-headphones,.pink-saturn{opacity:.55;transform:scale(.82)}
 }
 
 @media (max-width:850px){
   body{cursor:auto}
-  .floating-tech,.hud-corner{display:none!important}
-  .robot-assistant{right:12px;bottom:14px;transform:scale(.82)}
-  .audio-core-scene{
-    position:relative;right:auto;top:auto;margin:8px auto 20px;width:180px;height:180px
-  }
-  .core-disc{display:none}
-  .core-status{bottom:-8px}
+  .outer-cyber-decor{display:none!important}
+  .pink-bot{right:12px;bottom:14px;transform:scale(.82)}
+  .player-core{position:relative;right:auto;top:auto;margin:8px auto 20px;width:180px;height:180px}
   .player-title,.player-meta,.visualizer,.controls,.timeline-wrap,.volume-row,.player-tags{max-width:none}
-  .video-feature,.small-card,.about-box,.contact-card,.player-modal{clip-path:none}
+  h1::before,h1::after{display:none}
 }
 
 @media (prefers-reduced-motion:reduce){
-  .starfield,.space-nebula,.cyber-rain,.gadget,.robot-assistant,.core-orbit,.core-robot,.core-disc{animation:none!important}
+  .pink-stars,.outer-cyber-decor > *,.pink-bot,.player-core .core-ring,.core-bot{animation:none!important}
 }
 
 
 /* =========================================================
-   FINAL DESKTOP SCI-FI OVERRIDE
-   Keeps the REAL turbulent animated electric border.
+   FINAL ELECTRIC PINK + CYAN OVERRIDE
+   No eggplant / violet wash.
+   Original turbulent border is preserved on desktop.
    ========================================================= */
+
+:root{
+  --black:#02060b;
+  --black-2:#050b12;
+  --navy:#07111d;
+
+  --pink:#ff1fb8;
+  --pink-2:#ff54cf;
+  --pink-3:#ff9ee6;
+  --baby:#ffd9f3;
+  --blush:#fff1fb;
+
+  --blue:#23dfff;
+  --blue-2:#73efff;
+  --blue-3:#c8fbff;
+
+  --white:#ffffff;
+  --muted:#d9e7f2;
+  --line:rgba(133,239,255,.24);
+}
+
+html,
+body{
+  background:#02060b !important;
+  color:#fff !important;
+}
+
+body{
+  font-family:"Oxanium",Inter,system-ui,sans-serif !important;
+}
+
+/* Kill the eggplant background completely */
+.site-bg{
+  background:
+    radial-gradient(circle at 13% 17%,rgba(255,31,184,.64),transparent 25%),
+    radial-gradient(circle at 84% 11%,rgba(35,223,255,.50),transparent 24%),
+    radial-gradient(circle at 66% 78%,rgba(255,84,207,.23),transparent 31%),
+    radial-gradient(circle at 30% 88%,rgba(115,239,255,.16),transparent 28%),
+    linear-gradient(155deg,#01050a 0%,#06101b 48%,#02070d 100%) !important;
+}
+
+.orb-one{
+  background:radial-gradient(circle,rgba(255,31,184,.88),rgba(255,31,184,.08) 48%,transparent 72%) !important;
+}
+.orb-two{
+  background:radial-gradient(circle,rgba(35,223,255,.76),rgba(35,223,255,.08) 48%,transparent 72%) !important;
+}
+.orb-three{
+  background:radial-gradient(circle,rgba(255,158,230,.36),rgba(35,223,255,.04) 50%,transparent 74%) !important;
+}
+
+.pink-stars{
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,.98) 0 1px,transparent 1.7px),
+    radial-gradient(circle,rgba(255,84,207,.92) 0 1px,transparent 1.6px),
+    radial-gradient(circle,rgba(35,223,255,.9) 0 1px,transparent 1.6px) !important;
+}
+
+.pink-circuit-bg{
+  opacity:.24 !important;
+  background:
+    linear-gradient(rgba(35,223,255,.16) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,31,184,.16) 1px,transparent 1px) !important;
+  background-size:52px 52px !important;
+}
+
+/* Bright electric rails */
+body::after{
+  display:block !important;
+  opacity:.78 !important;
+  background:
+    linear-gradient(90deg,transparent 8%,rgba(255,31,184,.44) 9%,transparent 10%),
+    linear-gradient(90deg,transparent 75%,rgba(35,223,255,.38) 76%,transparent 77%),
+    linear-gradient(0deg,transparent 14%,rgba(255,84,207,.28) 15%,transparent 16%),
+    linear-gradient(0deg,transparent 84%,rgba(35,223,255,.25) 85%,transparent 86%),
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) !important;
+  background-size:auto,auto,auto,auto,48px 48px,48px 48px !important;
+  mask-image:linear-gradient(to bottom,black,transparent 95%) !important;
+}
+
+.nav{
+  background:rgba(2,7,13,.82) !important;
+  border-bottom:1px solid rgba(35,223,255,.34) !important;
+  box-shadow:
+    0 0 24px rgba(35,223,255,.14),
+    0 0 36px rgba(255,31,184,.12) !important;
+}
+
+.brand,
+h1,
+h2,
+.video-title,
+.small-card h3,
+.player-title{
+  font-family:"Audiowide","Orbitron",sans-serif !important;
+  letter-spacing:.035em !important;
+}
+
+.navlinks,
+.eyebrow,
+.subline,
+.section-kicker,
+.number,
+.tag,
+.listen,
+.player-kicker,
+footer{
+  font-family:"Share Tech Mono",monospace !important;
+}
+
+.brand{
+  text-shadow:
+    2px 0 0 var(--blue),
+    -2px 0 0 var(--pink),
+    0 0 18px rgba(255,31,184,.78),
+    0 0 24px rgba(35,223,255,.46) !important;
+}
+
+/* Cyber title: bright electric pink with cyan cut lines */
+h1{
+  background:linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #ffd9f3 18%,
+    #ff54cf 38%,
+    #ff1fb8 56%,
+    #73efff 77%,
+    #ffffff 100%
+  ) !important;
+  background-size:220% auto !important;
+  -webkit-background-clip:text !important;
+  background-clip:text !important;
+  -webkit-text-fill-color:transparent !important;
+  color:transparent !important;
+  filter:
+    drop-shadow(5px 0 0 rgba(255,31,184,.75))
+    drop-shadow(-4px 0 0 rgba(35,223,255,.66))
+    drop-shadow(0 0 34px rgba(255,31,184,.72))
+    drop-shadow(0 0 46px rgba(35,223,255,.25)) !important;
+}
+
+h1::before,
+h1::after{
+  content:attr(data-text);
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.72;
+  background:inherit;
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+h1::before{
+  transform:translate(5px,-1px);
+  filter:drop-shadow(-3px 0 var(--blue));
+  clip-path:polygon(0 9%,100% 9%,100% 21%,0 21%);
+}
+
+h1::after{
+  transform:translate(-5px,1px);
+  filter:drop-shadow(3px 0 var(--pink));
+  clip-path:polygon(0 68%,100% 68%,100% 82%,0 82%);
+}
+
+.eyebrow{
+  color:#fff !important;
+  border-color:rgba(115,239,255,.40) !important;
+  background:linear-gradient(90deg,rgba(255,31,184,.18),rgba(35,223,255,.10)) !important;
+  box-shadow:
+    inset 0 1px rgba(255,255,255,.18),
+    0 0 22px rgba(255,31,184,.22),
+    0 0 22px rgba(35,223,255,.10) !important;
+}
+
+.subline{
+  color:#fff !important;
+  text-shadow:
+    2px 0 rgba(255,31,184,.92),
+    -2px 0 rgba(35,223,255,.82),
+    0 0 22px rgba(255,31,184,.58),
+    0 0 28px rgba(35,223,255,.34) !important;
+}
+
+.hero-copy,
+.section-note,
+.video-desc,
+.small-card p,
+.about-box p,
+.contact-card p,
+.player-meta,
+.audio-launch-note{
+  color:#dcebf5 !important;
+}
+
+/* Glossy pink + blue buttons */
+.btn{
+  border-radius:12px !important;
+  font-family:"Share Tech Mono",monospace !important;
+  text-transform:uppercase !important;
+  border:1px solid rgba(157,247,255,.34) !important;
+}
+
+.btn.primary{
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.42),rgba(255,255,255,.03) 28%),
+    linear-gradient(135deg,#ff1fb8 0%,#ff54cf 58%,#23dfff 100%) !important;
+  box-shadow:
+    0 0 24px rgba(255,31,184,.72),
+    0 0 36px rgba(35,223,255,.24),
+    inset 0 1px rgba(255,255,255,.56) !important;
+}
+
+.btn.secondary{
+  color:#fff !important;
+  background:
+    linear-gradient(135deg,rgba(255,31,184,.13),rgba(35,223,255,.12)) !important;
+  border-color:rgba(115,239,255,.34) !important;
+}
+
+.btn:hover{
+  box-shadow:
+    0 0 34px rgba(255,31,184,.78),
+    0 0 44px rgba(35,223,255,.32) !important;
+}
+
+h2,
+.video-title,
+.small-card h3,
+.player-title{
+  color:#fff !important;
+  text-shadow:
+    3px 0 0 rgba(255,31,184,.88),
+    -2px 0 0 rgba(35,223,255,.78),
+    0 0 24px rgba(255,31,184,.58),
+    0 0 30px rgba(35,223,255,.22) !important;
+}
+
+.section-kicker,
+.number,
+.player-kicker{
+  color:var(--blue-2) !important;
+}
+
+.section-head{
+  border-left:3px solid var(--pink) !important;
+}
+
+.section-head::after{
+  background:linear-gradient(90deg,var(--pink),var(--blue),transparent) !important;
+  box-shadow:0 0 14px rgba(35,223,255,.55),0 0 14px rgba(255,31,184,.55) !important;
+}
+
+/* Remove purple/eggplant from every panel */
+.video-layout,
+.cyber-card .video-layout,
+.small-card,
+.about-box,
+.contact-card,
+.player-modal,
+.stat{
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.095),rgba(255,255,255,.025)),
+    radial-gradient(circle at 82% 10%,rgba(35,223,255,.18),transparent 38%),
+    radial-gradient(circle at 12% 92%,rgba(255,31,184,.19),transparent 36%),
+    rgba(3,10,17,.93) !important;
+  border-color:rgba(115,239,255,.23) !important;
+}
+
+.video-feature{
+  background:
+    linear-gradient(-30deg,rgba(255,31,184,.16),rgba(255,255,255,.025),rgba(35,223,255,.14)),
+    rgba(2,8,14,.9) !important;
+  box-shadow:
+    0 35px 110px rgba(0,0,0,.68),
+    0 0 55px rgba(255,31,184,.24),
+    0 0 55px rgba(35,223,255,.14) !important;
+}
+
+.video-feature::after{
+  background:
+    radial-gradient(circle at 18% 18%,rgba(255,255,255,.25),transparent 20%),
+    radial-gradient(circle at 82% 18%,rgba(35,223,255,.26),transparent 24%),
+    radial-gradient(circle at 50% 105%,rgba(255,31,184,.28),transparent 30%),
+    linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,31,184,.15),rgba(35,223,255,.10),transparent 72%) !important;
+}
+
+.video-box{
+  background:#02080e !important;
+  border-color:rgba(115,239,255,.36) !important;
+  box-shadow:
+    0 28px 90px rgba(0,0,0,.65),
+    0 0 34px rgba(255,31,184,.24),
+    0 0 30px rgba(35,223,255,.17) !important;
+}
+
+.tag{
+  background:linear-gradient(135deg,rgba(255,31,184,.20),rgba(35,223,255,.12)) !important;
+  border-color:rgba(115,239,255,.34) !important;
+}
+
+.listen{
+  background:linear-gradient(135deg,var(--pink),var(--blue)) !important;
+  box-shadow:
+    0 0 28px rgba(255,31,184,.62),
+    0 0 28px rgba(35,223,255,.22) !important;
+}
+
+.control-btn.main{
+  background:linear-gradient(135deg,var(--pink),var(--blue)) !important;
+  box-shadow:
+    0 0 34px rgba(255,31,184,.62),
+    0 0 28px rgba(35,223,255,.25) !important;
+}
+
+.timeline{
+  background:linear-gradient(
+    90deg,
+    var(--pink) 0%,
+    var(--blue) var(--progress,0%),
+    rgba(255,255,255,.18) var(--progress,0%),
+    rgba(255,255,255,.18) 100%
+  ) !important;
+}
+
+.visualizer span{
+  background:linear-gradient(to top,var(--pink),var(--blue-2),#fff) !important;
+  box-shadow:0 0 18px rgba(255,31,184,.48),0 0 14px rgba(35,223,255,.30) !important;
+}
+
+/* Recolor cyber gadgets */
+.saturn-core{
+  background:radial-gradient(circle at 35% 28%,#fff,#ffd9f3 20%,#ff1fb8 48%,#23dfff 72%,#06101b 100%) !important;
+}
+.saturn-ring{
+  border-color:var(--blue-2) !important;
+  box-shadow:0 0 14px var(--blue),0 0 18px var(--pink) !important;
+}
+
+.audio-chip-widget,
+.pink-radar{
+  background:
+    linear-gradient(135deg,rgba(255,31,184,.18),rgba(35,223,255,.10)),
+    rgba(2,9,15,.88) !important;
+  border-color:rgba(115,239,255,.52) !important;
+}
+
+.chip-light,
+.radar-hit,
+.drone-eye,
+.bot-eye,
+.core-face b{
+  background:var(--blue-2) !important;
+  box-shadow:0 0 14px var(--blue) !important;
+}
+
+.pink-headphones .headband{
+  border-color:var(--pink-2) !important;
+  box-shadow:0 0 18px rgba(255,31,184,.72),0 0 14px rgba(35,223,255,.20) !important;
+}
+.pink-headphones .ear,
+.drone-body,
+.bot-head,
+.core-face{
+  background:linear-gradient(145deg,#ffd9f3,#ff1fb8 55%,#23dfff 100%) !important;
+}
+
+.bot-body,
+.core-body{
+  background:linear-gradient(145deg,#ff54cf,#ff1fb8 54%,#23dfff 100%) !important;
+}
+
+.bot-message{
+  background:rgba(2,9,15,.94) !important;
+  border-color:rgba(115,239,255,.54) !important;
+}
+
+/* IMPORTANT: exact turbulent effect remains enabled on laptop/desktop */
 @media (min-width:851px){
   .electric-border,
   .featured-grid .electric-border{
     filter:url(#turbulent-displace) !important;
     animation:featureGlowBreath 2.9s ease-in-out infinite !important;
-    border:2px solid #f26fcb !important;
-    border-radius:8px !important;
+    border:2px solid #ff62d3 !important;
     box-shadow:
       0 0 5px rgba(255,255,255,.95),
-      0 0 11px #ffb7ef,
-      0 0 24px #ff4fd8,
-      0 0 48px rgba(255,79,216,.98),
-      0 0 95px rgba(255,0,140,.72),
-      0 0 125px rgba(72,230,255,.16) !important;
-    opacity:.96;
-    transform:translateZ(0);
-    will-change:filter,opacity,transform;
-  }
-
-  .video-feature:hover .electric-border{
-    animation-duration:1.7s !important;
-    box-shadow:
-      0 0 7px white,
-      0 0 16px #ffc9f3,
-      0 0 34px #ff4fd8,
-      0 0 68px rgba(255,0,174,.98),
-      0 0 125px rgba(255,0,174,.78),
-      0 0 155px rgba(72,230,255,.28) !important;
-  }
-
-  .video-feature{
-    transform-style:preserve-3d;
-    perspective:1200px;
-  }
-
-  .video-layout{
-    transition:transform .35s ease, box-shadow .35s ease;
-  }
-
-  .video-feature:hover .video-layout{
-    transform:translateY(-5px) rotateX(.6deg);
-    box-shadow:
-      inset 0 1px rgba(255,255,255,.2),
-      inset 0 0 44px rgba(255,0,174,.12),
-      0 26px 65px rgba(0,0,0,.52);
-  }
-
-  .small-card{
-    transform-style:preserve-3d;
-  }
-
-  .small-card:hover{
-    transform:translateY(-9px) rotateX(2deg) rotateY(-1deg);
-  }
-
-  .hero-inner{
-    filter:drop-shadow(0 0 30px rgba(255,0,174,.12));
-  }
-
-  .nav::after{
-    content:"";
-    position:absolute;
-    left:0;
-    right:0;
-    bottom:-1px;
-    height:1px;
-    background:linear-gradient(90deg,transparent,var(--pink),var(--cyan),var(--pink),transparent);
-    background-size:220% 100%;
-    animation:navDataFlow 5s linear infinite;
-    box-shadow:0 0 12px var(--pink);
-  }
-
-  @keyframes navDataFlow{
-    to{background-position:220% 0}
-  }
-
-  body.music-reactive .electric-border{
-    animation-duration:1.15s !important;
-  }
-
-  body.music-reactive .video-feature.playing .video-layout,
-  body.music-reactive .small-card.playing{
-    box-shadow:
-      inset 0 0 42px rgba(72,230,255,.09),
-      0 0 55px rgba(255,0,174,.48),
-      0 0 105px rgba(255,0,174,.22);
+      0 0 10px #ffd9f3,
+      0 0 20px #ff54cf,
+      0 0 42px rgba(255,31,184,.94),
+      0 0 74px rgba(35,223,255,.30),
+      0 0 96px rgba(255,31,184,.48) !important;
+    z-index:6 !important;
+    pointer-events:none !important;
   }
 }
 
-/* Mouse-reactive sci-fi light used on desktop only */
-.cursor-reactor{
-  position:fixed;
-  left:0;
-  top:0;
-  width:420px;
-  height:420px;
-  border-radius:50%;
-  pointer-events:none;
-  z-index:1;
-  opacity:0;
-  transform:translate(-50%,-50%);
-  background:
-    radial-gradient(circle,rgba(255,255,255,.09) 0 3%,rgba(255,0,174,.16) 14%,rgba(72,230,255,.08) 29%,transparent 67%);
-  filter:blur(14px);
-  mix-blend-mode:screen;
-  transition:opacity .3s;
-}
-
+/* Mobile also loses every old purple value */
 @media (max-width:850px){
-  .cursor-reactor{display:none!important}
+  .site-bg{
+    background:
+      radial-gradient(circle at 15% 8%,rgba(255,31,184,.42),transparent 30%),
+      radial-gradient(circle at 86% 18%,rgba(35,223,255,.34),transparent 28%),
+      linear-gradient(155deg,#01050a 0%,#06101b 52%,#02070d 100%) !important;
+  }
+
+  .electric-border,
+  .featured-grid .electric-border{
+    border-color:#ff62d3 !important;
+    box-shadow:
+      0 0 5px rgba(255,255,255,.9),
+      0 0 12px rgba(255,84,207,.88),
+      0 0 26px rgba(255,31,184,.50),
+      0 0 30px rgba(35,223,255,.18) !important;
+  }
 }
 
 </style>
 </head>
 
 <body>
-  <div class="cursor-reactor" id="cursorReactor" aria-hidden="true"></div>
   <div class="site-bg" aria-hidden="true"></div>
   <div class="noise" aria-hidden="true"></div>
   <div class="orb orb-one" aria-hidden="true"></div>
@@ -1967,84 +2212,52 @@ h2{
   <div class="orb orb-three" aria-hidden="true"></div>
   <div class="sparkles" aria-hidden="true"></div>
 
-  <div class="starfield" aria-hidden="true"></div>
-  <div class="space-nebula" aria-hidden="true"></div>
-  <div class="cyber-rain" aria-hidden="true"></div>
+  <div class="pink-stars" aria-hidden="true"></div>
+  <div class="pink-circuit-bg" aria-hidden="true"></div>
 
-  <div class="floating-tech" aria-hidden="true">
-    <div class="gadget gadget-saturn">
-      <span class="planet-core"></span>
-      <span class="planet-ring ring-one"></span>
-      <span class="planet-ring ring-two"></span>
+  <div class="outer-cyber-decor" aria-hidden="true">
+    <div class="pink-saturn">
+      <span class="saturn-core"></span>
+      <span class="saturn-ring"></span>
     </div>
 
-    <div class="gadget gadget-chip">
-      <span class="chip-label">NYA</span>
-      <span class="chip-sub">AUDIO CORE</span>
-      <span class="chip-led"></span>
+    <div class="audio-chip-widget">
+      <span class="chip-brand">NYA</span>
+      <span class="chip-label">AUDIO CORE</span>
+      <span class="chip-light"></span>
     </div>
 
-    <div class="gadget gadget-headphones">
+    <div class="pink-headphones">
       <span class="headband"></span>
       <span class="ear left"></span>
       <span class="ear right"></span>
-      <span class="headphone-note">♪</span>
+      <span class="music-note">♪</span>
     </div>
 
-    <div class="gadget gadget-keyboard">
-      <span class="keyboard-screen">MIDI//LIVE</span>
-      <div class="keys">
-        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-      </div>
-    </div>
-
-    <div class="gadget gadget-radar">
-      <span class="radar-grid"></span>
-      <span class="radar-line"></span>
-      <span class="radar-dot"></span>
-      <b>NEW SIGNAL</b>
-    </div>
-
-    <div class="gadget gadget-cassette">
-      <span class="cassette-title">DEMO_01</span>
-      <span class="reel reel-a"></span>
-      <span class="reel reel-b"></span>
-      <span class="cassette-line"></span>
-    </div>
-
-    <div class="gadget gadget-drone">
+    <div class="mini-pink-drone">
+      <span class="drone-body"></span>
       <span class="drone-eye"></span>
-      <span class="drone-wing wing-l"></span>
-      <span class="drone-wing wing-r"></span>
-      <span class="drone-tail"></span>
+      <span class="drone-prop left"></span>
+      <span class="drone-prop right"></span>
+    </div>
+
+    <div class="pink-radar">
+      <span class="radar-grid"></span>
+      <span class="radar-sweep"></span>
+      <span class="radar-hit"></span>
+      <small>SYNC SIGNAL</small>
     </div>
   </div>
 
-  <div class="hud-corner hud-top-left" aria-hidden="true">
-    <span>NYA_OS</span><b>ONLINE</b>
-  </div>
-  <div class="hud-corner hud-top-right" aria-hidden="true">
-    <span>LATENCY</span><b>2.1MS</b>
-  </div>
-  <div class="hud-corner hud-bottom-left" aria-hidden="true">
-    <span>SYNTH ENGINE</span><b>100%</b>
-  </div>
-  <div class="hud-corner hud-bottom-right" aria-hidden="true">
-    <span>SIGNAL</span><b>STABLE</b>
-  </div>
-
-  <button class="robot-assistant" id="robotAssistant" type="button" aria-label="Open cyber assistant">
-    <span class="robot-antenna"></span>
-    <span class="robot-head">
-      <span class="robot-face">
-        <i class="robot-eye eye-l"></i>
-        <i class="robot-eye eye-r"></i>
-        <i class="robot-mouth"></i>
-      </span>
+  <button class="pink-bot" id="pinkBot" type="button" aria-label="Cyber assistant">
+    <span class="bot-antenna"></span>
+    <span class="bot-head">
+      <i class="bot-eye left"></i>
+      <i class="bot-eye right"></i>
+      <i class="bot-mouth"></i>
     </span>
-    <span class="robot-body">NYA</span>
-    <span class="robot-shadow"></span>
-    <span class="robot-bubble" id="robotBubble">♪ SYSTEM READY</span>
+    <span class="bot-body">NYA</span>
+    <span class="bot-message" id="pinkBotMessage">♪ SYSTEM READY</span>
   </button>
 
 
@@ -2093,7 +2306,7 @@ h2{
   <header class="hero" id="top">
     <div class="hero-inner">
       <div class="eyebrow">Songwriter • Ghostwriter • Ghost Producer</div>
-      <h1>NYA</h1>
+      <h1 data-text="NYA">NYA</h1>
       <div class="subline">Original Music for Artists • Games • Commercial Projects</div>
       <p class="hero-copy">Original demos and instrumentals created for artists, publishers, games, and entertainment projects.</p>
 
@@ -2285,23 +2498,14 @@ h2{
       <button class="close-player" id="closePlayer" aria-label="Close player" type="button">×</button>
 
 
-      <div class="audio-core-scene" aria-hidden="true">
-        <div class="core-orbit orbit-a"></div>
-        <div class="core-orbit orbit-b"></div>
-        <div class="core-robot">
-          <span class="core-antenna"></span>
-          <span class="core-head">
-            <i></i><i></i><b></b>
-          </span>
-          <span class="core-body">AUDIO<br>CORE</span>
-        </div>
-        <div class="core-disc">
-          <span></span>
-        </div>
-        <div class="core-wave">
-          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-        </div>
-        <div class="core-status">INITIALIZING COMPOSITION</div>
+      <div class="player-core" aria-hidden="true">
+        <span class="core-ring core-ring-one"></span>
+        <span class="core-ring core-ring-two"></span>
+        <span class="core-bot">
+          <i class="core-ant"></i>
+          <i class="core-face"><b></b><b></b><em></em></i>
+          <i class="core-body">AUDIO<br>CORE</i>
+        </span>
       </div>
 
       <div class="player-kicker">Now Playing</div>
@@ -2557,170 +2761,57 @@ document.addEventListener('keydown', e => {
 });
 
 
-// =========================================================
-// CYBER ROBOT + REACTIVE MUSIC INTERACTIONS
-// =========================================================
-const robotAssistant = document.getElementById('robotAssistant');
-const robotBubble = document.getElementById('robotBubble');
-
-const robotLines = [
+// Pink cyber assistant interactions
+const pinkBot = document.getElementById('pinkBot');
+const pinkBotMessage = document.getElementById('pinkBotMessage');
+const pinkBotLines = [
   '♪ SYSTEM READY',
   'SCANNING COMPOSITIONS...',
   'AUDIO CORE ONLINE',
   'NEED A CUSTOM TRACK?',
-  'SYNC SIGNAL DETECTED',
-  'CREATIVE MODE: 100%'
+  'SYNC SIGNAL DETECTED'
 ];
 
-let robotLineIndex = 0;
+let pinkBotLine = 0;
 
-function robotSay(message, hold = 2800){
-  if (!robotAssistant || !robotBubble) return;
-  robotBubble.textContent = message;
-  robotAssistant.classList.add('active');
-  clearTimeout(robotAssistant._bubbleTimer);
-  robotAssistant._bubbleTimer = setTimeout(() => {
-    robotAssistant.classList.remove('active');
-  }, hold);
+function pinkBotSay(message, hold = 2800){
+  if (!pinkBot || !pinkBotMessage) return;
+  pinkBotMessage.textContent = message;
+  pinkBot.classList.add('active');
+  clearTimeout(pinkBot._timer);
+  pinkBot._timer = setTimeout(() => pinkBot.classList.remove('active'), hold);
 }
 
-if (robotAssistant) {
-  robotAssistant.addEventListener('click', () => {
-    robotLineIndex = (robotLineIndex + 1) % robotLines.length;
-    robotSay(robotLines[robotLineIndex], 3400);
+if (pinkBot){
+  pinkBot.addEventListener('click', () => {
+    pinkBotLine = (pinkBotLine + 1) % pinkBotLines.length;
+    pinkBotSay(pinkBotLines[pinkBotLine], 3200);
   });
 
   setInterval(() => {
-    robotLineIndex = (robotLineIndex + 1) % robotLines.length;
-    robotSay(robotLines[robotLineIndex], 2600);
-  }, 17000);
+    pinkBotLine = (pinkBotLine + 1) % pinkBotLines.length;
+    pinkBotSay(pinkBotLines[pinkBotLine], 2400);
+  }, 18000);
 }
 
-// Add glitch copies to major display text.
-document.querySelectorAll('h1, h2, .video-title, .small-card h3, .player-title').forEach(el => {
-  el.dataset.cyberText = el.textContent.trim();
-});
-
-// Featured-video robot responses and reactive background state.
 featuredVideos.forEach(video => {
   video.addEventListener('play', () => {
     const card = video.closest('[data-id]');
     const name = card?.dataset.id?.replaceAll('-', ' ').toUpperCase() || 'FEATURED DEMO';
-    document.body.classList.add('music-reactive');
-    robotSay(`ANALYZING ${name}...`, 4200);
-  });
-
-  video.addEventListener('pause', () => {
-    const anythingPlaying = featuredVideos.some(v => !v.paused) || !audio.paused;
-    if (!anythingPlaying) document.body.classList.remove('music-reactive');
+    pinkBotSay(`ANALYZING ${name}...`, 4200);
   });
 });
 
 audio.addEventListener('play', () => {
-  document.body.classList.add('music-reactive');
   const track = tracks[currentIndex];
-  robotSay(`PLAYBACK: ${track.title.toUpperCase()}`, 4200);
-});
-
-audio.addEventListener('pause', () => {
-  const anythingPlaying = featuredVideos.some(v => !v.paused);
-  if (!anythingPlaying) document.body.classList.remove('music-reactive');
+  pinkBotSay(`PLAYBACK: ${track.title.toUpperCase()}`, 4200);
 });
 
 audio.addEventListener('ended', () => {
-  document.body.classList.remove('music-reactive');
-  robotSay('COMPOSITION COMPLETE', 3000);
+  pinkBotSay('COMPOSITION COMPLETE', 3000);
 });
-
-// Tiny animated data fragments.
-if (!isPhone && !reduceMotion) {
-  const rain = document.querySelector('.cyber-rain');
-  const dataWords = ['MIDI','808','SYNC','WAV','♪','01','AI','KPOP','GAME'];
-  for (let i = 0; i < 28; i++) {
-    const bit = document.createElement('span');
-    bit.textContent = dataWords[Math.floor(Math.random() * dataWords.length)];
-    bit.style.position = 'absolute';
-    bit.style.left = Math.random() * 100 + 'vw';
-    bit.style.top = Math.random() * 100 + 'vh';
-    bit.style.font = `${8 + Math.random() * 6}px "Share Tech Mono"`;
-    bit.style.color = Math.random() > .72 ? '#48e6ff' : '#ff4fca';
-    bit.style.opacity = .18 + Math.random() * .35;
-    bit.style.animation = `dataFall ${7 + Math.random() * 10}s linear ${-Math.random() * 12}s infinite`;
-    rain?.appendChild(bit);
-  }
-
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes dataFall{
-      from{transform:translateY(-15vh);opacity:0}
-      12%{opacity:.42}
-      to{transform:translateY(115vh);opacity:0}
-    }
-    body.music-reactive .space-nebula{
-      opacity:1;
-      filter:blur(18px) saturate(1.5);
-      animation-duration:3s;
-    }
-    body.music-reactive .starfield{
-      animation-duration:12s;
-    }
-    body.music-reactive .gadget{
-      filter:drop-shadow(0 0 28px rgba(255,0,174,.95)) drop-shadow(0 0 12px rgba(72,230,255,.5));
-    }
-    body.music-reactive .robot-eye,
-    body.music-reactive .drone-eye::after,
-    body.music-reactive .chip-led{
-      animation:blink .45s infinite;
-    }
-  `;
-  document.head.appendChild(style);
-}
-
-
-// Desktop mouse-reactive cyber lighting.
-const cursorReactor = document.getElementById('cursorReactor');
-
-if (cursorReactor && !isPhone && !reduceMotion) {
-  let mouseX = window.innerWidth / 2;
-  let mouseY = window.innerHeight / 2;
-  let currentX = mouseX;
-  let currentY = mouseY;
-
-  window.addEventListener('mousemove', event => {
-    mouseX = event.clientX;
-    mouseY = event.clientY;
-    cursorReactor.style.opacity = '.9';
-  }, {passive:true});
-
-  document.documentElement.addEventListener('mouseleave', () => {
-    cursorReactor.style.opacity = '0';
-  });
-
-  const moveCursorLight = () => {
-    currentX += (mouseX - currentX) * .12;
-    currentY += (mouseY - currentY) * .12;
-    cursorReactor.style.left = `${currentX}px`;
-    cursorReactor.style.top = `${currentY}px`;
-    requestAnimationFrame(moveCursorLight);
-  };
-
-  moveCursorLight();
-
-  document.querySelectorAll('.video-feature, .small-card, .btn, .robot-assistant').forEach(element => {
-    element.addEventListener('mouseenter', () => {
-      cursorReactor.style.width = '520px';
-      cursorReactor.style.height = '520px';
-      cursorReactor.style.opacity = '1';
-    });
-
-    element.addEventListener('mouseleave', () => {
-      cursorReactor.style.width = '420px';
-      cursorReactor.style.height = '420px';
-      cursorReactor.style.opacity = '.9';
-    });
-  });
-}
 
 </script>
 </body>
 </html>
+
